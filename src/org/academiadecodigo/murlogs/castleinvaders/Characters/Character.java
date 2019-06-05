@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.LinkedList;
 
 
-public abstract class Character implements Movable, Destroyable {
+public abstract class Character implements Destroyable {
 
     private int x;
     private int y;
@@ -25,7 +25,7 @@ public abstract class Character implements Movable, Destroyable {
         weapons = new LinkedList<Weapon>();
     }
 
-    public abstract void move();
+
 
     /**
      *  hit() Method used to receive the shot of enemy or player.
@@ -52,23 +52,14 @@ public abstract class Character implements Movable, Destroyable {
 
     /**
      * translate() method draws the Character.
-     * @param v double receives x value
-     * @param v1 double receives y value
+     * @param x int to move horizontally
+     * @param y int to move vertically
      */
-    @Override
-    public abstract void translate(double v, double v1);
+    public abstract void move(int x, int y);
 
     public abstract void shoot();
 
     public abstract void chooseWeapon(int index);
-
-    /**
-     * mode() Method must be mapped to double to use on translate() method
-     * @param x int x value
-     * @param y int y value
-     */
-    public abstract void move(int x, int y);
-
 
     public Weapon getWeapon(int idx) { return weapons.get(idx);}
 
