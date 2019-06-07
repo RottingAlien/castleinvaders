@@ -16,7 +16,6 @@ public class Game {
         field.createField();
 
         Player player = new Player();
-        player.prepare();
 
         Door door = new Door();
         door.drawDoor();
@@ -34,15 +33,17 @@ public class Game {
 
         //number of wave -> to increase enemy creation
 
-        int wave = 2;
+        int wave = 0;
+        int numberPerWave = 10 + wave;
 
+        LinkedList<Enemy> enemies = new LinkedList<>();
 
-        LinkedList<Enemy> enemies = EnemyFactory.createEnemys(4 + wave);
+        for (int i = 0; i < numberPerWave; i++) {
+
+            enemies.add(EnemyFactory.createEnemy());
+        }
 
         while (true) {
-
-
-// End of background music implementation
 
 
             Thread.sleep(10);
@@ -50,43 +51,12 @@ public class Game {
             for (Enemy enemy : enemies) {
                 enemy.move(1, 0);
                 field.drawVignette();
+
                 if (enemy.isAtDoor() && !door.isDestroyed()) {
+
                     enemy.punchDoor(door);
                 }
             }
         }
-
     }
-
 }
-
-
-
-
-
-/*
-
-    // Start of music implementation //
-    String filePath = "/assets/Mega Rust.wav";
-    Sound sound = new Sound(filePath); // open stream
-
-            try {
-
-                    Thread.sleep(0); // wait 0 seconds between each loop
-                    sound.play(true); // play sound from start
-                    sound.loopIndef(); // play forever
-                    Thread.sleep(20000000);
-
-
-
-
-                    } catch (InterruptedException e) {
-                    System.err.println(e.getMessage());
-
-                    } finally {
-                    sound.close(); // close stream
-                    }
-
-// End of background music implementation
-
-*/
