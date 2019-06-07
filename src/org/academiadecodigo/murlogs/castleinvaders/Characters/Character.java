@@ -69,3 +69,5 @@ public abstract class Character implements Destroyable {
 
     public void setPic(Picture pic) {this.pic = pic;}
 }
+
+
