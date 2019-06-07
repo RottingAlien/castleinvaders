@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+
         new Field(); // Linha para teste
         Player player = new Player();
         player.prepare();
@@ -30,6 +31,9 @@ public class Main {
                 enemy.move(1, 0);
             }
         }
+
+
+
 
 
     }
