@@ -23,8 +23,7 @@ public class Door implements Destroyable {
 
     public Door() {
 
-        this.energy = Globals.MAX_ENERGY * 2;
-        this.life = 3;
+        this.life = 100;
 
 
     }
@@ -50,20 +49,16 @@ public class Door implements Destroyable {
         return false;
     }
 
-    public void test() throws InterruptedException {
+    public void drawDoor() throws InterruptedException {
 
         Rectangle rect = new Rectangle(10, 10, 900, 800);
 
         rect.setColor(Color.DARK_GRAY);
         rect.fill();
 
-        Picture picture = new Picture(350,100, "http://www.castlesandmanorhouses.com/castles/pics/door.jpg");
-        picture.grow(-70, -70);
+        Picture picture = new Picture(335, 486, "castledoor.png");
 
         picture.draw();
-
-
-
 
 
     }
