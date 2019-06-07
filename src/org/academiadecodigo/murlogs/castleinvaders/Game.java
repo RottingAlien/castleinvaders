@@ -1,5 +1,6 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
+import org.academiadecodigo.murlogs.castleinvaders.Characters.Bullet;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyFactory;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
@@ -21,7 +22,6 @@ public class Game {
         door.drawDoor();
 
 
-
         // Start of music implementation //
 
         String filePath = "/assets/Mega Rust.wav";
@@ -39,6 +39,7 @@ public class Game {
 
         LinkedList<Enemy> enemies = new LinkedList<>();
 
+
         for (int i = 0; i < numberPerWave; i++) {
 
             enemies.add(EnemyFactory.createEnemy());
@@ -49,13 +50,24 @@ public class Game {
 
             Thread.sleep(10);
             player.move();
-            for (Enemy enemy : enemies) {
-                enemy.move();
-                field.drawVignette();
-                if (enemy.isAtDoor() && !door.isDestroyed()) {
-                    enemy.punchDoor(door);
+
+            if (player.getBulletShoot()) {
+
+                Bullet bullet = new Bullet(player.getPictureX(), player.getPlayerPositionY());
+
+
+                if(bullet.getY() <= 810) {
+                    bullet.bulletMove();
                 }
+            }
+
+        for (Enemy enemy : enemies) {
+            enemy.move();
+            field.drawVignette();
+            if (enemy.isAtDoor() && !door.isDestroyed()) {
+                enemy.punchDoor(door);
             }
         }
     }
+}
 }
