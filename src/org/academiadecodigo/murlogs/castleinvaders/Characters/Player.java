@@ -12,21 +12,29 @@ public class Player extends Character implements KeyboardHandler {
     private Keyboard keyboard;
     private int playerPositionX = 60;
     private final int playerPositionY = 120;
+    private boolean turnRight;
+    private boolean turnLeft;
+    private Picture rightPicture;
+    private Picture leftPicture;
 
     public Player() {
         super();
 
+        rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
+        leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
+        rightPicture.draw();
+/*
         this.setPic(new Picture());
+        this.getPic().load("knight-frame2.png");
         this.getPic().load("knight-frame3.png");
         this.getPic().draw();
         this.getPic().translate(playerPositionX , playerPositionY);
-
+*/
         // prepare method;
         keyboard = new Keyboard(this);
         prepare();
 
     }
-
 
 
     //Prepare the keyboard.
@@ -44,9 +52,20 @@ public class Player extends Character implements KeyboardHandler {
         space.setKey(KeyboardEvent.KEY_SPACE);
         space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent leftReleased = new KeyboardEvent();
+        leftReleased.setKey(KeyboardEvent.KEY_LEFT);
+        leftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent rightReleased = new KeyboardEvent();
+        rightReleased.setKey(KeyboardEvent.KEY_RIGHT);
+        rightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        keyboard.addEventListener(rightReleased);
+        keyboard.addEventListener(leftReleased);
         keyboard.addEventListener(space);
         keyboard.addEventListener(left);
         keyboard.addEventListener(right);
+
     }
 
     // Pressing keys to move;
@@ -59,12 +78,16 @@ public class Player extends Character implements KeyboardHandler {
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
-                this.getPic().load(("knight-frame3.png"));
-                move(10,0);
+                turnRight = true;
+                turnLeft = false;
+                leftPicture.delete();
+                rightPicture.draw();
                 break;
             case KeyboardEvent.KEY_LEFT:
-                this.getPic().load(("knight-frame2.png"));
-                move(-10, 0);
+                turnLeft = true;
+                turnRight = false;
+                rightPicture.delete();
+                leftPicture.draw();
                 break;
         }
     }
@@ -72,14 +95,34 @@ public class Player extends Character implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
+            turnLeft = false;
+        }
+
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
+            turnRight = false;
+
+        }
     }
 
 
     @Override
-    public void move(int x, int y) {
-        Picture picture = getPic();
-        picture.translate(x, y);
-        picture.draw();
+    public void move() {
+
+        if (turnRight) {
+            leftPicture.translate(2, 0);
+            rightPicture.translate(2, 0);
+            return;
+        }
+        if (turnLeft) {
+            rightPicture.translate(-2, 0);
+            leftPicture.translate(-2, 0);
+            return;
+        }
+        rightPicture.translate(0, 0);
+        leftPicture.translate(0, 0);
+
+
     }
 
     @Override

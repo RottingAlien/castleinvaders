@@ -21,6 +21,7 @@ public class Game {
         door.drawDoor();
 
 
+
         // Start of music implementation //
 
         String filePath = "/assets/Mega Rust.wav";
@@ -47,13 +48,11 @@ public class Game {
 
 
             Thread.sleep(10);
-
+            player.move();
             for (Enemy enemy : enemies) {
-                enemy.move(1, 0);
+                enemy.move();
                 field.drawVignette();
-
                 if (enemy.isAtDoor() && !door.isDestroyed()) {
-
                     enemy.punchDoor(door);
                 }
             }

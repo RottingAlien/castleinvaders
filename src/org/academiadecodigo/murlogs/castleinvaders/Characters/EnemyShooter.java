@@ -20,7 +20,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
 
     @Override
-    public void move(int x, int y) {
+    public void move() {
 
     }
 
