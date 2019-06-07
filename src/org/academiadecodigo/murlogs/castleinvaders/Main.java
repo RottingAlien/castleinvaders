@@ -6,10 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-    new Field(800,400 );
 
-    Player player = new Player();
-    player.prepare();
+
+    new Field(); // Linha para teste
+        Player player = new Player();
+        player.prepare();
 
     }
 }
