@@ -30,7 +30,5 @@ public class Main {
                 enemy.move(1, 0);
             }
         }
-
-
     }
 }

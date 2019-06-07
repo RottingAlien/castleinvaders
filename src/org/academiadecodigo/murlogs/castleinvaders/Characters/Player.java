@@ -15,11 +15,13 @@ public class Player extends Character implements KeyboardHandler {
 
     public Player() {
         super();
+
         this.setPic(new Picture());
         this.getPic().load("knight-frame3.png");
         this.getPic().draw();
-
         this.getPic().translate(playerPositionX , playerPositionY);
+
+        // prepare method;
         keyboard = new Keyboard(this);
         prepare();
 
@@ -57,9 +59,11 @@ public class Player extends Character implements KeyboardHandler {
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
-                move(10, 0);
+                this.getPic().load(("knight-frame3.png"));
+                move(10,0);
                 break;
             case KeyboardEvent.KEY_LEFT:
+                this.getPic().load(("knight-frame2.png"));
                 move(-10, 0);
                 break;
         }
