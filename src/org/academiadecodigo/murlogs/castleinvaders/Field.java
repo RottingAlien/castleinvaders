@@ -28,7 +28,7 @@ public class Field {
         castle.draw();
 
         //Creates Player Door
-        playerDoor = new Picture(68,122,"playerdoor.png");
+            playerDoor = new Picture(68,122,"playerdoor.png");
         playerDoor.draw();
 
         //Creates Castle Door
