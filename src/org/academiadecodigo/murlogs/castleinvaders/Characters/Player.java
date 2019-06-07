@@ -5,24 +5,23 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 
 public class Player extends Character implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private final int playerSize = 100;
-    private final int y = 50;
-    private Rectangle shape;
-    private Picture picture;
+    private int playerPositionX = 60;
+    private final int playerPositionY = 120;
 
     public Player() {
         super();
-        keyboard = new Keyboard(this);
-        prepare();
-        this.shape = new Rectangle(1, 1, playerSize, playerSize);
         this.setPic(new Picture());
         this.getPic().load("knight-frame3.png");
+        this.getPic().draw();
+
+        this.getPic().translate(playerPositionX , playerPositionY);
+        keyboard = new Keyboard(this);
+        prepare();
 
     }
 
