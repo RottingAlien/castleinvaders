@@ -6,10 +6,16 @@ public abstract class EnemyFactory {
 
     public static Enemy createEnemy() {
 
+        //TODO: make enemy with position here
 
-        Enemy enemy = new Enemy();
+        int randomEnemy = (int) (Math.random() * 2);
+        switch (randomEnemy) {
+            case 0:
+                return new Enemy();
+            case 1:
+                return new EnemyShooter();
+        }
 
-
-        return enemy;
+        return null;
     }
 }

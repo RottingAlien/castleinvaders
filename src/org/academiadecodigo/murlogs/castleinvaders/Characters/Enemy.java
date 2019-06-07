@@ -36,8 +36,6 @@ public class Enemy extends Character {
 
         this.getPic().load("Skeleton Walk.gif");
         this.getPic().translate(-randomX, enemyY);
-
-
     }
 
     // -----------------------------------------------------------------------------------------------------------------
