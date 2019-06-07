@@ -38,13 +38,11 @@ public class Game {
             for (Enemy enemy : enemies) {
                 enemy.move(1, 0);
                 field.drawVignette();
-                if (enemy.isAtDoor() && door.isDestroyed() == false) {
+
+                if (enemy.isAtDoor() && !door.isDestroyed()){
                     enemy.punchDoor(door);
-                    System.out.println(door.getLife());
                 }
             }
-
-
         }
 
     }
