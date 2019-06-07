@@ -36,12 +36,10 @@ public class Enemy extends Character {
         if (randomSpawn == 1) {
 
             this.getPic().translate(randomX + 760, enemyY);
-            this.getPic().draw();
             return;
         }
 
         this.getPic().translate(-randomX, enemyY);
-        this.getPic().draw();
 
 
     }
@@ -54,18 +52,18 @@ public class Enemy extends Character {
         //int randomStop = (int) (Math.random() * 10);
 
         //keep them moving to the center
-        /*if (getPic().getX() == -10) {
+        if (getPic().getX() == -10) {
             getPic().draw();
-        }*/
+        }
         if (getPic().getX() < 330) {
             getPic().translate(1, 0);
             return;
         }
 
 
-        /*if (getPic().getX() == 760) {
+        if (getPic().getX() == 760) {
             getPic().draw();
-        }*/
+        }
         if (getPic().getX() > 380) {
             getPic().translate(-1, 0);
         }
