@@ -5,6 +5,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class EnemyShooter extends Enemy implements Destroyable {
 
 
+
+
     // -----------------------------------------------------------------------------------------------------------------
     public EnemyShooter() {
         super();
@@ -32,5 +34,8 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
     }
 
+    public void randomDirection() {
 
+
+    }
 }
