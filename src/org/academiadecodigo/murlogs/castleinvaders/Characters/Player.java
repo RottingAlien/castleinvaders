@@ -22,7 +22,7 @@ public class Player extends Character implements KeyboardHandler {
         prepare();
         this.shape = new Rectangle(1, 1, playerSize, playerSize);
         this.setPic(new Picture());
-        this.getPic().load("sheet_hero_walk.png");
+        this.getPic().load("knight-frame3.png");
 
     }
 
