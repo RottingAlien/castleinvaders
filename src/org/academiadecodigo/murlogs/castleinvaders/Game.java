@@ -20,7 +20,6 @@ public class Game {
         door.drawDoor();
 
 
-
         //number of wave -> to increase enemy creation
 
         int wave = 2;
@@ -31,21 +30,14 @@ public class Game {
         while (true) {
 
             Thread.sleep(10);
-
+            player.move();
             for (Enemy enemy : enemies) {
-                enemy.move(1, 0);
+                enemy.move();
                 field.drawVignette();
-                if (enemy.isAtDoor() && !door.isDestroyed()){
+                if (enemy.isAtDoor() && !door.isDestroyed()) {
                     enemy.punchDoor(door);
                 }
             }
-
-
-
-
-
-
-
 
 
         }

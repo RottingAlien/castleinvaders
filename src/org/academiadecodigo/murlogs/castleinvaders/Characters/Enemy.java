@@ -46,7 +46,7 @@ public class Enemy extends Character {
     // -----------------------------------------------------------------------------------------------------------------
 
     @Override
-    public void move(int x, int y) {
+    public void move() {
 
         //keep them moving to the center
 

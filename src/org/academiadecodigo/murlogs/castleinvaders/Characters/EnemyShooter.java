@@ -18,7 +18,7 @@ public class EnemyShooter extends Character implements Destroyable {
 
 
     @Override
-    public void move(int x, int y) {
+    public void move() {
 
     }
 

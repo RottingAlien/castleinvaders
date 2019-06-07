@@ -56,7 +56,7 @@ public abstract class Character extends GameObjects implements Destroyable {
      * @param x int to move horizontally
      * @param y int to move vertically
      */
-    public abstract void move(int x, int y);
+    public abstract void move();
 
     public abstract void shoot();
 
