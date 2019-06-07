@@ -31,7 +31,7 @@ public abstract class Collision {
 
         public Rect (Point p, Point p1){
 
-            this.(p.x, p.y, p1.x - p.x, p1.y - p.y);
+            this(p.x, p.y, p1.x - p.x, p1.y - p.y);
 
         }
 
