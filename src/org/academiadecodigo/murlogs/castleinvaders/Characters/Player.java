@@ -14,7 +14,6 @@ public class Player extends Character implements KeyboardHandler {
     private final int playerPositionY = 120;
     private boolean turnRight;
     private boolean turnLeft;
-    private boolean stopMoving;
     private Picture rightPicture;
     private Picture leftPicture;
 
@@ -95,11 +94,11 @@ public class Player extends Character implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        System.out.println(keyboardEvent);
+
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
             turnLeft = false;
         }
-        System.out.println(keyboardEvent);
+
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
             turnRight = false;
 

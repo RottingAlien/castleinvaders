@@ -1,19 +1,15 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
-import java.util.LinkedList;
 
 public abstract class EnemyFactory {
 
 
-    public static LinkedList<Enemy> createEnemys(int numberOfEnemys) {
+    public static Enemy createEnemy() {
 
-        LinkedList<Enemy> enemyWave = new LinkedList<>();
 
-        for (int i = 0; i < numberOfEnemys; i++) {
+        Enemy enemy = new Enemy();
 
-            enemyWave.add(new Enemy());
-        }
 
-        return enemyWave;
+        return enemy;
     }
 }
