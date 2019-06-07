@@ -70,7 +70,7 @@ public class Enemy extends Character {
         if (getPic().getX() > 380) {
             getPic().translate(-1, 0);
 
-            if (getPic().getX() == 379) {
+            if (getPic().getX() == 380) {
                 atDoor = true;
             }
         }
