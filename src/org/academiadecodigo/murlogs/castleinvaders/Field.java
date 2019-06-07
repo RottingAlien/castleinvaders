@@ -13,36 +13,35 @@ public class Field {
     private Picture vignette;
 
 
-    public Field(){
+   public void createField(){
 
-        //Creates "screen area"
-        screen = new Rectangle(0,0,800,600);
-        screen.draw();
+       //Creates "screen area"
+       screen = new Rectangle(0,0,800,600);
+       screen.draw();
 
-        //Creates Sky
-        sky = new Picture(0,0,"sky.png");
-        sky.draw();
+       //Creates Sky
+       sky = new Picture(0,0,"sky.png");
+       sky.draw();
 
-        //Creates Castle
-        castle = new Picture(0,0,"castle.png");
-        castle.draw();
+       //Creates Castle
+       castle = new Picture(0,0,"castle.png");
+       castle.draw();
 
-        //Creates Player Door
-            playerDoor = new Picture(68,122,"playerdoor.png");
-        playerDoor.draw();
+       //Creates Player Door
+       playerDoor = new Picture(68,122,"playerdoor.png");
+       playerDoor.draw();
 
-        //Creates Castle Door
-        castleDoor = new Picture(335,486,"castledoor.png");
-        castleDoor.draw();
-
-        //Creates "vignette" to hide enemy spawn"
-        vignette = new Picture(0,0,"vignette.png");
-        vignette.draw();
+       vignette = new Picture(0,0,"vignette.png");
+       vignette.draw();
 
 
+   }
 
+   public void drawVignette(){
+       //Creates "vignette" to hide enemy spawn"
+       vignette.delete();
+       vignette.draw();
+   }
 
-
-    }
 
 }

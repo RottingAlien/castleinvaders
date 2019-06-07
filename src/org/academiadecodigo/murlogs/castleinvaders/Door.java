@@ -16,7 +16,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public class Door implements Destroyable {
+public class Door extends GameObjects implements Destroyable {
 
     private int energy;
     private int life;
@@ -50,11 +50,6 @@ public class Door implements Destroyable {
     }
 
     public void drawDoor() throws InterruptedException {
-
-        Rectangle rect = new Rectangle(10, 10, 900, 800);
-
-        rect.setColor(Color.DARK_GRAY);
-        rect.fill();
 
         Picture picture = new Picture(335, 486, "castledoor.png");
 
