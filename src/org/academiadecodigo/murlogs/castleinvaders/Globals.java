@@ -9,6 +9,7 @@ public class Globals {
     public static final int OIL_WEAPON_DAMAGE = 7;
     public static final int ROCK_WEAPON_DAMAGE = 5;
     public static final int BARREL_WEAPON_DAMAGE = 3;
+    public static final int PUNCH_WEAPON_DAMAGE = 2;
 
 
 }

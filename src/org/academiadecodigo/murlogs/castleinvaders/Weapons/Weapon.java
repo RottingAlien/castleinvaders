@@ -18,6 +18,11 @@ public abstract class Weapon  {
         this.typeWeapon = type;
     }
 
+    //constructor test for enemy
+    public Weapon(TypeWeapon type) {
+        this.typeWeapon = type;
+    }
+
     public void setPic(String path){pic.load(path.trim());}
 
     public abstract void move(int x, int y);

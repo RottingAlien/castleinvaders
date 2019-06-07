@@ -1,14 +1,63 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
+import org.academiadecodigo.murlogs.castleinvaders.Globals;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Punch;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.TypeWeapon;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Enemy extends Character {
 
-    private Rectangle rectangle;
+    private Rectangle shape;
 
+    private Weapon punchWeapon = new Punch(TypeWeapon.PUNCH);
+
+    private final int enemySize = 20;
+    private int enemyY = 380;
+
+
+    // -----------------------------------------------------------------------------------------------------------------
     public Enemy() {
         super();
-        this.rectangle = new Rectangle(0, 800, 20, 20);
+
+        int randomSpawn = (int) (Math.random() * 2);
+
+        int randomX = (int) (Math.random() * 250);
+
+        //spawn a player left or right of the field
+        if (randomSpawn == 1) {
+
+            this.shape = new Rectangle(-randomX, enemyY, enemySize, enemySize);
+            return;
+        }
+
+        this.shape = new Rectangle(800 + randomX, enemyY, enemySize, enemySize);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    @Override
+    public void move(int x, int y) {
+
+        //int randomStop = (int) (Math.random() * 10);
+
+        //keep them moving to the center
+        if (shape.getX() == -10) {
+            shape.draw();
+        }
+        if (shape.getX() < 380) {
+            shape.translate(1, 0);
+            return;
+        }
+
+
+        if (shape.getX() == 780) {
+            shape.draw();
+        }
+        if (shape.getX() > 420) {
+            shape.translate(-1, 0);
+        }
+
     }
 
     @Override
@@ -21,23 +70,22 @@ public class Enemy extends Character {
 
     }
 
+    /*
+    //punch the door
+    public void puchDoor(Door door) {
 
-    public void show() {
-        rectangle.draw();
+        door.hit(Globals.PUNCH_WEAPON_DAMAGE);
+    }*/
+
+    @Override
+    public void addWeapon(Weapon weapon) {
+        super.addWeapon(weapon);
     }
 
     @Override
-    public void move() {
-
+    public void hit(int intensity) {
+        super.hit(intensity);
     }
 
-    @Override
-    public void move(int x, int y) {
 
-    }
-
-    @Override
-    public void translate(double v, double v1) {
-
-    }
 }
