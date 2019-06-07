@@ -58,6 +58,10 @@ public class Door extends GameObjects implements Destroyable {
 
     }
 
+    public int getLife(){
+        return life;
+    }
+
 
 }
 
