@@ -14,19 +14,22 @@ public class Game {
         field.createField();
 
         Player player = new Player();
-        player.prepare();
 
         Door door = new Door();
         door.drawDoor();
 
 
-
         //number of wave -> to increase enemy creation
 
-        int wave = 2;
+        int wave = 0;
+        int numberPerWave = 10 + wave;
 
+        LinkedList<Enemy> enemies = new LinkedList<>();
 
-        LinkedList<Enemy> enemies = EnemyFactory.createEnemys(4 + wave);
+        for (int i = 0; i < numberPerWave; i++) {
+
+            enemies.add(EnemyFactory.createEnemy());
+        }
 
         while (true) {
 
@@ -35,16 +38,11 @@ public class Game {
             for (Enemy enemy : enemies) {
                 enemy.move(1, 0);
                 field.drawVignette();
-                if (enemy.isAtDoor() && door.isDestroyed() == false){
+                if (enemy.isAtDoor() && door.isDestroyed() == false) {
                     enemy.punchDoor(door);
                     System.out.println(door.getLife());
                 }
             }
-
-
-
-
-
 
 
         }
