@@ -1,10 +1,11 @@
 package org.academiadecodigo.murlogs.castleinvaders.Weapons;
 
+import org.academiadecodigo.murlogs.castleinvaders.GameObjects;
 import org.academiadecodigo.murlogs.castleinvaders.Globals;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class Weapon  {
+public abstract class Weapon extends GameObjects {
 
     private double x;
     private double y;
@@ -15,6 +16,11 @@ public abstract class Weapon  {
     public Weapon(String path, TypeWeapon type ) {
         this.pic = new Picture();
         pic.load(path.trim());
+        this.typeWeapon = type;
+    }
+
+    //constructor test for enemy
+    public Weapon(TypeWeapon type) {
         this.typeWeapon = type;
     }
 

@@ -1,6 +1,7 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
 import org.academiadecodigo.murlogs.castleinvaders.Destroyable;
+import org.academiadecodigo.murlogs.castleinvaders.GameObjects;
 import org.academiadecodigo.murlogs.castleinvaders.Globals;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
@@ -8,7 +9,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.LinkedList;
 
 
-public abstract class Character implements Destroyable {
+public abstract class Character extends GameObjects implements Destroyable {
 
     private int x;
     private int y;
