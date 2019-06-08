@@ -9,7 +9,9 @@ public enum TypeWeapon {
     BARREL(Globals.BARREL_WEAPON_DAMAGE),
     PUNCH(Globals.PUNCH_WEAPON_DAMAGE),
 
+
     //for the enemy - TODO: change damage
+
     ARROW(Globals.BARREL_WEAPON_DAMAGE);
 
     private final int damage;

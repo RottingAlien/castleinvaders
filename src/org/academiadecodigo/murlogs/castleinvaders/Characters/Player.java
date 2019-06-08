@@ -7,6 +7,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
+
 public class Player extends Character implements KeyboardHandler {
 
     private Keyboard keyboard;
@@ -14,12 +15,10 @@ public class Player extends Character implements KeyboardHandler {
     private final int playerPositionY = 120;
     private boolean turnRight;
     private boolean turnLeft;
-    private boolean bulletShoot;
     private Picture rightPicture;
     private Picture leftPicture;
-    private Picture bulletImage;
     private Bullet bullet;
-
+    private boolean bulletExists;
 
     public Player(int hearts) {
         super(hearts);
@@ -79,8 +78,7 @@ public class Player extends Character implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_SPACE:
-                System.out.println("space key pressed");
-                bulletShoot = true;
+                playerShooting();
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
@@ -105,10 +103,6 @@ public class Player extends Character implements KeyboardHandler {
             turnRight = false;
         }
 
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
-            System.out.println("space key released");
-            bulletShoot = false;
-        }
     }
 
 
@@ -138,6 +132,7 @@ public class Player extends Character implements KeyboardHandler {
 
     }
 
+
     public void refreshPlayerPosition(int x, int y) {
         leftPicture.translate(x, y);
         rightPicture.translate(x, y);
@@ -148,21 +143,48 @@ public class Player extends Character implements KeyboardHandler {
     public void shoot() {
     }
 
+    public void playerShooting() {
+        if(bulletExists){
+            return;
+        }
+        bullet = new Bullet(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() /2) );
+        bulletExists = true;
+
+    }
+    /*public Bullet[] bulletShoot(Bullet[] bullets){
+        for (int i = 0; i < bullets.length; i++) {
+            if (bullets[i] == null) {
+                bullets[i] = new Bullet(playerPositionX, playerPositionY);
+                bulletMove = true;
+                return bullets;
+            }
+        }
+        return bullets;
+    }*/
 
     @Override
     public void chooseWeapon(int index) {
 
     }
 
-    public Boolean getBulletShoot() {
-        return this.bulletShoot;
+ /*   public boolean setCanShoot() {
+        for (int i = 0; i < bullets.length; i++) {
+            if (bullets[i] == null) {
+                if (getBulletShoot()) {
+                    bullets[i] = new Bullet(playerPositionX, getPlayerPositionY());
+                    return bullets;
+                }
+            }
+
+        }
+        return bullets;
+    }*/
+
+    public void destroyBullet(){
+        bulletExists = false;
     }
 
-    public int getPictureX() {
-        return this.leftPicture.getX() + (this.leftPicture.getWidth() / 2);
-    }
-
-    public int getPlayerPositionY() {
+    public int getPlayerPositionY(){
         return playerPositionY;
     }
 
@@ -170,5 +192,9 @@ public class Player extends Character implements KeyboardHandler {
         return playerPositionX;
     }
 
+
+    public Bullet getBullet(){
+        return bullet;
+    }
 
 }

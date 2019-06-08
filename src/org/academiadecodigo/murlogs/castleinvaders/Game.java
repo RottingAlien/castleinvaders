@@ -47,15 +47,21 @@ public class Game {
 
             enemies.add(EnemyFactory.createEnemy());
         }
-
-
         Arrow[] arrows = new Arrow[10];
 
         while (true) {
-
-
             Thread.sleep(10);
             player.move();
+
+            if (player.getBullet() != null) {
+                  player.getBullet().move(0, 10);
+                if(player.getBullet().bulletGetY() > 549){
+
+                    player.destroyBullet();
+                }
+            }
+
+
             //player shoot - still in test
             /*
             if (player.getBulletShoot()) {

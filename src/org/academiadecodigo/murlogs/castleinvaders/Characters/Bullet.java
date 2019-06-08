@@ -1,30 +1,40 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
-import org.academiadecodigo.murlogs.castleinvaders.GameObjects;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.TypeWeapon;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Bullet extends GameObjects {
+public class Bullet extends Weapon {
 
     private int x;
     private int y;
     private Picture bulletImage;
 
-    public Bullet(int x, int y){
+    public Bullet(int x, int y) {
+        super("arrow.png", TypeWeapon.ARROW);
+        super.setPic("arrow.png");
         this.x = x;
         this.y = y;
-        bulletImage = new Picture(x, y, "arrow.png");
-        draw();
-    }
-
-    public void draw(){
+        bulletImage = getPic();
         bulletImage.draw();
+        bulletImage.translate(x, y);
+
     }
 
-    public void bulletMove () {
-        bulletImage.translate(0, 10);
+    @Override
+    public void move(int x, int y) {
+        if (this.y < 550) {
+            bulletImage.translate(x, y);
+            this.x += x;
+            this.y += y;
+        }
     }
 
-    public int getY (){
-        return this.bulletImage.getY();
+    public int bulletGetX(){
+        return this.x;
+    }
+
+    public int bulletGetY(){
+        return this.y;
     }
 }
