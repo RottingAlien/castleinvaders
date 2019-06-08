@@ -13,7 +13,6 @@ public class Game {
     public void startGame() throws InterruptedException {
 
 
-
         Field field = new Field();
         field.createField();
 
@@ -60,6 +59,5 @@ public class Game {
                 }
             }
         }
-     }
-
+    }
 }
