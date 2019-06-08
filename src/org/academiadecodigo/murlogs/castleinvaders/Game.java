@@ -18,7 +18,7 @@ public class Game {
         Field field = new Field();
         field.createField();
 
-        Player player = new Player();
+        Player player = new Player(5);
 
         Door door = new Door();
         door.drawDoor();
@@ -55,7 +55,6 @@ public class Game {
 
             Thread.sleep(10);
             player.move();
-
             //player shoot - still in test
             /*
             if (player.getBulletShoot()) {
@@ -84,12 +83,27 @@ public class Game {
 
                     if (arrows[i] != null) {
                         arrows[i].move(0, -1);
+                        // System.out.println(arrows[i].getArrowY());
 
-                        if (arrows[i].getPic().getY() < -10) {
+                        if ((arrows[i].getArrowY() == player.getPlayerPositionY() + 50) &&
+                                ((arrows[i].getArrowX() > player.getPlayerPositionX()) && (arrows[i].getArrowX() < player.getPlayerPositionX() + player.getPic().getWidth()))) {
+                            arrows[i].setHit(true);
                             arrows[i].getPic().delete();
                             arrows[i] = null;
+                            player.hit(1);
+                            continue;
                         }
+
+                        if (arrows[i].getArrowY() < -10) {
+                            arrows[i].getPic().delete();
+                            arrows[i] = null;
+
+                        }
+
+
                     }
+
+
                 }
 
                 field.drawVignette();

@@ -15,8 +15,8 @@ public class EnemyShooter extends Enemy implements Destroyable {
     private Picture currentPicture;
 
     // -----------------------------------------------------------------------------------------------------------------
-    public EnemyShooter(int randomSpawn, int randomX) {
-        super(randomSpawn, randomX);
+    public EnemyShooter(int hearts, int randomSpawn, int randomX) {
+        super(hearts, randomSpawn, randomX);
 
         goingRightPicture = new Picture();
         goingRightPicture.load("Skeleton Walk.gif");

@@ -21,12 +21,13 @@ public class Player extends Character implements KeyboardHandler {
     private Bullet bullet;
 
 
-    public Player() {
-        super();
+    public Player(int hearts) {
+        super(hearts);
 
         rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
         leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
         rightPicture.draw();
+        super.setPic(rightPicture);
 
         // prepare method;
         keyboard = new Keyboard(this);
@@ -113,30 +114,39 @@ public class Player extends Character implements KeyboardHandler {
 
     @Override
     public void move() {
+        if (!isDestroyed()) {
+            if (turnRight) {
+                leftPicture.delete();
+                rightPicture.draw();
+                refreshPlayerPosition(2, 0);
+                return;
+            }
+            if (turnLeft) {
+                rightPicture.delete();
+                leftPicture.draw();
+                refreshPlayerPosition(-2, 0);
+                return;
+            }
 
-        if (turnRight) {
-            leftPicture.delete();
-            rightPicture.draw();
-            leftPicture.translate(2, 0);
-            rightPicture.translate(2, 0);
-            return;
+            refreshPlayerPosition(0, 0);
         }
-        if (turnLeft) {
+        if (isDestroyed()) {
+
             rightPicture.delete();
-            leftPicture.draw();
-            rightPicture.translate(-2, 0);
-            leftPicture.translate(-2, 0);
-            return;
+            leftPicture.delete();
         }
-
-        rightPicture.translate(0, 0);
-        leftPicture.translate(0, 0);
-
 
     }
 
+    public void refreshPlayerPosition(int x, int y) {
+        leftPicture.translate(x, y);
+        rightPicture.translate(x, y);
+        playerPositionX += x;
+    }
+
     @Override
-    public void shoot() { }
+    public void shoot() {
+    }
 
 
     @Override
@@ -155,4 +165,10 @@ public class Player extends Character implements KeyboardHandler {
     public int getPlayerPositionY() {
         return playerPositionY;
     }
+
+    public int getPlayerPositionX() {
+        return playerPositionX;
+    }
+
+
 }
