@@ -20,6 +20,7 @@ public class Game {
         field.createField();
 
         Player player = new Player(5);
+
         Door door = new Door();
         door.drawDoor();
 
@@ -46,15 +47,12 @@ public class Game {
 
             enemies.add(EnemyFactory.createEnemy());
         }
-
-
         Arrow[] arrows = new Arrow[10];
 
         while (true) {
-
-
             Thread.sleep(10);
             player.move();
+
             if (player.getBullet() != null) {
                   player.getBullet().move(0, 10);
                 if(player.getBullet().bulletGetY() > 549){

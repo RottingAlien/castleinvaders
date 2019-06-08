@@ -132,15 +132,15 @@ public class Player extends Character implements KeyboardHandler {
 
     }
 
-    @Override
-    public void shoot() {
-
-    }
 
     public void refreshPlayerPosition(int x, int y) {
         leftPicture.translate(x, y);
         rightPicture.translate(x, y);
         playerPositionX += x;
+    }
+
+    @Override
+    public void shoot() {
     }
 
     public void playerShooting() {
@@ -192,7 +192,9 @@ public class Player extends Character implements KeyboardHandler {
         return playerPositionX;
     }
 
+
     public Bullet getBullet(){
         return bullet;
     }
+
 }
