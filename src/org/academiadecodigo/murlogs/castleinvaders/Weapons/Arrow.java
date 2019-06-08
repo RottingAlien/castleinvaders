@@ -1,5 +1,7 @@
 package org.academiadecodigo.murlogs.castleinvaders.Weapons;
 
+import java.util.ConcurrentModificationException;
+
 public class Arrow extends Weapon {
 
     public double arrowX;
@@ -12,6 +14,7 @@ public class Arrow extends Weapon {
         this.arrowY = y;
         getPic().translate(x, y);
         getPic().draw();
+        //ConcurrentModificationException
     }
 
     @Override

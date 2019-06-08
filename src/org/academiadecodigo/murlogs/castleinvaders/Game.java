@@ -19,7 +19,7 @@ public class Game {
         Field field = new Field();
         field.createField();
 
-        Player player = new Player(5);
+        Player player = new Player(100);
 
         Door door = new Door();
         door.drawDoor();

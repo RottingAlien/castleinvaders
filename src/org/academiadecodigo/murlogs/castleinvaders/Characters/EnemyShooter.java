@@ -143,6 +143,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
         goingRightPicture.delete();
         goingLeftPicture.delete();
+        currentPicture.delete();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
