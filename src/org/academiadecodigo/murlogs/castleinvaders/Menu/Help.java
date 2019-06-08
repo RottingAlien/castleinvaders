@@ -9,6 +9,7 @@ public class Help {
     private Rectangle screen;
     private Picture keywords;
     private Picture instructionsBackground;
+    private Picture hearts;
     private boolean helpIsCreated;
 
     public void createHelpSection() {
@@ -18,10 +19,12 @@ public class Help {
         keywords = new Picture(30, 180, "instructions.png");
         instructionsBackground = new Picture(70,100, "menu instructions.png" );
 
+
         screen.draw();
 
        instructionsBackground.draw();
       instructionsBackground.grow(85,180);
+
 
         keywords.draw();
 
