@@ -21,6 +21,13 @@ public class Door extends GameObjects implements Destroyable {
     private int energy;
     private int life;
 
+    Picture door = new Picture(335, 486, "castledoor.png");
+    Picture door1 = new Picture(335, 486, "castledoorcrack1.png");
+    Picture door2 = new Picture(335, 486, "castledoorcrack2.png");
+    Picture door3 = new Picture(335, 486, "castledoorcrack3.png");
+    Picture door4 = new Picture(335, 486, "castledoordestroyed.png");
+
+
     public Door() {
 
         this.life = 100;
@@ -37,9 +44,20 @@ public class Door extends GameObjects implements Destroyable {
                 life--;
                 energy = Globals.MAX_ENERGY * 2;
             }
+            if (life < 75) {
+                door.delete();
+            }
+            if (life < 50) {
+                door1.delete();
+            }
+            if (life < 25) {
+                door2.delete();
+
+            }
         }
-
-
+        if (life == 0) {
+            door3.delete();
+        }
     }
 
     public boolean isDestroyed() {
@@ -51,14 +69,17 @@ public class Door extends GameObjects implements Destroyable {
 
     public void drawDoor() throws InterruptedException {
 
-        Picture picture = new Picture(335, 486, "castledoor.png");
 
-        picture.draw();
+        door4.draw();
+        door3.draw();
+        door2.draw();
+        door1.draw();
+        door.draw();
 
 
     }
 
-    public int getLife(){
+    public int getLife() {
         return life;
     }
 

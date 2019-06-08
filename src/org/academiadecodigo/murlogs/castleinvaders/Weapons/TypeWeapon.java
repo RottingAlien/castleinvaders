@@ -7,7 +7,10 @@ public enum TypeWeapon {
     OIL(Globals.OIL_WEAPON_DAMAGE),
     ROCK(Globals.ROCK_WEAPON_DAMAGE),
     BARREL(Globals.BARREL_WEAPON_DAMAGE),
-    PUNCH(Globals.PUNCH_WEAPON_DAMAGE);
+    PUNCH(Globals.PUNCH_WEAPON_DAMAGE),
+
+    //for the enemy - TODO: change damage
+    ARROW(Globals.BARREL_WEAPON_DAMAGE);
 
     private final int damage;
 

@@ -12,21 +12,28 @@ public class Player extends Character implements KeyboardHandler {
     private Keyboard keyboard;
     private int playerPositionX = 60;
     private final int playerPositionY = 120;
+    private boolean turnRight;
+    private boolean turnLeft;
+    private boolean bulletShoot;
+    private Picture rightPicture;
+    private Picture leftPicture;
+    private Picture bulletImage;
+    private Bullet bullet;
 
-    public Player() {
-        super();
 
-        this.setPic(new Picture());
-        this.getPic().load("knight-frame3.png");
-        this.getPic().draw();
-        this.getPic().translate(playerPositionX , playerPositionY);
+    public Player(int hearts) {
+        super(hearts);
+
+        rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
+        leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
+        rightPicture.draw();
+        super.setPic(rightPicture);
 
         // prepare method;
         keyboard = new Keyboard(this);
         prepare();
 
     }
-
 
 
     //Prepare the keyboard.
@@ -44,9 +51,25 @@ public class Player extends Character implements KeyboardHandler {
         space.setKey(KeyboardEvent.KEY_SPACE);
         space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent leftReleased = new KeyboardEvent();
+        leftReleased.setKey(KeyboardEvent.KEY_LEFT);
+        leftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent rightReleased = new KeyboardEvent();
+        rightReleased.setKey(KeyboardEvent.KEY_RIGHT);
+        rightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent spaceReleased = new KeyboardEvent();
+        spaceReleased.setKey(KeyboardEvent.KEY_SPACE);
+        spaceReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        keyboard.addEventListener(spaceReleased);
+        keyboard.addEventListener(rightReleased);
+        keyboard.addEventListener(leftReleased);
         keyboard.addEventListener(space);
         keyboard.addEventListener(left);
         keyboard.addEventListener(right);
+
     }
 
     // Pressing keys to move;
@@ -56,15 +79,17 @@ public class Player extends Character implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_SPACE:
+                System.out.println("space key pressed");
+                bulletShoot = true;
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
-                this.getPic().load(("knight-frame3.png"));
-                move(10,0);
+                turnRight = true;
+                turnLeft = false;
                 break;
             case KeyboardEvent.KEY_LEFT:
-                this.getPic().load(("knight-frame2.png"));
-                move(-10, 0);
+                turnLeft = true;
+                turnRight = false;
                 break;
         }
     }
@@ -72,23 +97,78 @@ public class Player extends Character implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
+            turnLeft = false;
+        }
+
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
+            turnRight = false;
+        }
+
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+            System.out.println("space key released");
+            bulletShoot = false;
+        }
     }
 
 
     @Override
-    public void move(int x, int y) {
-        Picture picture = getPic();
-        picture.translate(x, y);
-        picture.draw();
+    public void move() {
+        if (!isDestroyed()) {
+            if (turnRight) {
+                leftPicture.delete();
+                rightPicture.draw();
+                refreshPlayerPosition(2, 0);
+                return;
+            }
+            if (turnLeft) {
+                rightPicture.delete();
+                leftPicture.draw();
+                refreshPlayerPosition(-2, 0);
+                return;
+            }
+
+            refreshPlayerPosition(0, 0);
+        }
+        if (isDestroyed()) {
+
+            rightPicture.delete();
+            leftPicture.delete();
+        }
+
+    }
+
+    public void refreshPlayerPosition(int x, int y) {
+        leftPicture.translate(x, y);
+        rightPicture.translate(x, y);
+        playerPositionX += x;
     }
 
     @Override
     public void shoot() {
-
     }
+
 
     @Override
     public void chooseWeapon(int index) {
 
     }
+
+    public Boolean getBulletShoot() {
+        return this.bulletShoot;
+    }
+
+    public int getPictureX() {
+        return this.leftPicture.getX() + (this.leftPicture.getWidth() / 2);
+    }
+
+    public int getPlayerPositionY() {
+        return playerPositionY;
+    }
+
+    public int getPlayerPositionX() {
+        return playerPositionX;
+    }
+
+
 }
