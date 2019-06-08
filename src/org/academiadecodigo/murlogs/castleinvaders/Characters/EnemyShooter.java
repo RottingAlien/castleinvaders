@@ -124,7 +124,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
         for (int i = 0; i < arrows.length; i++) {
             if (arrows[i] == null) {
 
-                int randomShoot = (int) (Math.random() * 500000);
+                int randomShoot = (int) (Math.random() * 5000);
 
                 if (randomShoot < 100) {
                     arrows[i] = new Arrow(currentPicture.getX(), currentPicture.getY());
