@@ -16,6 +16,7 @@ public abstract class Character extends GameObjects implements Destroyable {
     private int hearts;
     protected LinkedList<Weapon> weapons;
     private Picture pic;
+    private boolean destroyed;
 
     public Character(int hearts) {
         this.hearts = hearts;
@@ -34,6 +35,9 @@ public abstract class Character extends GameObjects implements Destroyable {
 
         this.hearts -= hearts;
 
+        if (hearts == 0) {
+            destroyed = true;
+        }
 
     }
 

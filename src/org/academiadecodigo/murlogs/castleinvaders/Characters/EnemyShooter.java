@@ -138,9 +138,23 @@ public class EnemyShooter extends Enemy implements Destroyable {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public void setDestroyed() {
+
+        goingRightPicture.delete();
+        goingLeftPicture.delete();
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
     @Override
     public void chooseWeapon(int index) {
 
+    }
+
+    @Override
+    public void hit(int hearts) {
+        super.hit(hearts);
     }
 
     public Picture getCurrentPicture() {

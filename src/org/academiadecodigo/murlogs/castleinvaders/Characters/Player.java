@@ -182,6 +182,7 @@ public class Player extends Character implements KeyboardHandler {
 
     public void destroyBullet(){
         bulletExists = false;
+        bullet = null;
     }
 
     public int getPlayerPositionY(){

@@ -42,43 +42,50 @@ public class Game {
 
         LinkedList<Enemy> enemies = new LinkedList<>();
 
-
         for (int i = 0; i < numberPerWave; i++) {
 
             enemies.add(EnemyFactory.createEnemy());
         }
+
         Arrow[] arrows = new Arrow[10];
 
+
         while (true) {
+
             Thread.sleep(10);
             player.move();
 
-            if (player.getBullet() != null) {
-                  player.getBullet().move(0, 10);
-                if(player.getBullet().bulletGetY() > 549){
+            if (player.getBullet() != null && !player.isDestroyed()) {
+
+                player.getBullet().move(0, 10);
+
+                if (player.getBullet().bulletGetY() > 549) {
 
                     player.destroyBullet();
                 }
             }
 
-
-            //player shoot - still in test
-            /*
-            if (player.getBulletShoot()) {
-
-                Bullet bullet = new Bullet(player.getPictureX(), player.getPlayerPositionY());
-
-
-                if (bullet.getY() <= 810) {
-                    bullet.bulletMove();
-                }
-            }
-            */
-
             //enemy move & shoot
             for (Enemy enemy : enemies) {
                 enemy.move();
 
+                //check for hits on enemies
+                if (player.getBullet() != null) {
+                    if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
+                            player.getBullet().bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
+                            player.getBullet().bulletGetY() > enemy.getPic().getY() &&
+                            player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+
+                        enemy.hit(1);
+                        System.out.println("outchs");
+                    }
+
+                    if (enemy.isDestroyed()) {
+                        enemy.setDestroyed();
+                    }
+                }
+
+                //enemy shoot
                 if (enemy instanceof EnemyShooter) {
 
                     EnemyShooter enemyShooter = (EnemyShooter) enemy;
@@ -86,14 +93,15 @@ public class Game {
                     arrows = enemyShooter.canShoot(arrows);
                 }
 
+                //check for player hit
                 for (int i = 0; i < arrows.length; i++) {
 
                     if (arrows[i] != null) {
                         arrows[i].move(0, -1);
-                        // System.out.println(arrows[i].getArrowY());
 
                         if ((arrows[i].getArrowY() == player.getPlayerPositionY() + 50) &&
-                                ((arrows[i].getArrowX() > player.getPlayerPositionX()) && (arrows[i].getArrowX() < player.getPlayerPositionX() + player.getPic().getWidth()))) {
+                                ((arrows[i].getArrowX() > player.getPlayerPositionX()) &&
+                                        (arrows[i].getArrowX() < player.getPlayerPositionX() + player.getPic().getWidth()))) {
                             arrows[i].setHit(true);
                             arrows[i].getPic().delete();
                             arrows[i] = null;
@@ -104,19 +112,13 @@ public class Game {
                         if (arrows[i].getArrowY() < -10) {
                             arrows[i].getPic().delete();
                             arrows[i] = null;
-
                         }
-
-
                     }
-
-
                 }
 
                 field.drawVignette();
-                if (enemy.isAtDoor() && !door.isDestroyed()) {
+                if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                     enemy.punchDoor(door);
-
                 }
             }
         }
