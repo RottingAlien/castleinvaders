@@ -12,6 +12,8 @@ public class Game {
 
     public void startGame() throws InterruptedException {
 
+
+
         Field field = new Field();
         field.createField();
 
@@ -23,7 +25,7 @@ public class Game {
 
         // Start of music implementation //
 
-        String filePath = "/assets/Mega Rust.wav";
+        String filePath = "/assets/MegaRust.wav";
         Sound sound = new Sound(filePath);
         sound.play(true);
         sound.loopIndef();
@@ -58,5 +60,6 @@ public class Game {
                 }
             }
         }
-    }
+     }
+
 }
