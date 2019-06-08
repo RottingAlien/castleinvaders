@@ -10,16 +10,31 @@ public class Bullet extends Weapon {
     private int y;
     private Picture bulletImage;
 
-    public Bullet(int x, int y){
+    public Bullet(int x, int y) {
         super("arrow.png", TypeWeapon.ARROW);
         super.setPic("arrow.png");
+        this.x = x;
+        this.y = y;
         bulletImage = getPic();
-        getPic().draw();
-        getPic().translate(x, y);
+        bulletImage.draw();
+        bulletImage.translate(x, y);
 
     }
+
     @Override
     public void move(int x, int y) {
-        getPic().translate(x, y);
+        if (this.y < 550) {
+            bulletImage.translate(x, y);
+            this.x += x;
+            this.y += y;
+        }
+    }
+
+    public int bulletGetX(){
+        return this.x;
+    }
+
+    public int bulletGetY(){
+        return this.y;
     }
 }

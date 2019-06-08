@@ -20,7 +20,6 @@ public class Game {
         field.createField();
 
         Player player = new Player(5);
-
         Door door = new Door();
         door.drawDoor();
 
@@ -50,29 +49,19 @@ public class Game {
 
 
         Arrow[] arrows = new Arrow[10];
-        Bullet[] bullets = new Bullet[10];
 
         while (true) {
 
 
             Thread.sleep(10);
             player.move();
-            if (player.getPlayerShot()) {
-                bullets = player.bulletShoot(bullets);
-            }
+            if (player.getBullet() != null) {
+                  player.getBullet().move(0, 10);
+                if(player.getBullet().bulletGetY() > 549){
 
-            for (int i = 0; i < bullets.length; i++) {
-
-                if (bullets[i] != null) {
-                    bullets[i].move(0, 1);
-                    if (bullets[i].getPic().getY() < 600) {
-                        bullets[i].getPic().delete();
-                        bullets[i] = null;
-
-                    }
+                    player.destroyBullet();
                 }
             }
-
 
 
             //player shoot - still in test
