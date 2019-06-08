@@ -1,5 +1,6 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
+import org.academiadecodigo.murlogs.castleinvaders.Characters.Bullet;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyFactory;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyShooter;
@@ -40,26 +41,12 @@ public class Game {
 
         LinkedList<Enemy> enemies = new LinkedList<>();
 
+
         for (int i = 0; i < numberPerWave; i++) {
 
             enemies.add(EnemyFactory.createEnemy());
         }
 
-        /*while (true) {
-
-
-            Thread.sleep(10);
-            player.move();
-            for (Enemy enemy : enemies) {
-                enemy.move();
-                field.drawVignette();
-                if (enemy.isAtDoor() && !door.isDestroyed()) {
-                    enemy.punchDoor(door);
-                }
-            }
-        }*/
-
-        //test for enemy shoot arrow
 
         Arrow[] arrows = new Arrow[10];
 
@@ -68,6 +55,21 @@ public class Game {
 
             Thread.sleep(10);
             player.move();
+
+            //player shoot - still in test
+            /*
+            if (player.getBulletShoot()) {
+
+                Bullet bullet = new Bullet(player.getPictureX(), player.getPlayerPositionY());
+
+
+                if (bullet.getY() <= 810) {
+                    bullet.bulletMove();
+                }
+            }
+            */
+
+            //enemy move & shoot
             for (Enemy enemy : enemies) {
                 enemy.move();
 
@@ -93,8 +95,10 @@ public class Game {
                 field.drawVignette();
                 if (enemy.isAtDoor() && !door.isDestroyed()) {
                     enemy.punchDoor(door);
+
                 }
             }
         }
     }
 }
+

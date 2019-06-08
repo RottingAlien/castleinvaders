@@ -14,8 +14,12 @@ public class Player extends Character implements KeyboardHandler {
     private final int playerPositionY = 120;
     private boolean turnRight;
     private boolean turnLeft;
+    private boolean bulletShoot;
     private Picture rightPicture;
     private Picture leftPicture;
+    private Picture bulletImage;
+    private Bullet bullet;
+
 
     public Player() {
         super();
@@ -23,13 +27,7 @@ public class Player extends Character implements KeyboardHandler {
         rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
         leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
         rightPicture.draw();
-/*
-        this.setPic(new Picture());
-        this.getPic().load("knight-frame2.png");
-        this.getPic().load("knight-frame3.png");
-        this.getPic().draw();
-        this.getPic().translate(playerPositionX , playerPositionY);
-*/
+
         // prepare method;
         keyboard = new Keyboard(this);
         prepare();
@@ -60,6 +58,11 @@ public class Player extends Character implements KeyboardHandler {
         rightReleased.setKey(KeyboardEvent.KEY_RIGHT);
         rightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
+        KeyboardEvent spaceReleased = new KeyboardEvent();
+        spaceReleased.setKey(KeyboardEvent.KEY_SPACE);
+        spaceReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        keyboard.addEventListener(spaceReleased);
         keyboard.addEventListener(rightReleased);
         keyboard.addEventListener(leftReleased);
         keyboard.addEventListener(space);
@@ -75,19 +78,17 @@ public class Player extends Character implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_SPACE:
+                System.out.println("space key pressed");
+                bulletShoot = true;
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
                 turnRight = true;
                 turnLeft = false;
-                leftPicture.delete();
-                rightPicture.draw();
                 break;
             case KeyboardEvent.KEY_LEFT:
                 turnLeft = true;
                 turnRight = false;
-                rightPicture.delete();
-                leftPicture.draw();
                 break;
         }
     }
@@ -101,7 +102,11 @@ public class Player extends Character implements KeyboardHandler {
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
             turnRight = false;
+        }
 
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+            System.out.println("space key released");
+            bulletShoot = false;
         }
     }
 
@@ -110,15 +115,20 @@ public class Player extends Character implements KeyboardHandler {
     public void move() {
 
         if (turnRight) {
+            leftPicture.delete();
+            rightPicture.draw();
             leftPicture.translate(2, 0);
             rightPicture.translate(2, 0);
             return;
         }
         if (turnLeft) {
+            rightPicture.delete();
+            leftPicture.draw();
             rightPicture.translate(-2, 0);
             leftPicture.translate(-2, 0);
             return;
         }
+
         rightPicture.translate(0, 0);
         leftPicture.translate(0, 0);
 
@@ -126,12 +136,23 @@ public class Player extends Character implements KeyboardHandler {
     }
 
     @Override
-    public void shoot() {
+    public void shoot() { }
 
-    }
 
     @Override
     public void chooseWeapon(int index) {
 
+    }
+
+    public Boolean getBulletShoot() {
+        return this.bulletShoot;
+    }
+
+    public int getPictureX() {
+        return this.leftPicture.getX() + (this.leftPicture.getWidth() / 2);
+    }
+
+    public int getPlayerPositionY() {
+        return playerPositionY;
     }
 }
