@@ -8,14 +8,25 @@ public class Help {
 
     private Rectangle screen;
     private Picture keywords;
+
     private Picture instructionsBackground;
     private Picture hearts;
+
+
+
     private boolean helpIsCreated;
 
     public void createHelpSection() {
 
 
         screen = new Rectangle(0, 0, 800, 600);
+
+        keywords = new Picture(70, 180, "instructions.png");
+
+
+        screen.draw();
+        screen.setColor(Color.LIGHT_GRAY);
+        screen.fill();
         keywords = new Picture(30, 180, "instructions.png");
         instructionsBackground = new Picture(70,100, "menu instructions.png" );
 
