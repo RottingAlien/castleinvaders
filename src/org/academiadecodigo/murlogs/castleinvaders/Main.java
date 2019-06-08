@@ -7,7 +7,6 @@ public class Main {
     Game game = new Game();
     game.startGame();
 
-// Allow the song to start in a constant loop
 
 
 

@@ -2,14 +2,11 @@ package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
 import org.academiadecodigo.murlogs.castleinvaders.Door;
 import org.academiadecodigo.murlogs.castleinvaders.Globals;
-import org.academiadecodigo.murlogs.castleinvaders.Weapons.Punch;
-import org.academiadecodigo.murlogs.castleinvaders.Weapons.TypeWeapon;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Enemy extends Character {
 
-    private Weapon punchWeapon = new Punch(TypeWeapon.PUNCH);
 
     private final int enemySize = 20;
     private int enemyY = enemySize + 506;
@@ -39,8 +36,6 @@ public class Enemy extends Character {
 
         this.getPic().load("Skeleton Walk.gif");
         this.getPic().translate(-randomX, enemyY);
-
-
     }
 
     // -----------------------------------------------------------------------------------------------------------------

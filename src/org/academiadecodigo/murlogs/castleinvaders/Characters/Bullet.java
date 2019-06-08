@@ -13,7 +13,7 @@ public class Bullet extends Weapon {
 
     public Bullet(int x, int y){
         super("arrow.png", TypeWeapon.ARROW);
-        getPic
+
     }
 
 

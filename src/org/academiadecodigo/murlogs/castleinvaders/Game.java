@@ -3,8 +3,10 @@ package org.academiadecodigo.murlogs.castleinvaders;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Bullet;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyFactory;
+import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyShooter;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
 import org.academiadecodigo.murlogs.castleinvaders.Sound.Sound;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 
 import java.util.LinkedList;
 
@@ -45,29 +47,58 @@ public class Game {
             enemies.add(EnemyFactory.createEnemy());
         }
 
+
+        Arrow[] arrows = new Arrow[10];
+
         while (true) {
 
 
             Thread.sleep(10);
             player.move();
 
+            //player shoot - still in test
+            /*
             if (player.getBulletShoot()) {
 
                 Bullet bullet = new Bullet(player.getPictureX(), player.getPlayerPositionY());
 
 
-                if(bullet.getY() <= 810) {
+                if (bullet.getY() <= 810) {
                     bullet.bulletMove();
                 }
             }
+            */
 
-        for (Enemy enemy : enemies) {
-            enemy.move();
-            field.drawVignette();
-            if (enemy.isAtDoor() && !door.isDestroyed()) {
-                enemy.punchDoor(door);
+            //enemy move & shoot
+            for (Enemy enemy : enemies) {
+                enemy.move();
+
+                if (enemy instanceof EnemyShooter) {
+
+                    EnemyShooter enemyShooter = (EnemyShooter) enemy;
+
+                    arrows = enemyShooter.canShoot(arrows);
+                }
+
+                for (int i = 0; i < arrows.length; i++) {
+
+                    if (arrows[i] != null) {
+                        arrows[i].move(0, -1);
+
+                        if (arrows[i].getPic().getY() < -10) {
+                            arrows[i].getPic().delete();
+                            arrows[i] = null;
+                        }
+                    }
+                }
+
+                field.drawVignette();
+                if (enemy.isAtDoor() && !door.isDestroyed()) {
+                    enemy.punchDoor(door);
+
+                }
             }
         }
     }
 }
-}
+
