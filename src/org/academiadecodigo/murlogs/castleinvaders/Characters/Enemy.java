@@ -14,8 +14,8 @@ public class Enemy extends Character {
     private boolean atDoor;
 
     // -----------------------------------------------------------------------------------------------------------------
-    public Enemy(int randomSpawn, int randomX) {
-        super();
+    public Enemy(int hearts,int randomSpawn, int randomX) {
+        super(hearts);
 
         this.setPic(new Picture());
         this.getPic().grow(7, 7);
@@ -87,8 +87,8 @@ public class Enemy extends Character {
     }
 
     @Override
-    public void hit(int intensity) {
-        super.hit(intensity);
+    public void hit(int hearts) {
+        super.hit(hearts);
     }
 
     public boolean isAtDoor() {
