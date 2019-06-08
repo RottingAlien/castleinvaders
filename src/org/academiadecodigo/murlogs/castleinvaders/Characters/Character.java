@@ -67,6 +67,7 @@ public abstract class Character extends GameObjects implements Destroyable {
     public Picture getPic() {return pic;}
 
     public void setPic(Picture pic) {this.pic = pic;}
+
 }
 
 

@@ -49,12 +49,29 @@ public class Game {
 
 
         Arrow[] arrows = new Arrow[10];
+        Bullet[] bullets = new Bullet[10];
 
         while (true) {
 
 
             Thread.sleep(10);
             player.move();
+            if (player.getPlayerShot()) {
+                bullets = player.bulletShoot(bullets);
+            }
+
+            for (int i = 0; i < bullets.length; i++) {
+
+                if (bullets[i] != null) {
+                    bullets[i].move(0, 1);
+                    if (bullets[i].getPic().getY() < 600) {
+                        bullets[i].getPic().delete();
+                        bullets[i] = null;
+
+                    }
+                }
+            }
+
 
             //player shoot - still in test
             /*
