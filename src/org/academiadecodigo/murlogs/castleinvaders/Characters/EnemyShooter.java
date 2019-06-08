@@ -15,8 +15,8 @@ public class EnemyShooter extends Enemy implements Destroyable {
     private Picture currentPicture;
 
     // -----------------------------------------------------------------------------------------------------------------
-    public EnemyShooter() {
-        super();
+    public EnemyShooter(int randomSpawn, int randomX) {
+        super(randomSpawn, randomX);
 
         goingRightPicture = new Picture();
         goingRightPicture.load("Skeleton Walk.gif");
@@ -26,14 +26,12 @@ public class EnemyShooter extends Enemy implements Destroyable {
         goingLeftPicture.load("skeleton_walk_reverse.png");
         goingLeftPicture.grow(7, 7);
 
-        int randomSpawn = (int) (Math.random() * 2);
-
-        int randomX = (int) (Math.random() * 250);
 
         if (randomSpawn == 1) {
 
             goingLeftPicture.translate(randomX + 750, 526);
             goingRightPicture.translate(randomX + 750, 526);
+
             currentPicture = goingLeftPicture;
             currentPicture.draw();
 
@@ -43,6 +41,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
         goingLeftPicture.translate(-randomX, 526);
         goingRightPicture.translate(-randomX, 526);
+
         currentPicture = goingRightPicture;
         currentPicture.draw();
 
@@ -51,7 +50,6 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    //TODO: change pictures left to right
     @Override
     public void move() {
 
