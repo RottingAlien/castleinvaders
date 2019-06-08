@@ -14,19 +14,13 @@ public class Enemy extends Character {
     private boolean atDoor;
 
     // -----------------------------------------------------------------------------------------------------------------
-    public Enemy() {
-        super();
+    public Enemy(int hearts,int randomSpawn, int randomX) {
+        super(hearts);
 
         this.setPic(new Picture());
-
-        int randomSpawn = (int) (Math.random() * 2);
-
-        int randomX = (int) (Math.random() * 250);
-
-        //spawn a player left or right of the field
-
         this.getPic().grow(7, 7);
 
+        //spawn enemy right of the field
         if (randomSpawn == 1) {
 
             this.getPic().load("skeleton_walk_reverse.png");
@@ -34,6 +28,7 @@ public class Enemy extends Character {
             return;
         }
 
+        //spawn enemy left of the field
         this.getPic().load("Skeleton Walk.gif");
         this.getPic().translate(-randomX, enemyY);
     }
@@ -92,8 +87,8 @@ public class Enemy extends Character {
     }
 
     @Override
-    public void hit(int intensity) {
-        super.hit(intensity);
+    public void hit(int hearts) {
+        super.hit(hearts);
     }
 
     public boolean isAtDoor() {

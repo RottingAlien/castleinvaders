@@ -6,7 +6,6 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.util.ArrayList;
 
 
 public class Player extends Character implements KeyboardHandler {
@@ -21,12 +20,13 @@ public class Player extends Character implements KeyboardHandler {
     private Picture rightPicture;
     private Picture leftPicture;
 
-    public Player() {
-        super();
+    public Player(int hearts) {
+        super(hearts);
 
         rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
         leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
         rightPicture.draw();
+        super.setPic(rightPicture);
 
         // prepare method;
         keyboard = new Keyboard(this);
@@ -113,32 +113,42 @@ public class Player extends Character implements KeyboardHandler {
 
     @Override
     public void move() {
+        if (!isDestroyed()) {
+            if (turnRight) {
+                leftPicture.delete();
+                rightPicture.draw();
+                refreshPlayerPosition(2, 0);
+                return;
+            }
+            if (turnLeft) {
+                rightPicture.delete();
+                leftPicture.draw();
+                refreshPlayerPosition(-2, 0);
+                return;
+            }
 
-        if (turnRight) {
-            leftPicture.delete();
-            rightPicture.draw();
-            leftPicture.translate(2, 0);
-            rightPicture.translate(2, 0);
-            return;
+            refreshPlayerPosition(0, 0);
         }
-        if (turnLeft) {
+        if (isDestroyed()) {
+
             rightPicture.delete();
-            leftPicture.draw();
-            rightPicture.translate(-2, 0);
-            leftPicture.translate(-2, 0);
-            return;
+            leftPicture.delete();
         }
 
-        rightPicture.translate(0, 0);
-        leftPicture.translate(0, 0);
+    }
 
-
+    public void refreshPlayerPosition(int x, int y) {
+        leftPicture.translate(x, y);
+        rightPicture.translate(x, y);
+        playerPositionX += x;
     }
 
     @Override
     public void shoot() {
+
         Bullet bullet = new Bullet(playerPositionX, playerPositionY);
         bullet.move(0, 1);
+
     }
 
     public Bullet[] bulletShoot(Bullet[] bullets){
@@ -174,16 +184,11 @@ public class Player extends Character implements KeyboardHandler {
         return this.playerShot;
     }
 
-    public boolean getBulletMove(){
-        return this.bulletMove;
-    }
-
-    public int getPictureX() {
-        return playerPositionX;
-    }
-
-    public int getPictureY(){
+    public int getPlayerPositionY(){
         return playerPositionY;
     }
 
+    public int getPlayerPositionX() {
+        return playerPositionX;
+    }
 }

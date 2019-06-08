@@ -13,34 +13,27 @@ public abstract class Character extends GameObjects implements Destroyable {
 
     private int x;
     private int y;
-    private int energy;
-    private int life;
+    private int hearts;
     protected LinkedList<Weapon> weapons;
     private Picture pic;
 
-    public Character() {
-
-        this.life = Globals.MAX_LIVES;
-        this.energy = Globals.MAX_ENERGY;
-
-        weapons = new LinkedList<Weapon>();
+    public Character(int hearts) {
+        this.hearts = hearts;
+        weapons = new LinkedList<>();
     }
 
 
 
     /**
      *  hit() Method used to receive the shot of enemy or player.
-     * @param intensity int refers to weapon strength
+     * @param hearts int refers to weapon strength
      */
 
     @Override
-    public void hit(int intensity) {
+    public void hit(int hearts) {
 
-        this.energy -= intensity;
+        this.hearts -= hearts;
 
-        if (this.energy<=0){
-            life--;
-        }
 
     }
 
@@ -49,7 +42,7 @@ public abstract class Character extends GameObjects implements Destroyable {
      * @return true if no energy and life
      */
     @Override
-    public boolean isDestroyed() { return (energy <= 0 && life <= 0); }
+    public boolean isDestroyed() { return (hearts <= 0); }
 
     /**
      * translate() method draws the Character.
