@@ -2,8 +2,10 @@ package org.academiadecodigo.murlogs.castleinvaders;
 
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyFactory;
+import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyShooter;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
 import org.academiadecodigo.murlogs.castleinvaders.Sound.Sound;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 
 import java.util.LinkedList;
 
@@ -19,7 +21,6 @@ public class Game {
 
         Door door = new Door();
         door.drawDoor();
-
 
 
         // Start of music implementation //
@@ -44,6 +45,24 @@ public class Game {
             enemies.add(EnemyFactory.createEnemy());
         }
 
+        /*while (true) {
+
+
+            Thread.sleep(10);
+            player.move();
+            for (Enemy enemy : enemies) {
+                enemy.move();
+                field.drawVignette();
+                if (enemy.isAtDoor() && !door.isDestroyed()) {
+                    enemy.punchDoor(door);
+                }
+            }
+        }*/
+
+        //test for enemy shoot arrow
+
+        Arrow[] arrows = new Arrow[10];
+
         while (true) {
 
 
@@ -51,6 +70,26 @@ public class Game {
             player.move();
             for (Enemy enemy : enemies) {
                 enemy.move();
+
+                if (enemy instanceof EnemyShooter) {
+
+                    EnemyShooter enemyShooter = (EnemyShooter) enemy;
+
+                    arrows = enemyShooter.canShoot(arrows);
+                }
+
+                for (int i = 0; i < arrows.length; i++) {
+
+                    if (arrows[i] != null) {
+                        arrows[i].move(0, -1);
+
+                        if (arrows[i].getPic().getY() < -10) {
+                            arrows[i].getPic().delete();
+                            arrows[i] = null;
+                        }
+                    }
+                }
+
                 field.drawVignette();
                 if (enemy.isAtDoor() && !door.isDestroyed()) {
                     enemy.punchDoor(door);

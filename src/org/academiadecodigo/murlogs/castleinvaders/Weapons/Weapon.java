@@ -49,6 +49,9 @@ public abstract class Weapon extends GameObjects {
         this.typeWeapon = typeWeapon;
     }
 
+    public Picture getPic() {
+        return pic;
+    }
 
 // alterações do Miguel a partir daqui.
 

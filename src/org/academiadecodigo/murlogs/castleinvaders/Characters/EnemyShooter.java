@@ -1,14 +1,16 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
 import org.academiadecodigo.murlogs.castleinvaders.Destroyable;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class EnemyShooter extends Enemy implements Destroyable {
 
-    private boolean goingLeft;
-
     private Picture goingRightPicture;
+    private boolean goingRight;
+
     private Picture goingLeftPicture;
+    private boolean goingLeft;
 
     private Picture currentPicture;
 
@@ -28,10 +30,10 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
         int randomX = (int) (Math.random() * 250);
 
-        goingLeftPicture.translate(randomX + 750, 526);
-        goingRightPicture.translate(-randomX, 526);
-
         if (randomSpawn == 1) {
+
+            goingLeftPicture.translate(randomX + 750, 526);
+            goingRightPicture.translate(randomX + 750, 526);
             currentPicture = goingLeftPicture;
             currentPicture.draw();
 
@@ -39,8 +41,12 @@ public class EnemyShooter extends Enemy implements Destroyable {
             return;
         }
 
+        goingLeftPicture.translate(-randomX, 526);
+        goingRightPicture.translate(-randomX, 526);
         currentPicture = goingRightPicture;
         currentPicture.draw();
+
+        goingRight = true;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -49,49 +55,63 @@ public class EnemyShooter extends Enemy implements Destroyable {
     @Override
     public void move() {
 
-        if (!goingLeft) {
+        if (goingRight) {
 
-            currentPicture.translate(1, 0);
+            movePicturesRight();
 
             if (currentPicture.getX() == 755) {
 
-                currentPicture = cleanCurrentPicture(currentPicture);
+                goingRight = false;
                 goingLeft = true;
+
+                changeCurrentPicture();
             }
             return;
         }
 
-        currentPicture.translate(-1, 0);
+        movePicturesLeft();
 
         if (currentPicture.getX() == 20) {
 
-            currentPicture = cleanCurrentPicture(currentPicture);
+            goingRight = true;
             goingLeft = false;
+
+            changeCurrentPicture();
         }
     }
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    public Picture cleanCurrentPicture(Picture picture) {
+    public void changeCurrentPicture() {
 
+        //turn left
         if (goingLeft) {
+            goingRightPicture.delete();
+            goingLeftPicture.draw();
 
-            picture.delete();
-            picture.translate(735, 0);
-
-            currentPicture = goingRightPicture;
-            currentPicture.draw();
-
-            return currentPicture;
+            currentPicture = goingLeftPicture;
+            return;
         }
 
-        picture.delete();
-        picture.translate(-735, 0);
+        //turn right
+        goingLeftPicture.delete();
+        goingRightPicture.draw();
 
-        currentPicture = goingLeftPicture;
-        currentPicture.draw();
+        currentPicture = goingRightPicture;
+    }
 
-        return currentPicture;
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public void movePicturesRight() {
+
+        goingLeftPicture.translate(1, 0);
+        goingRightPicture.translate(1, 0);
+    }
+
+    public void movePicturesLeft() {
+
+        goingRightPicture.translate(-1, 0);
+        goingLeftPicture.translate(-1, 0);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -101,6 +121,25 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
     }
 
+    public Arrow[] canShoot(Arrow[] arrows) {
+
+        for (int i = 0; i < arrows.length; i++) {
+            if (arrows[i] == null) {
+
+                int randomShoot = (int) (Math.random() * 500000);
+
+                if (randomShoot < 100) {
+                    arrows[i] = new Arrow(currentPicture.getX(), currentPicture.getY());
+                    return arrows;
+                }
+            }
+
+        }
+
+        return arrows;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
     @Override
     public void chooseWeapon(int index) {
 
