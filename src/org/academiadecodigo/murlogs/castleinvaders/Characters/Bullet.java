@@ -31,20 +31,20 @@ public class Bullet extends Weapon {
         }
     }
 
-    public void destroyBullet(){
+    public void destroyBullet() {
         bulletImage.delete();
         bulletDestroyed = true;
     }
 
-    public boolean isBulletDestroyed(){
+    public boolean isBulletDestroyed() {
         return bulletDestroyed;
     }
 
-    public int bulletGetX(){
+    public int bulletGetX() {
         return this.x;
     }
 
-    public int bulletGetY(){
+    public int bulletGetY() {
         return this.y;
     }
 }

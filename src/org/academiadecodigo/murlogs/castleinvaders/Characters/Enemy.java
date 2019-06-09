@@ -14,7 +14,7 @@ public class Enemy extends Character {
     private boolean atDoor;
 
     // -----------------------------------------------------------------------------------------------------------------
-    public Enemy(int hearts,int randomSpawn, int randomX) {
+    public Enemy(int hearts, int randomSpawn, int randomX) {
         super(hearts);
 
         this.setPic(new Picture());
@@ -71,7 +71,7 @@ public class Enemy extends Character {
     public void setDestroyed() {
 
         this.getPic().delete();
-        this.getPic().translate(1000,1000);
+        this.getPic().translate(1000, 1000);
     }
 
     // -----------------------------------------------------------------------------------------------------------------

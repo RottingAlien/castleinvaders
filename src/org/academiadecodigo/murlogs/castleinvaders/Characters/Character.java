@@ -6,6 +6,7 @@ import org.academiadecodigo.murlogs.castleinvaders.Globals;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 import java.util.LinkedList;
 
 
@@ -24,9 +25,9 @@ public abstract class Character extends GameObjects implements Destroyable {
     }
 
 
-
     /**
-     *  hit() Method used to receive the shot of enemy or player.
+     * hit() Method used to receive the shot of enemy or player.
+     *
      * @param hearts int refers to weapon strength
      */
 
@@ -42,11 +43,14 @@ public abstract class Character extends GameObjects implements Destroyable {
     }
 
     /**
-     *  isDestroyed() exceeds isDead() method
+     * isDestroyed() exceeds isDead() method
+     *
      * @return true if no energy and life
      */
     @Override
-    public boolean isDestroyed() { return (hearts <= 0); }
+    public boolean isDestroyed() {
+        return (hearts <= 0);
+    }
 
     /**
      * translate() method draws the Character.
@@ -57,15 +61,23 @@ public abstract class Character extends GameObjects implements Destroyable {
 
     public abstract void chooseWeapon(int index);
 
-    public Weapon getWeapon(int idx) { return weapons.get(idx);}
+    public Weapon getWeapon(int idx) {
+        return weapons.get(idx);
+    }
 
-    public void addWeapon(Weapon weapon) { weapons.add(weapon);}
+    public void addWeapon(Weapon weapon) {
+        weapons.add(weapon);
+    }
 
-    public Picture getPic() {return pic;}
+    public Picture getPic() {
+        return pic;
+    }
 
-    public void setPic(Picture pic) {this.pic = pic;}
+    public void setPic(Picture pic) {
+        this.pic = pic;
+    }
 
-    public int getHearts(){
+    public int getHearts() {
         return hearts;
     }
 }

@@ -152,9 +152,9 @@ public class EnemyShooter extends Enemy implements Destroyable {
         goingRightPicture.delete();
         goingLeftPicture.delete();
         currentPicture.delete();
-        goingRightPicture.translate(1000,1000);
-        goingLeftPicture.translate(1000,1000);
-        currentPicture.translate(1000,1000);
+        goingRightPicture.translate(1000, 1000);
+        goingLeftPicture.translate(1000, 1000);
+        currentPicture.translate(1000, 1000);
     }
 
     // -----------------------------------------------------------------------------------------------------------------

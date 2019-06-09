@@ -25,15 +25,15 @@ public class Arrow extends Weapon {
         }
     }
 
-    public double getArrowY(){
+    public double getArrowY() {
         return arrowY;
     }
 
-    public double getArrowX(){
+    public double getArrowX() {
         return arrowX;
     }
 
-    public void setHit(boolean hit){
+    public void setHit(boolean hit) {
         this.hit = hit;
     }
 }

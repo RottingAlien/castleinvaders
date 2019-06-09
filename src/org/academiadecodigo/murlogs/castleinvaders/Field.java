@@ -68,8 +68,8 @@ public class Field {
     }
 
 
-    public void deleteHearts(int heartsNumber){
-        switch (heartsNumber){
+    public void deleteHearts(int heartsNumber) {
+        switch (heartsNumber) {
             case 4:
                 hearts5.delete();
                 break;
@@ -92,7 +92,7 @@ public class Field {
         }
     }
 
-    public void setCurrentScore(int score){
+    public void setCurrentScore(int score) {
         currentScore += score;
         this.score.delete();
         this.score = new Text(730, 11, ("Score: " + currentScore));

@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 public class Game {
 
+    private boolean gameOn = true;
 
     public void startGame() throws InterruptedException {
 
@@ -47,7 +48,7 @@ public class Game {
         Arrow[] arrows = new Arrow[10];
 
 
-        while (true) {
+        while (gameOn) {
 
             Thread.sleep(10);
             player.move();
@@ -136,6 +137,12 @@ public class Game {
                     }
 
                 }
+            }
+
+            if (player.getHearts() <= 0 || door.isDestroyed()) {
+
+                gameOn = false;
+                sound.close();
             }
         }
     }

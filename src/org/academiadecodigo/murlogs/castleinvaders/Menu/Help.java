@@ -13,7 +13,6 @@ public class Help {
     private Picture hearts;
 
 
-
     private boolean helpIsCreated;
 
     public void createHelpSection() {
@@ -28,13 +27,13 @@ public class Help {
         screen.setColor(Color.LIGHT_GRAY);
         screen.fill();
         keywords = new Picture(30, 180, "instructions.png");
-        instructionsBackground = new Picture(70,100, "menu instructions.png" );
+        instructionsBackground = new Picture(70, 100, "menu instructions.png");
 
 
         screen.draw();
 
-       instructionsBackground.draw();
-      instructionsBackground.grow(85,180);
+        instructionsBackground.draw();
+        instructionsBackground.grow(85, 180);
 
 
         keywords.draw();

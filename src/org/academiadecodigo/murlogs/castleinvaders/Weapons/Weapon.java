@@ -6,7 +6,6 @@ import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
-
 public abstract class Weapon extends GameObjects {
 
 
@@ -28,7 +27,9 @@ public abstract class Weapon extends GameObjects {
         this.typeWeapon = type;
     }
 
-    public void setPic(String path){pic.load(path.trim());}
+    public void setPic(String path) {
+        pic.load(path.trim());
+    }
 
 
     public abstract void move(int x, int y);
@@ -52,12 +53,4 @@ public abstract class Weapon extends GameObjects {
     public Picture getPic() {
         return pic;
     }
-
-// alterações do Miguel a partir daqui.
-
-
-   /* public void shoot(Enemy enemy){
-        enemy.hit();
-
-    } */
 }

@@ -147,38 +147,16 @@ public class Player extends Character implements KeyboardHandler {
         if (bulletExists) {
             return;
         }
-        bullet = new Bullet(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() / 2));
-        bulletExists = true;
-
-    }
-    /*public Bullet[] bulletShoot(Bullet[] bullets){
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i] == null) {
-                bullets[i] = new Bullet(playerPositionX, playerPositionY);
-                bulletMove = true;
-                return bullets;
-            }
+        if (!isDestroyed()) {
+            bullet = new Bullet(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() / 2));
+            bulletExists = true;
         }
-        return bullets;
-    }*/
+    }
 
     @Override
     public void chooseWeapon(int index) {
 
     }
-
- /*   public boolean setCanShoot() {
-        for (int i = 0; i < bullets.length; i++) {
-            if (bullets[i] == null) {
-                if (getBulletShoot()) {
-                    bullets[i] = new Bullet(playerPositionX, getPlayerPositionY());
-                    return bullets;
-                }
-            }
-
-        }
-        return bullets;
-    }*/
 
     public void destroyBullet() {
         bulletExists = false;
