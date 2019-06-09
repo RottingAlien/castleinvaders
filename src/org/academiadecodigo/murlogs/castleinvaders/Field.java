@@ -43,9 +43,9 @@ public class Field {
         vignette = new Picture(0, 0, "vignette.png");
         vignette.draw();
 
-        score= new Text (730, 11, "Score: ");
+        score = new Text(730, 11, "Score: ");
         score.setColor(Color.YELLOW);
-        score.grow(10,10);
+        score.grow(10, 10);
         score.draw();
 
         hearts1 = new Picture(10, 10, "heart.png");
@@ -60,7 +60,6 @@ public class Field {
         hearts5.draw();
 
 
-
     }
 
     public void drawVignette() {
@@ -69,5 +68,24 @@ public class Field {
         vignette.draw();
     }
 
+    public Picture getHearts1() {
+        return hearts1;
+    }
+
+    public Picture getHearts2() {
+        return hearts2;
+    }
+
+    public Picture getHearts3() {
+        return hearts3;
+    }
+
+    public Picture getHearts4() {
+        return hearts4;
+    }
+
+    public Picture getHearts5() {
+        return hearts5;
+    }
 
 }

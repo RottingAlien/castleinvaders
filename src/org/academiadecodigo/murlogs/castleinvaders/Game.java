@@ -107,6 +107,28 @@ public class Game {
                             arrows[i].getPic().delete();
                             arrows[i] = null;
                             player.hit(1);
+                            switch (player.getHearts()){
+                                case 4:
+                                    field.getHearts5().delete();
+                                    break;
+
+                                case 3:
+                                    field.getHearts4().delete();
+                                    break;
+
+                                case 2:
+                                    field.getHearts3().delete();
+                                    break;
+
+                                case 1:
+                                    field.getHearts2().delete();
+                                    break;
+
+                                case 0:
+                                    field.getHearts1().delete();
+                                    break;
+                            }
+
                             continue;
                         }
 
