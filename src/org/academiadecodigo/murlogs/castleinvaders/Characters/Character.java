@@ -31,14 +31,14 @@ public abstract class Character extends GameObjects implements Destroyable {
      */
 
     @Override
-    public void hit(int hearts) {
+    public int hit(int hearts) {
 
         this.hearts -= hearts;
 
         if (hearts == 0) {
             destroyed = true;
         }
-
+        return 0;
     }
 
     /**

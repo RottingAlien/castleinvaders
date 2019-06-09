@@ -72,8 +72,8 @@ public class Game {
                             player.getBullet().bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
                             player.getBullet().bulletGetY() > enemy.getPic().getY() &&
                             player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+                        field.setCurrentScore(enemy.hit(1));
 
-                        enemy.hit(1);
                         player.getBullet().destroyBullet();
                         System.out.println("outchs");
                     }

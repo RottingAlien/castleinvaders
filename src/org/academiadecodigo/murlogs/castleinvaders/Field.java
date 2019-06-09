@@ -91,4 +91,14 @@ public class Field {
                 break;
         }
     }
+
+    public void setCurrentScore(int score){
+        currentScore += score;
+        this.score.delete();
+        this.score = new Text(730, 11, ("Score: " + currentScore));
+        this.score.setColor(Color.YELLOW);
+        this.score.grow(10, 10);
+        this.score.draw();
+    }
+
 }

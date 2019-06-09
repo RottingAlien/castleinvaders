@@ -10,7 +10,7 @@ public class Enemy extends Character {
 
     private final int enemySize = 20;
     private int enemyY = enemySize + 506;
-
+    private final int scoreGiven = 5;
     private boolean atDoor;
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -97,8 +97,9 @@ public class Enemy extends Character {
     }
 
     @Override
-    public void hit(int hearts) {
+    public int hit(int hearts) {
         super.hit(hearts);
+        return scoreGiven;
     }
 
     public boolean isAtDoor() {

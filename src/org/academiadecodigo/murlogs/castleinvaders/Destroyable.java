@@ -1,6 +1,6 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
 public interface Destroyable {
-    void hit(int arg);
+    int hit(int arg);
     boolean isDestroyed();
 }

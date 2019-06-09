@@ -7,7 +7,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
-
 public class Player extends Character implements KeyboardHandler {
 
     private Keyboard keyboard;
@@ -22,6 +21,7 @@ public class Player extends Character implements KeyboardHandler {
 
     public Player(int hearts) {
         super(hearts);
+
 
         rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
         leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
@@ -144,10 +144,10 @@ public class Player extends Character implements KeyboardHandler {
     }
 
     public void playerShooting() {
-        if(bulletExists){
+        if (bulletExists) {
             return;
         }
-        bullet = new Bullet(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() /2) );
+        bullet = new Bullet(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() / 2));
         bulletExists = true;
 
     }
@@ -180,12 +180,12 @@ public class Player extends Character implements KeyboardHandler {
         return bullets;
     }*/
 
-    public void destroyBullet(){
+    public void destroyBullet() {
         bulletExists = false;
         bullet = null;
     }
 
-    public int getPlayerPositionY(){
+    public int getPlayerPositionY() {
         return playerPositionY;
     }
 
@@ -194,8 +194,8 @@ public class Player extends Character implements KeyboardHandler {
     }
 
 
-    public Bullet getBullet(){
+    public Bullet getBullet() {
         return bullet;
     }
-
 }
+
