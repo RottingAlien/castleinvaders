@@ -11,7 +11,7 @@ public class Player extends Character implements KeyboardHandler {
 
     private Keyboard keyboard;
     private int playerPositionX = 60;
-    private final int playerPositionY = 120;
+    private final int playerPositionY = 152;
     private boolean turnRight;
     private boolean turnLeft;
     private Picture rightPicture;
@@ -23,8 +23,8 @@ public class Player extends Character implements KeyboardHandler {
         super(hearts);
 
 
-        rightPicture = new Picture(playerPositionX, playerPositionY, "knight-frame3.png");
-        leftPicture = new Picture(playerPositionX, playerPositionY, "knight-frame2.png");
+        rightPicture = new Picture(playerPositionX, playerPositionY, "archerRight.png");
+        leftPicture = new Picture(playerPositionX, playerPositionY, "archerLeft.png");
         rightPicture.draw();
         super.setPic(rightPicture);
 
