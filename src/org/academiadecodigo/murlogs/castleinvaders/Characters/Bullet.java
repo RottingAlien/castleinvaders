@@ -30,6 +30,10 @@ public class Bullet extends Weapon {
         }
     }
 
+    public void destroyBullet(){
+        bulletImage.delete();
+    }
+
     public int bulletGetX(){
         return this.x;
     }

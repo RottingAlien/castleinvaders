@@ -77,6 +77,7 @@ public class Game {
                             player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
 
                         enemy.hit(1);
+                        player.getBullet().destroyBullet();
                         System.out.println("outchs");
                     }
 
