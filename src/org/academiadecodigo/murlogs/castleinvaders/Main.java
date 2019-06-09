@@ -1,12 +1,22 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
+import org.academiadecodigo.murlogs.castleinvaders.Menu.GameOverMenu;
 import org.academiadecodigo.murlogs.castleinvaders.Menu.Menu;
 
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        
-        Menu menu = new Menu();
+
+
+
+        GameOverMenu gameOverMenu = new GameOverMenu();
+        gameOverMenu.createGameOverMenu();
+
+        while(gameOverMenu.GameOverMenuExists()){
+            Thread.sleep(1000);
+        }
+
+       Menu menu = new Menu();
         menu.createMenu();
 
         while (menu.menuExists()) {
@@ -15,6 +25,8 @@ public class Main {
 
         Game game = new Game();
         game.startGame();
+
+
 
 
     }
