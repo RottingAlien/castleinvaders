@@ -9,6 +9,7 @@ public class Bullet extends Weapon {
     private int x;
     private int y;
     private Picture bulletImage;
+    private boolean bulletDestroyed;
 
     public Bullet(int x, int y) {
         super("arrow.png", TypeWeapon.ARROW);
@@ -32,6 +33,11 @@ public class Bullet extends Weapon {
 
     public void destroyBullet(){
         bulletImage.delete();
+        bulletDestroyed = true;
+    }
+
+    public boolean isBulletDestroyed(){
+        return bulletDestroyed;
     }
 
     public int bulletGetX(){
