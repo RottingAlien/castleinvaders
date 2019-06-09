@@ -71,6 +71,7 @@ public class Enemy extends Character {
     public void setDestroyed() {
 
         this.getPic().delete();
+        this.getPic().translate(1000,1000);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
