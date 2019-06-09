@@ -13,10 +13,14 @@ public class EnemyShooter extends Enemy implements Destroyable {
     private boolean goingLeft;
 
     private Picture currentPicture;
+    private boolean destroyed;
 
     // -----------------------------------------------------------------------------------------------------------------
     public EnemyShooter(int hearts, int randomSpawn, int randomX) {
         super(hearts, randomSpawn, randomX);
+
+        this.setPic(new Picture());
+        this.getPic().grow(7, 7);
 
         goingRightPicture = new Picture();
         goingRightPicture.load("Skeleton Walk.gif");
@@ -34,7 +38,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
             currentPicture = goingLeftPicture;
             currentPicture.draw();
-
+            setPic(currentPicture);
             goingLeft = true;
             return;
         }
@@ -44,7 +48,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
         currentPicture = goingRightPicture;
         currentPicture.draw();
-
+        setPic(currentPicture);
         goingRight = true;
     }
 
@@ -52,29 +56,30 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
     @Override
     public void move() {
+        if (!destroyed) {
+            if (goingRight) {
 
-        if (goingRight) {
+                movePicturesRight();
 
-            movePicturesRight();
+                if (currentPicture.getX() == 755) {
 
-            if (currentPicture.getX() == 755) {
+                    goingRight = false;
+                    goingLeft = true;
 
-                goingRight = false;
-                goingLeft = true;
+                    changeCurrentPicture();
+                }
+                return;
+            }
+
+            movePicturesLeft();
+
+            if (currentPicture.getX() == 20) {
+
+                goingRight = true;
+                goingLeft = false;
 
                 changeCurrentPicture();
             }
-            return;
-        }
-
-        movePicturesLeft();
-
-        if (currentPicture.getX() == 20) {
-
-            goingRight = true;
-            goingLeft = false;
-
-            changeCurrentPicture();
         }
     }
 
@@ -120,18 +125,19 @@ public class EnemyShooter extends Enemy implements Destroyable {
     }
 
     public Arrow[] canShoot(Arrow[] arrows) {
+        if (!destroyed) {
+            for (int i = 0; i < arrows.length; i++) {
+                if (arrows[i] == null) {
 
-        for (int i = 0; i < arrows.length; i++) {
-            if (arrows[i] == null) {
+                    int randomShoot = (int) (Math.random() * 500000);
 
-                int randomShoot = (int) (Math.random() * 500000);
-
-                if (randomShoot < 100) {
-                    arrows[i] = new Arrow(currentPicture.getX(), currentPicture.getY());
-                    return arrows;
+                    if (randomShoot < 100) {
+                        arrows[i] = new Arrow(currentPicture.getX(), currentPicture.getY());
+                        return arrows;
+                    }
                 }
-            }
 
+            }
         }
 
         return arrows;
@@ -140,10 +146,13 @@ public class EnemyShooter extends Enemy implements Destroyable {
     // -----------------------------------------------------------------------------------------------------------------
 
     public void setDestroyed() {
-
+        destroyed = true;
         goingRightPicture.delete();
         goingLeftPicture.delete();
         currentPicture.delete();
+        goingRightPicture.translate(1000,1000);
+        goingLeftPicture.translate(1000,1000);
+        currentPicture.translate(1000,1000);
     }
 
     // -----------------------------------------------------------------------------------------------------------------

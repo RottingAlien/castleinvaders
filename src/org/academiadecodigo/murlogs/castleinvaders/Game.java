@@ -70,13 +70,14 @@ public class Game {
                 enemy.move();
 
                 //check for hits on enemies
-                if (player.getBullet() != null) {
+                if (player.getBullet() != null && !player.getBullet().isBulletDestroyed()) {
                     if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
                             player.getBullet().bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
                             player.getBullet().bulletGetY() > enemy.getPic().getY() &&
                             player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
 
                         enemy.hit(1);
+                        player.getBullet().destroyBullet();
                         System.out.println("outchs");
                     }
 
