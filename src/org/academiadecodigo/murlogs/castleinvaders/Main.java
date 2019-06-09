@@ -7,27 +7,16 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-
-
-        GameOverMenu gameOverMenu = new GameOverMenu();
-        gameOverMenu.createGameOverMenu();
-
-        while(gameOverMenu.GameOverMenuExists()){
-            Thread.sleep(1000);
-        }
-
-       Menu menu = new Menu();
+        Menu menu = new Menu();
         menu.createMenu();
 
         while (menu.menuExists()) {
             Thread.sleep(0);
         }
 
-        Game game = new Game();
+        Game game;
+        game = new Game();
         game.startGame();
-
-
-
-
+        
     }
 }

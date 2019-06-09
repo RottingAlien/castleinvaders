@@ -16,6 +16,10 @@ public class Game {
     public void startGame() throws InterruptedException {
 
 
+        boolean gameIsRunning=true;
+
+
+
         Field field = new Field();
         field.createField();
 
@@ -50,7 +54,7 @@ public class Game {
         Arrow[] arrows = new Arrow[10];
 
 
-        while (true) {
+        while (gameIsRunning) {
 
             Thread.sleep(10);
             player.move();
@@ -121,6 +125,11 @@ public class Game {
                 if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                     enemy.punchDoor(door);
                 }
+
+                if(player.isDestroyed()){
+                    gameIsRunning=false;
+                }
+
             }
         }
     }
