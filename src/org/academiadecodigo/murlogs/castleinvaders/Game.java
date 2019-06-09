@@ -25,9 +25,6 @@ public class Game {
         door.drawDoor();
 
 
-
-
-
         // Start of music implementation //
 
         String filePath = "/assets/MegaRust.wav";
@@ -107,28 +104,7 @@ public class Game {
                             arrows[i].getPic().delete();
                             arrows[i] = null;
                             player.hit(1);
-                            switch (player.getHearts()){
-                                case 4:
-                                    field.getHearts5().delete();
-                                    break;
-
-                                case 3:
-                                    field.getHearts4().delete();
-                                    break;
-
-                                case 2:
-                                    field.getHearts3().delete();
-                                    break;
-
-                                case 1:
-                                    field.getHearts2().delete();
-                                    break;
-
-                                case 0:
-                                    field.getHearts1().delete();
-                                    break;
-                            }
-
+                            field.deleteHearts(player.getHearts());
                             continue;
                         }
 
@@ -156,7 +132,7 @@ public class Game {
                     if (enemiesLeft <= 0) {
                         wave++;
                         numberPerWave++;
-                        enemies = createNextWave(enemies,numberPerWave);
+                        enemies = createNextWave(enemies, numberPerWave);
                     }
 
                 }
