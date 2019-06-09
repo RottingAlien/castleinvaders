@@ -25,6 +25,9 @@ public class Game {
         door.drawDoor();
 
 
+
+
+
         // Start of music implementation //
 
         String filePath = "/assets/MegaRust.wav";
@@ -38,14 +41,11 @@ public class Game {
         //number of wave -> to increase enemy creation
 
         int wave = 0;
-        int numberPerWave = 10 + wave;
+        int numberPerWave = 1 + wave;
 
-        LinkedList<Enemy> enemies = new LinkedList<>();
+        Enemy[] enemies = new Enemy[numberPerWave];
 
-        for (int i = 0; i < numberPerWave; i++) {
-
-            enemies.add(EnemyFactory.createEnemy());
-        }
+        enemies = createNextWave(enemies, numberPerWave);
 
         Arrow[] arrows = new Arrow[10];
 
@@ -68,7 +68,7 @@ public class Game {
             //enemy move & shoot
             for (Enemy enemy : enemies) {
                 enemy.move();
-
+                //field.drawVignette();
                 //check for hits on enemies
                 if (player.getBullet() != null && !player.getBullet().isBulletDestroyed()) {
                     if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
@@ -117,12 +117,42 @@ public class Game {
                     }
                 }
 
-                field.drawVignette();
                 if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                     enemy.punchDoor(door);
                 }
             }
+            int fixedEnemyArrayLength = enemies.length;
+            int enemiesLeft = numberPerWave;
+            for (int i = 0; i < fixedEnemyArrayLength; i++) {
+
+                if (!enemies[i].isDestroyed()) {
+                    continue;
+                }
+
+                if (enemies[i].isDestroyed()) {
+                    enemiesLeft--;
+                    if (enemiesLeft <= 0) {
+                        wave++;
+                        numberPerWave++;
+                        enemies = createNextWave(enemies,numberPerWave);
+                    }
+
+                }
+            }
         }
+    }
+
+    private Enemy[] createNextWave(Enemy[] enemies, int numberPerWave) {
+
+        enemies = new Enemy[numberPerWave];
+
+        for (int i = 0; i < numberPerWave; i++) {
+
+            enemies[i] = (EnemyFactory.createEnemy());
+
+        }
+
+        return enemies;
     }
 }
 
