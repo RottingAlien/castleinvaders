@@ -145,18 +145,18 @@ public class Menu implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_UP:
-                    if (selecter.getY() == 360) {
-                        return;
-                    }
-                    selecter.translate(0, -80);
+                if (selecter.getY() == 360) {
                     return;
+                }
+                selecter.translate(0, -80);
+                return;
 
             case KeyboardEvent.KEY_DOWN:
-                    if (selecter.getY() == 440) {
-                        return;
-                    }
-                    selecter.translate(0, 80);
+                if (selecter.getY() == 440) {
                     return;
+                }
+                selecter.translate(0, 80);
+                return;
 
             case KeyboardEvent.KEY_ENTER:
                 if (menuExists && !helpSection.helpIsCreated()) {
