@@ -162,10 +162,10 @@ public class Menu implements KeyboardHandler {
                     if (selecter.getY() == 360) {
                         deleteMenu();
                         return;
-                        
-                    } return;
-                        helpSection.createHelpSection();
-                        return;
+                    }
+                    helpSection.createHelpSection();
+                }
+                return;
 
             case KeyboardEvent.KEY_ESC:
                 if (menuExists) {
@@ -182,7 +182,6 @@ public class Menu implements KeyboardHandler {
 
 
     }
-
 
 
     @Override
