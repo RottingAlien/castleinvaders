@@ -159,7 +159,7 @@ public class Menu implements KeyboardHandler {
                 return;
 
             case KeyboardEvent.KEY_ENTER:
-                if (selecter.getY() != 440) {
+                if (selecter.getY() == 360) {
                     deleteMenu();
                     return;
                 }

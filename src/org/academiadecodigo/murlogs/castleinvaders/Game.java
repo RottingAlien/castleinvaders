@@ -17,6 +17,10 @@ public class Game {
     public void startGame() throws InterruptedException {
 
 
+        boolean gameIsRunning=true;
+
+
+
         Field field = new Field();
         field.createField();
 
@@ -47,6 +51,7 @@ public class Game {
 
         //possible arrows on field
         Arrow[] arrows = new Arrow[10];
+
 
 
         while (gameOn) {
@@ -123,6 +128,11 @@ public class Game {
                 if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                     enemy.punchDoor(door);
                 }
+
+                if(player.isDestroyed()){
+                    gameIsRunning=false;
+                }
+
             }
 
             int fixedEnemyArrayLength = enemies.length;

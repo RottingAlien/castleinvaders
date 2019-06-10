@@ -40,7 +40,7 @@ public class Field {
         playerDoor.draw();
 
         vignette = new Picture(0, 0, "vignette.png");
-        vignette.draw();
+        //vignette.draw();
 
         score = new Text(730, 11, ("Score: " + currentScore));
         score.setColor(Color.YELLOW);
@@ -57,7 +57,6 @@ public class Field {
         hearts3.draw();
         hearts4.draw();
         hearts5.draw();
-
 
     }
 

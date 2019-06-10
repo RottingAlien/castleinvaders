@@ -10,7 +10,6 @@ public class Help {
     private Picture keywords;
 
     private Picture instructionsBackground;
-    private Picture hearts;
 
 
     private boolean helpIsCreated;

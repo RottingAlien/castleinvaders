@@ -1,5 +1,6 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
+import org.academiadecodigo.murlogs.castleinvaders.Menu.GameOverMenu;
 import org.academiadecodigo.murlogs.castleinvaders.Menu.Menu;
 
 public class Main {
@@ -17,6 +18,9 @@ public class Main {
 
             Game game = new Game();
             game.startGame();
+
+            GameOverMenu gameOverMenu = new GameOverMenu();
+            gameOverMenu.createGameOverMenu();
 
         }
     }
