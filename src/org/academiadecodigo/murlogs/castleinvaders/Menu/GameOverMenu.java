@@ -1,4 +1,5 @@
 package org.academiadecodigo.murlogs.castleinvaders.Menu;
+
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -54,7 +55,7 @@ public class GameOverMenu implements KeyboardHandler {
         selecter.draw();
 
 
-        Thread.sleep(1500);
+        Thread.sleep(300);
         String filePath = "/game over song.wav";
         gameOverSound = new Sound(filePath);
         gameOverSound.play(true);
@@ -64,7 +65,9 @@ public class GameOverMenu implements KeyboardHandler {
 // game over menu is drawn
 // moving on...
 
+        while (gameOverMenuExists) {
 
+        }
     }
 
 
@@ -129,18 +132,16 @@ public class GameOverMenu implements KeyboardHandler {
 
 
             case KeyboardEvent.KEY_ENTER:
-                    if(selecter.getY()==385){
+                if (selecter.getY() == 385) {
 
-                        System.out.println("meter diretamente no jogo - game.start()");
-                        return;
-
-                    }
                     deleteGameOverMenu();
-                }
+                    return;
 
+                }
+                deleteGameOverMenu();
         }
 
-
+    }
 
 
     @Override

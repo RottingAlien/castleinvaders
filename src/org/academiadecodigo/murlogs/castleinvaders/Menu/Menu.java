@@ -136,7 +136,6 @@ public class Menu implements KeyboardHandler {
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
         keyboard.addEventListener(enter);
-        keyboard.addEventListener(escape);
     }
 
     @Override
@@ -159,20 +158,32 @@ public class Menu implements KeyboardHandler {
                 return;
 
             case KeyboardEvent.KEY_ENTER:
-                if (selecter.getY() == 360) {
-                    deleteMenu();
-                    return;
-                }
-                helpSection.createHelpSection();
-                return;
+                if (menuExists && !helpSection.helpIsCreated()) {
+                    if (selecter.getY() == 360) {
+                        deleteMenu();
+                        return;
+                        
+                    } return;
+                        helpSection.createHelpSection();
+                        return;
 
             case KeyboardEvent.KEY_ESC:
-                if (!helpSection.helpIsCreated()) {
-                    return;
+                if (menuExists) {
+                    if (!helpSection.helpIsCreated()) {
+                        return;
+                    }
+                    helpSection.deleteHelpSection();
                 }
-                helpSection.deleteHelpSection();
         }
+
+
+        helpSection.createHelpSection();
+        return;
+
+
     }
+
+
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {

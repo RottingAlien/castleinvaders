@@ -2,6 +2,10 @@ package org.academiadecodigo.murlogs.castleinvaders.Menu;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Help {
@@ -12,9 +16,13 @@ public class Help {
     private Picture instructionsBackground;
 
 
+
     private boolean helpIsCreated;
 
     public void createHelpSection() {
+
+
+
 
 
         screen = new Rectangle(0, 0, 800, 600);
@@ -39,6 +47,7 @@ public class Help {
 
         helpIsCreated = true;
 
+
     }
 
     public void deleteHelpSection() {
@@ -51,4 +60,7 @@ public class Help {
     public boolean helpIsCreated() {
         return helpIsCreated;
     }
+
+
+
 }
