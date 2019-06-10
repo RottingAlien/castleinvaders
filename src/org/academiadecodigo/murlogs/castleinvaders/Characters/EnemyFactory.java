@@ -12,7 +12,7 @@ public abstract class EnemyFactory {
 
         switch (randomEnemy) {
             case 0:
-                return new Enemy(1, randomSpawn, randomX);
+                return new DoorEnemy(1, randomSpawn, randomX);
             case 1:
                 return new EnemyShooter(1, randomSpawn, randomX);
         }

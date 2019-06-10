@@ -19,7 +19,7 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
     // -----------------------------------------------------------------------------------------------------------------
     public EnemyShooter(int hearts, int randomSpawn, int randomX) {
-        super(hearts, randomSpawn, randomX);
+        super(hearts);
 
         this.setPic(new Picture());
         this.getPic().grow(7, 7);

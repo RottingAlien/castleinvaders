@@ -1,15 +1,10 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
-import org.academiadecodigo.murlogs.castleinvaders.Characters.Bullet;
-import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
-import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyFactory;
-import org.academiadecodigo.murlogs.castleinvaders.Characters.EnemyShooter;
-import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
+import org.academiadecodigo.murlogs.castleinvaders.Characters.*;
 import org.academiadecodigo.murlogs.castleinvaders.Sound.Sound;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 
 import java.util.ConcurrentModificationException;
-import java.util.LinkedList;
 
 public class Game {
 
@@ -114,9 +109,13 @@ public class Game {
                         }
                     }
 
+                    if (enemy instanceof DoorEnemy) {
 
-                    if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
-                        enemy.punchDoor(door);
+                        DoorEnemy doorEnemy = (DoorEnemy) enemy;
+
+                        if (doorEnemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
+                            doorEnemy.punchDoor(door);
+                        }
                     }
                 }
                 int fixedEnemyArrayLength = enemies.length;
