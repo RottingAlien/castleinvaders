@@ -35,8 +35,8 @@ public class EnemyShooter extends Enemy implements Destroyable {
 
         if (randomSpawn == 1) {
 
-            goingLeftPicture.translate(randomX + 750, 526);
-            goingRightPicture.translate(randomX + 750, 526);
+            goingLeftPicture.translate(randomX + 850, 526);
+            goingRightPicture.translate(randomX + 850, 526);
 
             currentPicture = goingLeftPicture;
             currentPicture.draw();
@@ -45,8 +45,8 @@ public class EnemyShooter extends Enemy implements Destroyable {
             return;
         }
 
-        goingLeftPicture.translate(-randomX, 526);
-        goingRightPicture.translate(-randomX, 526);
+        goingLeftPicture.translate(-randomX - 50, 526);
+        goingRightPicture.translate(-randomX - 50, 526);
 
         currentPicture = goingRightPicture;
         currentPicture.draw();
