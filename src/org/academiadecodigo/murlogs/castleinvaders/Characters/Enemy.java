@@ -105,4 +105,20 @@ public class Enemy extends Character {
     public boolean isAtDoor() {
         return atDoor;
     }
+
+    public int getEnemySize() {
+        return enemySize;
+    }
+
+    public int getEnemyX() {
+        return getPic().getX();
+    }
+
+    public int getEnemyY() {
+        return enemyY;
+    }
+
+    public int getEnemyWidth() {
+        return getPic().getWidth();
+    }
 }

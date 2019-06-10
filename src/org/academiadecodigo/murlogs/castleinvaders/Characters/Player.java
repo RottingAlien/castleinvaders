@@ -171,6 +171,14 @@ public class Player extends Character implements KeyboardHandler {
         return playerPositionX;
     }
 
+    public int getPlayerHeight() {
+        return rightPicture.getHeight();
+    }
+
+    public int getPlayerWidth() {
+        return rightPicture.getWidth();
+    }
+
 
     public Bullet getBullet() {
         return bullet;

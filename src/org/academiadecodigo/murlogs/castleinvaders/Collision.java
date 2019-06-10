@@ -1,8 +1,59 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
+import org.academiadecodigo.murlogs.castleinvaders.Characters.Bullet;
+import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
+import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Collision {
+
+
+    //check for playerHit
+
+    public static boolean playerHit(Player player, Arrow arrow) {
+
+        if (arrow.getArrowY() != (player.getPlayerPositionY() + player.getPlayerHeight())) {
+            return false;
+        }
+
+        if (arrow.getArrowX() > player.getPlayerPositionX() &&
+                arrow.getArrowX() < player.getPlayerPositionX() + player.getPlayerWidth() - 10) {
+
+            arrow.setHit(true);
+            arrow.getPic().delete();
+            player.hit(1);
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public static boolean enemyHit(Enemy enemy, Bullet bullet) {
+
+        if (bullet.getY() < enemy.getEnemyY()) {
+            return false;
+        }
+
+        if (bullet.getX() > enemy.getEnemyX() &&
+                bullet.getX() < enemy.getEnemyX() + enemy.getEnemyWidth() &&
+                    bullet.getY() > enemy.getEnemyY() + enemy.getEnemySize()) {
+
+            bullet.destroyBullet();
+
+            System.out.println("going here");
+
+            if (enemy.isDestroyed()) {
+                enemy.setDestroyed();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
 
     public class Point {
 

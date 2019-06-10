@@ -45,6 +45,7 @@ public class Game {
 
         enemies = createNextWave(enemies, numberPerWave);
 
+        //possible arrows on field
         Arrow[] arrows = new Arrow[10];
 
 
@@ -66,10 +67,12 @@ public class Game {
             //enemy move & shoot
             for (Enemy enemy : enemies) {
                 enemy.move();
+
                 //field.drawVignette();
+
                 //check for hits on enemies
                 if (player.getBullet() != null && !player.getBullet().isBulletDestroyed()) {
-                    if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
+                    /*if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
                             player.getBullet().bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
                             player.getBullet().bulletGetY() > enemy.getPic().getY() &&
                             player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
@@ -82,8 +85,13 @@ public class Game {
                     if (enemy.isDestroyed()) {
                         enemy.setDestroyed();
                     }
-                }
+                }*/
 
+                    if (Collision.enemyHit(enemy, player.getBullet())) {
+
+                        field.setCurrentScore(enemy.hit(1));
+                    }
+                }
                 //enemy shoot
                 if (enemy instanceof EnemyShooter) {
 
@@ -98,14 +106,10 @@ public class Game {
                     if (arrows[i] != null) {
                         arrows[i].move(0, -1);
 
-                        if ((arrows[i].getArrowY() == player.getPlayerPositionY() + 50) &&
-                                ((arrows[i].getArrowX() > player.getPlayerPositionX()) &&
-                                        (arrows[i].getArrowX() < player.getPlayerPositionX() + player.getPic().getWidth()))) {
-                            arrows[i].setHit(true);
-                            arrows[i].getPic().delete();
-                            arrows[i] = null;
-                            player.hit(1);
+                        if (Collision.playerHit(player, arrows[i])) {
+
                             field.deleteHearts(player.getHearts());
+                            arrows[i] = null;
                             continue;
                         }
 
@@ -120,6 +124,7 @@ public class Game {
                     enemy.punchDoor(door);
                 }
             }
+
             int fixedEnemyArrayLength = enemies.length;
             int enemiesLeft = numberPerWave;
             for (int i = 0; i < fixedEnemyArrayLength; i++) {
