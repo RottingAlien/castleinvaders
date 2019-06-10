@@ -108,14 +108,15 @@ public class Player extends Character implements KeyboardHandler {
 
     @Override
     public void move() {
+
         if (!isDestroyed()) {
-            if (turnRight) {
+            if (turnRight && rightPicture.getX() < 760) {
                 leftPicture.delete();
                 rightPicture.draw();
                 refreshPlayerPosition(2, 0);
                 return;
             }
-            if (turnLeft) {
+            if (turnLeft && leftPicture.getX() > 0) {
                 rightPicture.delete();
                 leftPicture.draw();
                 refreshPlayerPosition(-2, 0);
@@ -129,7 +130,6 @@ public class Player extends Character implements KeyboardHandler {
             rightPicture.delete();
             leftPicture.delete();
         }
-
     }
 
 
