@@ -23,13 +23,13 @@ public class Enemy extends Character {
         //spawn enemy right of the field
         if (randomSpawn == 1) {
 
-            this.getPic().load("skeleton_walk_reverse.png");
+            this.getPic().load("skeleton_reverse.png");
             this.getPic().translate(randomX + 760, enemyY);
             return;
         }
 
         //spawn enemy left of the field
-        this.getPic().load("Skeleton Walk.gif");
+        this.getPic().load("skeleton.png");
         this.getPic().translate(-randomX, enemyY);
     }
 

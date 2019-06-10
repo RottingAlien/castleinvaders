@@ -12,8 +12,8 @@ public class Bullet extends Weapon {
     private boolean bulletDestroyed;
 
     public Bullet(int x, int y) {
-        super("arrow.png", TypeWeapon.ARROW);
-        super.setPic("arrow.png");
+        super("player_arrow.png", TypeWeapon.ARROW);
+        super.setPic("player_arrow.png");
         this.x = x;
         this.y = y;
         bulletImage = getPic();
