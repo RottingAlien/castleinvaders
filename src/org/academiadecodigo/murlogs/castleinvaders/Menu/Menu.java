@@ -136,6 +136,7 @@ public class Menu implements KeyboardHandler {
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
         keyboard.addEventListener(enter);
+        keyboard.addEventListener(escape);
     }
 
     @Override
@@ -164,9 +165,10 @@ public class Menu implements KeyboardHandler {
                         return;
                     }
                     helpSection.createHelpSection();
+
+                    return;
                 }
                 return;
-
             case KeyboardEvent.KEY_ESC:
                 if (menuExists) {
                     if (!helpSection.helpIsCreated()) {
@@ -175,12 +177,6 @@ public class Menu implements KeyboardHandler {
                     helpSection.deleteHelpSection();
                 }
         }
-
-
-        helpSection.createHelpSection();
-        return;
-
-
     }
 
 

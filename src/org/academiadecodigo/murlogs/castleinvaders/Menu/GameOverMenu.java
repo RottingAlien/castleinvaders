@@ -36,8 +36,8 @@ public class GameOverMenu implements KeyboardHandler {
         screen = new Rectangle(0, 0, 800, 600);
         gameOverBackground = new Picture(110, 100, "game over background.jpg");
         gameOver = new Picture(90, 115, "game over.png");
-        retry = new Picture(240, 280, "continue.png");
-        selecter = new Rectangle(355, 385, 90, 40);
+        retry = new Picture(325, 255, "retryy.png");
+        selecter = new Rectangle(355, 385, 120, 45);
 
 
         screen.draw();
@@ -46,14 +46,13 @@ public class GameOverMenu implements KeyboardHandler {
         gameOverBackground.grow(110, 175);
 
         gameOver.draw();
-        gameOver.grow(30, 30);
+        gameOver.grow(70, 70);
 
         retry.draw();
-        retry.grow(-50, -50);
+        retry.grow(0, -30);
 
         selecter.setColor(Color.YELLOW);
         selecter.draw();
-
 
         Thread.sleep(300);
         String filePath = "/game over song.wav";
