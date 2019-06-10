@@ -19,6 +19,7 @@ public class Enemy extends Character {
 
         this.setPic(new Picture());
         this.getPic().grow(7, 7);
+        this.getPic().draw();
 
         //spawn enemy right of the field
         if (randomSpawn == 1) {
@@ -48,9 +49,6 @@ public class Enemy extends Character {
         //keep them moving to the center
 
         //move right
-        if (getPic().getX() == -10) {
-            getPic().draw();
-        }
         if (getPic().getX() < randomDoorRight) {
             getPic().translate(1, 0);
 
@@ -61,9 +59,6 @@ public class Enemy extends Character {
         }
 
         //move left
-        if (getPic().getX() == 760) {
-            getPic().draw();
-        }
         if (getPic().getX() > randomDoorLeft) {
             getPic().translate(-1, 0);
 
