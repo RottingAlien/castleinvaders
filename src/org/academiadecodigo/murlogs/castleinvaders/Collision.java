@@ -32,24 +32,15 @@ public abstract class Collision {
 
     public static boolean enemyHit(Enemy enemy, Bullet bullet) {
 
-        if (bullet.getY() < enemy.getEnemyY()) {
-            return false;
-        }
+        if (bullet.bulletGetX() > enemy.getPic().getX() &&
+                bullet.bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
+                bullet.bulletGetY() > enemy.getPic().getY() &&
+                bullet.getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
 
-        if (bullet.getX() > enemy.getEnemyX() &&
-                bullet.getX() < enemy.getEnemyX() + enemy.getEnemyWidth() &&
-                    bullet.getY() > enemy.getEnemyY() + enemy.getEnemySize()) {
-
-            bullet.destroyBullet();
-
-            System.out.println("going here");
-
-            if (enemy.isDestroyed()) {
-                enemy.setDestroyed();
-            }
-
+            System.out.println("outchs");
             return true;
         }
+
 
         return false;
     }

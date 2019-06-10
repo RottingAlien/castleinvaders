@@ -17,10 +17,6 @@ public class Game {
     public void startGame() throws InterruptedException {
 
 
-        boolean gameIsRunning=true;
-
-
-
         Field field = new Field();
         field.createField();
 
@@ -53,7 +49,6 @@ public class Game {
         Arrow[] arrows = new Arrow[10];
 
 
-
         while (gameOn) {
 
             Thread.sleep(10);
@@ -77,26 +72,18 @@ public class Game {
 
                 //check for hits on enemies
                 if (player.getBullet() != null && !player.getBullet().isBulletDestroyed()) {
-                    /*if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
-                            player.getBullet().bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
-                            player.getBullet().bulletGetY() > enemy.getPic().getY() &&
-                            player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
-                        field.setCurrentScore(enemy.hit(1));
-
-                        player.getBullet().destroyBullet();
-                        System.out.println("outchs");
-                    }
-
-                    if (enemy.isDestroyed()) {
-                        enemy.setDestroyed();
-                    }
-                }*/
 
                     if (Collision.enemyHit(enemy, player.getBullet())) {
 
                         field.setCurrentScore(enemy.hit(1));
+                        player.getBullet().destroyBullet();
+
+                        if (enemy.isDestroyed()) {
+                            enemy.setDestroyed();
+                        }
                     }
                 }
+
                 //enemy shoot
                 if (enemy instanceof EnemyShooter) {
 
@@ -125,16 +112,11 @@ public class Game {
                     }
                 }
 
+
                 if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                     enemy.punchDoor(door);
                 }
-
-                if(player.isDestroyed()){
-                    gameIsRunning=false;
-                }
-
             }
-
             int fixedEnemyArrayLength = enemies.length;
             int enemiesLeft = numberPerWave;
             for (int i = 0; i < fixedEnemyArrayLength; i++) {
