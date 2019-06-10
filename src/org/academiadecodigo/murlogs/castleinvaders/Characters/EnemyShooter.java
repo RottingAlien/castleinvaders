@@ -25,11 +25,11 @@ public class EnemyShooter extends Enemy implements Destroyable {
         this.getPic().grow(7, 7);
 
         goingRightPicture = new Picture();
-        goingRightPicture.load("Skeleton Walk.gif");
+        goingRightPicture.load("skeleton_mage.png");
         goingRightPicture.grow(7, 7);
 
         goingLeftPicture = new Picture();
-        goingLeftPicture.load("skeleton_walk_reverse.png");
+        goingLeftPicture.load("skeleton_mage_reverse.png");
         goingLeftPicture.grow(7, 7);
 
 

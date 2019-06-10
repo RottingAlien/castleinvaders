@@ -23,17 +23,24 @@ public class Enemy extends Character {
         //spawn enemy right of the field
         if (randomSpawn == 1) {
 
-            this.getPic().load("skeleton_walk_reverse.png");
+            this.getPic().load("skeleton_reverse.png");
             this.getPic().translate(randomX + 760, enemyY);
             return;
         }
 
         //spawn enemy left of the field
-        this.getPic().load("Skeleton Walk.gif");
+        this.getPic().load("skeleton.png");
         this.getPic().translate(-randomX, enemyY);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    private int generateRandom(int min, int max){
+        return ((int) (Math.random() * (max - min + 1)) + min);
+    }
+
+    int randomDoorRight = generateRandom(340,310);
+    int randomDoorLeft = generateRandom(370,340);
 
     @Override
     public void move() {
@@ -44,10 +51,10 @@ public class Enemy extends Character {
         if (getPic().getX() == -10) {
             getPic().draw();
         }
-        if (getPic().getX() < 330) {
+        if (getPic().getX() < randomDoorRight) {
             getPic().translate(1, 0);
 
-            if (getPic().getX() == 330) {
+            if (getPic().getX() == randomDoorRight) {
                 atDoor = true;
             }
             return;
@@ -57,10 +64,10 @@ public class Enemy extends Character {
         if (getPic().getX() == 760) {
             getPic().draw();
         }
-        if (getPic().getX() > 380) {
+        if (getPic().getX() > randomDoorLeft) {
             getPic().translate(-1, 0);
 
-            if (getPic().getX() == 380) {
+            if (getPic().getX() == randomDoorLeft) {
                 atDoor = true;
             }
         }
@@ -104,5 +111,21 @@ public class Enemy extends Character {
 
     public boolean isAtDoor() {
         return atDoor;
+    }
+
+    public int getEnemySize() {
+        return enemySize;
+    }
+
+    public int getEnemyX() {
+        return getPic().getX();
+    }
+
+    public int getEnemyY() {
+        return enemyY;
+    }
+
+    public int getEnemyWidth() {
+        return getPic().getWidth();
     }
 }
