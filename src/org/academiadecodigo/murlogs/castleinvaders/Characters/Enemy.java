@@ -35,6 +35,13 @@ public class Enemy extends Character {
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    private int generateRandom(int min, int max){
+        return ((int) (Math.random() * (max - min + 1)) + min);
+    }
+
+    int randomDoorRight = generateRandom(340,310);
+    int randomDoorLeft = generateRandom(370,340);
+
     @Override
     public void move() {
 
@@ -44,10 +51,10 @@ public class Enemy extends Character {
         if (getPic().getX() == -10) {
             getPic().draw();
         }
-        if (getPic().getX() < 330) {
+        if (getPic().getX() < randomDoorRight) {
             getPic().translate(1, 0);
 
-            if (getPic().getX() == 330) {
+            if (getPic().getX() == randomDoorRight) {
                 atDoor = true;
             }
             return;
@@ -57,10 +64,10 @@ public class Enemy extends Character {
         if (getPic().getX() == 760) {
             getPic().draw();
         }
-        if (getPic().getX() > 380) {
+        if (getPic().getX() > randomDoorLeft) {
             getPic().translate(-1, 0);
 
-            if (getPic().getX() == 380) {
+            if (getPic().getX() == randomDoorLeft) {
                 atDoor = true;
             }
         }
