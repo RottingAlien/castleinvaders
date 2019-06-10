@@ -168,6 +168,8 @@ public class Menu implements KeyboardHandler {
                     return;
                 }
 
+                return;
+
             case KeyboardEvent.KEY_ESC:
                 if (menuExists) {
                     if (!helpSection.helpIsCreated()) {
