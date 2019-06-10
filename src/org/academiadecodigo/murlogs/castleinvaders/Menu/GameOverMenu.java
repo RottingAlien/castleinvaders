@@ -57,7 +57,7 @@ public class GameOverMenu implements KeyboardHandler {
         selecter.draw();
 
 
-        Thread.sleep(1500);
+        Thread.sleep(300);
         String filePath = "/game over song.wav";
         gameOverSound = new Sound(filePath);
         gameOverSound.play(true);

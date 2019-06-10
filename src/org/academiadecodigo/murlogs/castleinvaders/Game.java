@@ -3,6 +3,7 @@ package org.academiadecodigo.murlogs.castleinvaders;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.*;
 import org.academiadecodigo.murlogs.castleinvaders.Sound.Sound;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Crate;
 
 import java.util.ConcurrentModificationException;
 
@@ -44,12 +45,17 @@ public class Game {
         //possible arrows on field
         Arrow[] arrows = new Arrow[10];
 
+        Crate crate = new Crate();
 
         while (gameOn) {
             try {
                 Thread.sleep(10);
+
                 player.move();
 
+                if (crate.isDeployed()) {
+                    crate.move(0, 2);
+                }
 
                 if (player.getBullet() != null && !player.isDestroyed()) {
 
@@ -120,6 +126,16 @@ public class Game {
                 }
                 int fixedEnemyArrayLength = enemies.length;
                 int enemiesLeft = numberPerWave;
+
+                if (numberPerWave == 2 && !crate.isDeployed()) {
+                    crate.deploy();
+                }
+
+                if (Collision.cratePick(player, crate)) {
+
+                    player.setCratePicked();
+                }
+
                 for (int i = 0; i < fixedEnemyArrayLength; i++) {
 
                     if (!enemies[i].isDestroyed()) {
