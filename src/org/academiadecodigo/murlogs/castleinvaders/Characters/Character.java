@@ -80,6 +80,10 @@ public abstract class Character extends GameObjects implements Destroyable {
     public int getHearts() {
         return hearts;
     }
+
+    public void setDestroyed() {
+        this.destroyed = true;
+    }
 }
 
 

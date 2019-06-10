@@ -9,21 +9,35 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
 
-        Menu menu = new Menu();
-        menu.createMenu();
+        boolean playerContinue;
 
-        while (menu.menuExists()) {
-            Thread.sleep(0);
-        }
 
         while (true) {
 
-            Game game = new Game();
-            game.startGame();
+            playerContinue = true;
 
-            GameOverMenu gameOverMenu = new GameOverMenu();
-            gameOverMenu.createGameOverMenu();
+            Menu menu = new Menu();
+            menu.createMenu();
 
+            while (menu.menuExists()) {
+                Thread.sleep(0);
+            }
+
+            while (playerContinue) {
+                Game game = new Game();
+                game.startGame();
+
+                GameOverMenu gameOverMenu = new GameOverMenu();
+                gameOverMenu.createGameOverMenu();
+
+                while (gameOverMenu.GameOverMenuExists()) {
+                    Thread.sleep(0);
+
+                    if (!gameOverMenu.isPlayerContinue()) {
+                        playerContinue = false;
+                    }
+                }
+            }
         }
     }
 

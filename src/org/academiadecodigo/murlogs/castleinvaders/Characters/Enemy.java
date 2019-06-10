@@ -1,90 +1,26 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
-import org.academiadecodigo.murlogs.castleinvaders.Door;
-import org.academiadecodigo.murlogs.castleinvaders.Globals;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Enemy extends Character {
+public abstract class Enemy extends Character{
 
-
-    private final int enemySize = 20;
-    private int enemyY = enemySize + 506;
-    private final int scoreGiven = 5;
-    private boolean atDoor;
-
-    // -----------------------------------------------------------------------------------------------------------------
-    public Enemy(int hearts, int randomSpawn, int randomX) {
+    public Enemy(int hearts) {
         super(hearts);
-
-        this.setPic(new Picture());
-        this.getPic().grow(7, 7);
-
-        //spawn enemy right of the field
-        if (randomSpawn == 1) {
-
-            this.getPic().load("skeleton_reverse.png");
-            this.getPic().translate(randomX + 760, enemyY);
-            return;
-        }
-
-        //spawn enemy left of the field
-        this.getPic().load("skeleton.png");
-        this.getPic().translate(-randomX, enemyY);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    private int generateRandom(int min, int max){
-        return ((int) (Math.random() * (max - min + 1)) + min);
+    @Override
+    public int hit(int hearts) {
+        return super.hit(hearts);
     }
 
-    int randomDoorRight = generateRandom(340,310);
-    int randomDoorLeft = generateRandom(370,340);
+    @Override
+    public boolean isDestroyed() {
+        return super.isDestroyed();
+    }
 
     @Override
     public void move() {
-
-        //keep them moving to the center
-
-        //move right
-        if (getPic().getX() == -10) {
-            getPic().draw();
-        }
-        if (getPic().getX() < randomDoorRight) {
-            getPic().translate(1, 0);
-
-            if (getPic().getX() == randomDoorRight) {
-                atDoor = true;
-            }
-            return;
-        }
-
-        //move left
-        if (getPic().getX() == 760) {
-            getPic().draw();
-        }
-        if (getPic().getX() > randomDoorLeft) {
-            getPic().translate(-1, 0);
-
-            if (getPic().getX() == randomDoorLeft) {
-                atDoor = true;
-            }
-        }
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    public void setDestroyed() {
-
-        this.getPic().delete();
-        this.getPic().translate(1000, 1000);
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    @Override
-    public void chooseWeapon(int index) {
 
     }
 
@@ -93,9 +29,14 @@ public class Enemy extends Character {
 
     }
 
-    public void punchDoor(Door door) {
+    @Override
+    public void chooseWeapon(int index) {
 
-        door.hit(Globals.PUNCH_WEAPON_DAMAGE);
+    }
+
+    @Override
+    public Weapon getWeapon(int idx) {
+        return super.getWeapon(idx);
     }
 
     @Override
@@ -104,28 +45,22 @@ public class Enemy extends Character {
     }
 
     @Override
-    public int hit(int hearts) {
-        super.hit(hearts);
-        return scoreGiven;
+    public Picture getPic() {
+        return super.getPic();
     }
 
-    public boolean isAtDoor() {
-        return atDoor;
+    @Override
+    public void setDestroyed() {
+        super.setDestroyed();
     }
 
-    public int getEnemySize() {
-        return enemySize;
+    @Override
+    public void setPic(Picture pic) {
+        super.setPic(pic);
     }
 
-    public int getEnemyX() {
-        return getPic().getX();
-    }
-
-    public int getEnemyY() {
-        return enemyY;
-    }
-
-    public int getEnemyWidth() {
-        return getPic().getWidth();
+    @Override
+    public int getHearts() {
+        return super.getHearts();
     }
 }

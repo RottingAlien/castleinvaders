@@ -8,15 +8,32 @@ public abstract class EnemyFactory {
 
         int randomSpawn = (int) (Math.random() * 2);
         int randomX = (int) (Math.random() * 250);
-        int randomEnemy = (int) (Math.random() * 2);
+
+        int randomEnemy = -1;
+        boolean doorEnemyProb = (Math.random() < 0.2f);
+        boolean enemyShooterProb = (Math.random() < 0.5f);
+        boolean bigSkeletonProb = (Math.random() < 0.1f);
+
+        if (doorEnemyProb == true) {
+            randomEnemy = 0;
+        }
+        if (enemyShooterProb == true) {
+            randomEnemy = 1;
+        }
+        if (bigSkeletonProb == true) {
+            randomEnemy = 2;
+        }
+
 
         switch (randomEnemy) {
             case 0:
-                return new Enemy(1, randomSpawn, randomX);
+                return new DoorEnemy(1, randomSpawn, randomX);
             case 1:
                 return new EnemyShooter(1, randomSpawn, randomX);
+            case 2:
+                return new BigSkeleton(3, randomSpawn, randomX);
+            default:
+                return new DoorEnemy(1, randomSpawn, randomX);
         }
-
-        return null;
     }
 }

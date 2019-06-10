@@ -17,9 +17,11 @@ public class Menu implements KeyboardHandler {
     private Picture invaders;
     private Text start;
     private Text help;
+    private Text exit;
     private Picture background;
     private Rectangle rectangle1;
     private Rectangle rectangle2;
+    private Rectangle rectangle3;
     private Rectangle selecter;
 
     private Help helpSection;
@@ -56,8 +58,10 @@ public class Menu implements KeyboardHandler {
         screen = new Rectangle(0, 0, 800, 600);
         start = new Text(410, 395, "Start");
         help = new Text(410, 475, "Help");
+        exit = new Text(410, 555, "Exit");
         rectangle1 = new Rectangle(360, 370, 130, 55);
         rectangle2 = new Rectangle(360, 450, 130, 55);
+        rectangle3 = new Rectangle(360, 530,130,55 );
         selecter = new Rectangle(350, 360, 150, 75);
         background = new Picture(70, 100, "menu.png");
         castle = new Picture(20, 40, "title1.png");
@@ -78,6 +82,9 @@ public class Menu implements KeyboardHandler {
         rectangle2.setColor(Color.GRAY);
         rectangle2.fill();
 
+        rectangle3.setColor(Color.GRAY);
+        rectangle3.fill();
+
         selecter.draw();
         selecter.setColor(Color.YELLOW);
 
@@ -88,6 +95,10 @@ public class Menu implements KeyboardHandler {
         help.draw();
         help.grow(15, 15);
         help.setColor(Color.WHITE);
+
+        exit.draw();
+        exit.grow(15,15);
+        exit.setColor(Color.WHITE);
 
         menuExists = true;
 
@@ -152,7 +163,7 @@ public class Menu implements KeyboardHandler {
                 return;
 
             case KeyboardEvent.KEY_DOWN:
-                if (selecter.getY() == 440) {
+                if (selecter.getY() == 520) {
                     return;
                 }
                 selecter.translate(0, 80);
@@ -164,11 +175,18 @@ public class Menu implements KeyboardHandler {
                         deleteMenu();
                         return;
                     }
-                    helpSection.createHelpSection();
+                    if(selecter.getY()==440) {
+                        helpSection.createHelpSection();
 
-                    return;
+                        return;
+                    }
                 }
+                if (selecter.getY()==520){
+                    System.exit(0);
+                }
+
                 return;
+
             case KeyboardEvent.KEY_ESC:
                 if (menuExists) {
                     if (!helpSection.helpIsCreated()) {

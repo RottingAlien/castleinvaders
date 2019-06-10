@@ -1,6 +1,7 @@
 package org.academiadecodigo.murlogs.castleinvaders;
 
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Bullet;
+import org.academiadecodigo.murlogs.castleinvaders.Characters.DoorEnemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
