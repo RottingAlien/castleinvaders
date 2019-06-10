@@ -14,9 +14,11 @@ public class Main {
             Thread.sleep(0);
         }
 
-        Game game;
-        game = new Game();
-        game.startGame();
-        
+        while (true) {
+
+            Game game = new Game();
+            game.startGame();
+
+        }
     }
 }

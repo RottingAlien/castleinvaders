@@ -13,14 +13,13 @@ public class Field {
     private Picture playerDoor;
     private Picture castleDoor;
     private Picture vignette;
-
     private Picture hearts1;
     private Picture hearts2;
     private Picture hearts3;
     private Picture hearts4;
     private Picture hearts5;
     private Text score;
-
+    private int currentScore = 0;
 
     public void createField() {
 
@@ -41,11 +40,11 @@ public class Field {
         playerDoor.draw();
 
         vignette = new Picture(0, 0, "vignette.png");
-        vignette.draw();
+        //vignette.draw();
 
-        score= new Text (730, 11, "Score: ");
+        score = new Text(730, 11, ("Score: " + currentScore));
         score.setColor(Color.YELLOW);
-        score.grow(10,10);
+        score.grow(10, 10);
         score.draw();
 
         hearts1 = new Picture(10, 10, "heart.png");
@@ -59,11 +58,6 @@ public class Field {
         hearts4.draw();
         hearts5.draw();
 
-
-
-
-
-
     }
 
     public void drawVignette() {
@@ -72,5 +66,38 @@ public class Field {
         vignette.draw();
     }
 
+
+    public void deleteHearts(int heartsNumber) {
+        switch (heartsNumber) {
+            case 4:
+                hearts5.delete();
+                break;
+
+            case 3:
+                hearts4.delete();
+                break;
+
+            case 2:
+                hearts3.delete();
+                break;
+
+            case 1:
+                hearts2.delete();
+                break;
+
+            case 0:
+                hearts1.delete();
+                break;
+        }
+    }
+
+    public void setCurrentScore(int score) {
+        currentScore += score;
+        this.score.delete();
+        this.score = new Text(730, 11, ("Score: " + currentScore));
+        this.score.setColor(Color.YELLOW);
+        this.score.grow(10, 10);
+        this.score.draw();
+    }
 
 }

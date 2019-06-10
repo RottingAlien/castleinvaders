@@ -15,6 +15,8 @@ public class EnemyShooter extends Enemy implements Destroyable {
     private Picture currentPicture;
     private boolean destroyed;
 
+    private final int scoreGiven = 10;
+
     // -----------------------------------------------------------------------------------------------------------------
     public EnemyShooter(int hearts, int randomSpawn, int randomX) {
         super(hearts, randomSpawn, randomX);
@@ -150,9 +152,9 @@ public class EnemyShooter extends Enemy implements Destroyable {
         goingRightPicture.delete();
         goingLeftPicture.delete();
         currentPicture.delete();
-        goingRightPicture.translate(1000,1000);
-        goingLeftPicture.translate(1000,1000);
-        currentPicture.translate(1000,1000);
+        goingRightPicture.translate(1000, 1000);
+        goingLeftPicture.translate(1000, 1000);
+        currentPicture.translate(1000, 1000);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -163,11 +165,13 @@ public class EnemyShooter extends Enemy implements Destroyable {
     }
 
     @Override
-    public void hit(int hearts) {
+    public int hit(int hearts) {
         super.hit(hearts);
+        return scoreGiven;
     }
 
     public Picture getCurrentPicture() {
         return currentPicture;
     }
+
 }

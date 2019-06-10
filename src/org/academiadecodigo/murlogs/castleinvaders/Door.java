@@ -35,7 +35,7 @@ public class Door extends GameObjects implements Destroyable {
 
     }
 
-    public void hit(int damage) {
+    public int hit(int damage) {
 
 
         if (life > 0) {
@@ -58,6 +58,7 @@ public class Door extends GameObjects implements Destroyable {
         if (life == 0) {
             door3.delete();
         }
+        return 0;
     }
 
     public boolean isDestroyed() {

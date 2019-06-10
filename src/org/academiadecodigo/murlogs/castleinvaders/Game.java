@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 public class Game {
 
+    private boolean gameOn = true;
 
     public void startGame() throws InterruptedException {
 
@@ -42,19 +43,17 @@ public class Game {
         //number of wave -> to increase enemy creation
 
         int wave = 0;
-        int numberPerWave = 10 + wave;
+        int numberPerWave = 1 + wave;
 
-        LinkedList<Enemy> enemies = new LinkedList<>();
+        Enemy[] enemies = new Enemy[numberPerWave];
 
-        for (int i = 0; i < numberPerWave; i++) {
-
-            enemies.add(EnemyFactory.createEnemy());
-        }
+        enemies = createNextWave(enemies, numberPerWave);
 
         Arrow[] arrows = new Arrow[10];
 
 
-        while (gameIsRunning) {
+
+        while (gameOn) {
 
             Thread.sleep(10);
             player.move();
@@ -72,15 +71,15 @@ public class Game {
             //enemy move & shoot
             for (Enemy enemy : enemies) {
                 enemy.move();
-
+                //field.drawVignette();
                 //check for hits on enemies
                 if (player.getBullet() != null && !player.getBullet().isBulletDestroyed()) {
                     if (player.getBullet().bulletGetX() > enemy.getPic().getX() &&
                             player.getBullet().bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
                             player.getBullet().bulletGetY() > enemy.getPic().getY() &&
                             player.getBullet().getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+                        field.setCurrentScore(enemy.hit(1));
 
-                        enemy.hit(1);
                         player.getBullet().destroyBullet();
                         System.out.println("outchs");
                     }
@@ -111,6 +110,7 @@ public class Game {
                             arrows[i].getPic().delete();
                             arrows[i] = null;
                             player.hit(1);
+                            field.deleteHearts(player.getHearts());
                             continue;
                         }
 
@@ -121,7 +121,6 @@ public class Game {
                     }
                 }
 
-                field.drawVignette();
                 if (enemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                     enemy.punchDoor(door);
                 }
@@ -131,7 +130,44 @@ public class Game {
                 }
 
             }
+            int fixedEnemyArrayLength = enemies.length;
+            int enemiesLeft = numberPerWave;
+            for (int i = 0; i < fixedEnemyArrayLength; i++) {
+
+                if (!enemies[i].isDestroyed()) {
+                    continue;
+                }
+
+                if (enemies[i].isDestroyed()) {
+                    enemiesLeft--;
+                    if (enemiesLeft <= 0) {
+                        wave++;
+                        numberPerWave++;
+                        enemies = createNextWave(enemies, numberPerWave);
+                    }
+
+                }
+            }
+
+            if (player.getHearts() <= 0 || door.isDestroyed()) {
+
+                gameOn = false;
+                sound.close();
+            }
         }
+    }
+
+    private Enemy[] createNextWave(Enemy[] enemies, int numberPerWave) {
+
+        enemies = new Enemy[numberPerWave];
+
+        for (int i = 0; i < numberPerWave; i++) {
+
+            enemies[i] = (EnemyFactory.createEnemy());
+
+        }
+
+        return enemies;
     }
 }
 
