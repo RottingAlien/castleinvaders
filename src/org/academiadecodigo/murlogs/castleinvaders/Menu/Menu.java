@@ -145,32 +145,36 @@ public class Menu implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_UP:
-                if (selecter.getY() == 360) {
+                    if (selecter.getY() == 360) {
+                        return;
+                    }
+                    selecter.translate(0, -80);
                     return;
-                }
-                selecter.translate(0, -80);
-                return;
 
             case KeyboardEvent.KEY_DOWN:
-                if (selecter.getY() == 440) {
+                    if (selecter.getY() == 440) {
+                        return;
+                    }
+                    selecter.translate(0, 80);
                     return;
-                }
-                selecter.translate(0, 80);
-                return;
 
             case KeyboardEvent.KEY_ENTER:
-                if (selecter.getY() == 360) {
-                    deleteMenu();
+                if (menuExists && !helpSection.helpIsCreated()) {
+                    if (selecter.getY() == 360) {
+                        deleteMenu();
+                        return;
+                    }
+                    helpSection.createHelpSection();
                     return;
                 }
-                helpSection.createHelpSection();
-                return;
 
             case KeyboardEvent.KEY_ESC:
-                if (!helpSection.helpIsCreated()) {
-                    return;
+                if (menuExists) {
+                    if (!helpSection.helpIsCreated()) {
+                        return;
+                    }
+                    helpSection.deleteHelpSection();
                 }
-                helpSection.deleteHelpSection();
         }
     }
 

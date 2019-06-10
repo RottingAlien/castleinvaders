@@ -20,7 +20,7 @@ public class Game {
         Field field = new Field();
         field.createField();
 
-        Player player = new Player(5);
+        Player player = new Player(1);
 
         Door door = new Door();
         door.drawDoor();
@@ -52,6 +52,7 @@ public class Game {
         while (gameOn) {
 
             Thread.sleep(10);
+
             player.move();
 
             if (player.getBullet() != null && !player.isDestroyed()) {
@@ -155,6 +156,10 @@ public class Game {
         }
 
         return enemies;
+    }
+
+    public boolean isGameOn() {
+        return gameOn;
     }
 }
 
