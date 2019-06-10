@@ -175,16 +175,16 @@ public class Menu implements KeyboardHandler {
                         deleteMenu();
                         return;
                     }
-                    if(selecter.getY()==440) {
+                    if (selecter.getY() == 440) {
                         helpSection.createHelpSection();
 
                         return;
                     }
-                }
-                if (selecter.getY()==520){
-                    System.exit(0);
-                }
 
+                    if (selecter.getY() == 520) {
+                        System.exit(0);
+                    }
+                }
                 return;
 
             case KeyboardEvent.KEY_ESC:
