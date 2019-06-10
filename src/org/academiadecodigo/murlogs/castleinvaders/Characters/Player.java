@@ -1,5 +1,6 @@
 package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Fire;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -19,10 +20,10 @@ public class Player extends Character implements KeyboardHandler {
     private Bullet bullet;
     private boolean bulletExists;
     private boolean cratePicked;
+    private Fire fire;
 
     public Player(int hearts) {
         super(hearts);
-
 
         rightPicture = new Picture(playerPositionX, playerPositionY, "archerRight.png");
         leftPicture = new Picture(playerPositionX, playerPositionY, "archerLeft.png");
@@ -51,6 +52,10 @@ public class Player extends Character implements KeyboardHandler {
         space.setKey(KeyboardEvent.KEY_SPACE);
         space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent b = new KeyboardEvent();
+        b.setKey(KeyboardEvent.KEY_B);
+        b.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
         KeyboardEvent leftReleased = new KeyboardEvent();
         leftReleased.setKey(KeyboardEvent.KEY_LEFT);
         leftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
@@ -69,6 +74,7 @@ public class Player extends Character implements KeyboardHandler {
         keyboard.addEventListener(space);
         keyboard.addEventListener(left);
         keyboard.addEventListener(right);
+        keyboard.addEventListener(b);
 
     }
 
@@ -89,6 +95,9 @@ public class Player extends Character implements KeyboardHandler {
             case KeyboardEvent.KEY_LEFT:
                 turnLeft = true;
                 turnRight = false;
+                break;
+            case KeyboardEvent.KEY_B:
+                specialShoot();
                 break;
         }
     }
@@ -154,6 +163,13 @@ public class Player extends Character implements KeyboardHandler {
         }
     }
 
+    public void specialShoot() {
+        if (cratePicked) {
+            fire = new Fire(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() / 2));
+            cratePicked = false;
+        }
+    }
+
     @Override
     public void chooseWeapon(int index) {
 
@@ -187,6 +203,10 @@ public class Player extends Character implements KeyboardHandler {
 
     public void setCratePicked() {
         cratePicked = true;
+    }
+
+    public Fire getFire() {
+        return fire;
     }
 }
 

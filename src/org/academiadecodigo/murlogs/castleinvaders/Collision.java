@@ -54,7 +54,6 @@ public abstract class Collision {
                 player.getPlayerPositionX() >= crate.getCrateX() &&
                 player.getPlayerPositionX() < (crate.getCrateX() + crate.getCrateWidth())) {
 
-            System.out.println("im in");
             crate.setCrateOpen();
             return true;
         }

@@ -21,6 +21,10 @@ public abstract class Weapon extends GameObjects {
         this.typeWeapon = type;
     }
 
+    public Weapon() {
+
+    }
+
 
     //constructor test for enemy
     public Weapon(TypeWeapon type) {

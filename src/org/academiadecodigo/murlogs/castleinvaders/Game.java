@@ -67,6 +67,10 @@ public class Game {
                     }
                 }
 
+                if (player.getFire() != null && !player.isDestroyed()) {
+                    player.getFire().move(0,5);
+                }
+
                 //enemy move & shoot
                 for (Enemy enemy : enemies) {
                     enemy.move();
