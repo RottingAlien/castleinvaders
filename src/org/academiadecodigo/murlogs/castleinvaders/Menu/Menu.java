@@ -159,18 +159,24 @@ public class Menu implements KeyboardHandler {
                 return;
 
             case KeyboardEvent.KEY_ENTER:
-                if (selecter.getY() == 360) {
-                    deleteMenu();
+                if (menuExists && !helpSection.helpIsCreated()) {
+                    if (selecter.getY() == 360) {
+                        deleteMenu();
+                        return;
+                    }
+                    helpSection.createHelpSection();
                     return;
                 }
-                helpSection.createHelpSection();
+
                 return;
 
             case KeyboardEvent.KEY_ESC:
-                if (!helpSection.helpIsCreated()) {
-                    return;
+                if (menuExists) {
+                    if (!helpSection.helpIsCreated()) {
+                        return;
+                    }
+                    helpSection.deleteHelpSection();
                 }
-                helpSection.deleteHelpSection();
         }
     }
 

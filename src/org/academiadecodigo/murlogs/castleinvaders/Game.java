@@ -55,6 +55,7 @@ public class Game {
                 Thread.sleep(10);
                 player.move();
 
+
                 if (player.getBullet() != null && !player.isDestroyed()) {
 
                     player.getBullet().move(0, 10);
@@ -142,7 +143,7 @@ public class Game {
                     gameOn = false;
                     sound.close();
                 }
-            }catch (ConcurrentModificationException e){
+            } catch (ConcurrentModificationException e) {
                 e.printStackTrace();
             }
         }
@@ -159,6 +160,10 @@ public class Game {
         }
 
         return enemies;
+    }
+
+    public boolean isGameOn() {
+        return gameOn;
     }
 }
 

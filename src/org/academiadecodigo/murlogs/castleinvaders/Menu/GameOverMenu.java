@@ -1,4 +1,5 @@
 package org.academiadecodigo.murlogs.castleinvaders.Menu;
+
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -21,6 +22,8 @@ public class GameOverMenu implements KeyboardHandler {
     private boolean gameOverMenuExists;
     private Menu menu;
     private Game game2;
+
+    private boolean playerContinue = true;
 
     public GameOverMenu() {
 
@@ -60,15 +63,10 @@ public class GameOverMenu implements KeyboardHandler {
         gameOverSound.play(true);
 
         gameOverMenuExists = true;
-
-// game over menu is drawn
-// moving on...
-
-
     }
 
 
-    public void deleteGameOverMenu() {
+    public void deleteGameOverMenu() throws Exception {
         gameOverSound.stop();
         screen.delete();
         gameOver.delete();
@@ -129,19 +127,30 @@ public class GameOverMenu implements KeyboardHandler {
 
 
             case KeyboardEvent.KEY_ENTER:
-                    if(selecter.getY()==385){
+                if (selecter.getY() == 385) {
 
-                        System.out.println("meter diretamente no jogo - game.start()");
-                        return;
-
+                    try {
+                        deleteGameOverMenu();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
-                    deleteGameOverMenu();
+                    return;
+
                 }
 
+                playerContinue = false;
+                try {
+                    deleteGameOverMenu();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
         }
 
+    }
 
-
+    public boolean isPlayerContinue() {
+        return playerContinue;
+    }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
