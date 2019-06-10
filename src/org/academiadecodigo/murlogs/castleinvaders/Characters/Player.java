@@ -18,6 +18,7 @@ public class Player extends Character implements KeyboardHandler {
     private Picture leftPicture;
     private Bullet bullet;
     private boolean bulletExists;
+    private boolean cratePicked;
 
     public Player(int hearts) {
         super(hearts);
@@ -182,6 +183,10 @@ public class Player extends Character implements KeyboardHandler {
 
     public Bullet getBullet() {
         return bullet;
+    }
+
+    public void setCratePicked() {
+        cratePicked = true;
     }
 }
 

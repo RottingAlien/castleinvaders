@@ -5,6 +5,7 @@ import org.academiadecodigo.murlogs.castleinvaders.Characters.DoorEnemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Crate;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Collision {
@@ -42,6 +43,21 @@ public abstract class Collision {
             return true;
         }
 
+
+        return false;
+    }
+
+    public static boolean cratePick(Player player, Crate crate) {
+
+        if (crate.getCrateY() > 150 &&
+                crate.getCrateY() <= 200 &&
+                player.getPlayerPositionX() >= crate.getCrateX() &&
+                player.getPlayerPositionX() < (crate.getCrateX() + crate.getCrateWidth())) {
+
+            System.out.println("im in");
+            crate.setCrateOpen();
+            return true;
+        }
 
         return false;
     }
