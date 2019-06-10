@@ -8,7 +8,10 @@ public class Fire extends Weapon {
     private int fireY;
 
     private Picture rightFire;
+    private int rightFireX;
+
     private Picture leftFire;
+    private int leftFireX;
 
     private Picture fireImage;
     private boolean fireDestroyed;
@@ -80,5 +83,21 @@ public class Fire extends Weapon {
 
     public int getFireX() {
         return fireX;
+    }
+
+    public int getRightFireX() {
+        return rightFire.getX();
+    }
+
+    public int getLeftFireX() {
+        return leftFire.getX();
+    }
+
+    public Picture getRightFire() {
+        return rightFire;
+    }
+
+    public Picture getLeftFire() {
+        return leftFire;
     }
 }

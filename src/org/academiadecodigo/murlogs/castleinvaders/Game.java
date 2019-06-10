@@ -71,9 +71,14 @@ public class Game {
                     player.getFire().move(0,5);
                 }
 
+
                 //enemy move & shoot
                 for (Enemy enemy : enemies) {
                     enemy.move();
+
+                    if (Collision.enemyHit(enemy, player.getFire())) {
+                        field.setCurrentScore(enemy.hit(1));
+                    }
 
                     //field.drawVignette();
 

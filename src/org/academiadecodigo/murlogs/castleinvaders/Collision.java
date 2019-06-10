@@ -6,6 +6,8 @@ import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Crate;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Fire;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Collision {
@@ -32,17 +34,42 @@ public abstract class Collision {
         return false;
     }
 
-    public static boolean enemyHit(Enemy enemy, Bullet bullet) {
+    public static boolean enemyHit(Enemy enemy, Weapon weapon) {
 
-        if (bullet.bulletGetX() > enemy.getPic().getX() &&
-                bullet.bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
-                bullet.bulletGetY() > enemy.getPic().getY() &&
-                bullet.getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+        if (weapon instanceof Bullet) {
 
-            System.out.println("outchs");
-            return true;
+            Bullet bullet = (Bullet) weapon;
+
+            if (bullet.bulletGetX() > enemy.getPic().getX() &&
+                    bullet.bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
+                    bullet.bulletGetY() > enemy.getPic().getY() &&
+                    bullet.getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+
+                System.out.println("outchs");
+                return true;
+            }
         }
 
+        if (weapon instanceof Fire) {
+
+            Fire fire = (Fire) weapon;
+
+            if (fire.getRightFire() != null) {
+
+                if (fire.getLeftFireX() == enemy.getPic().getX() ||
+                        fire.getRightFireX() == enemy.getPic().getX()) {
+                    return true;
+                }
+            }
+            if (fire.getLeftFire() != null) {
+
+                if (fire.getLeftFireX() == enemy.getPic().getX() ||
+                        fire.getRightFireX() == enemy.getPic().getX()) {
+                    return true;
+                }
+            }
+
+        }
 
         return false;
     }
