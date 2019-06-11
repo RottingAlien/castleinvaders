@@ -78,14 +78,10 @@ public class GameOverMenu implements KeyboardHandler {
 
 
 
-// game over menu is drawn
-// moving on...
-
-
     }
 
 
-    public void deleteGameOverMenu() throws Exception {
+    public void deleteGameOverMenu() {
         gameOverSound.stop();
         screen.delete();
         gameOver.delete();
