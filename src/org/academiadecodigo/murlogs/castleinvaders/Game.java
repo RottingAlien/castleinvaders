@@ -23,6 +23,7 @@ public class Game {
         door.drawDoor();
 
         field.restartPlayerScore();
+        field.restartWaves();
 
 
         // Start of music implementation //
@@ -51,6 +52,7 @@ public class Game {
 
         while (gameOn) {
             try {
+
                 Thread.sleep(10);
 
                 player.move();
@@ -142,7 +144,9 @@ public class Game {
                 int fixedEnemyArrayLength = enemies.length;
                 int enemiesLeft = numberPerWave;
 
-                if (numberPerWave != 0 && numberPerWave % 5 == 0 && !crate.isDeployed()) {
+
+                if (field.getCurrentWave() != 0 && field.getCurrentWave() % 5 == 0 && !crate.isDeployed()) {
+
                     crate.deploy();
                 }
 
@@ -162,6 +166,7 @@ public class Game {
                         if (enemiesLeft <= 0) {
                             wave++;
                             numberPerWave++;
+                            field.setCurrentWave(1);
                             enemies = createNextWave(enemies, numberPerWave);
                         }
 

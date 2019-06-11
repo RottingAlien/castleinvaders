@@ -19,7 +19,9 @@ public class Field {
     private Picture hearts4;
     private Picture hearts5;
     private Text score;
+    private Text waves;
     private static int currentScore = 0;
+    private static int currentWave = 1;
 
     public void createField() {
 
@@ -46,6 +48,11 @@ public class Field {
         score.setColor(Color.YELLOW);
         score.grow(10, 10);
         score.draw();
+
+        waves = new Text(380, 11, ("Wave " + currentScore));
+        waves.setColor(Color.YELLOW);
+        waves.grow(10, 10);
+        waves.draw();
 
         hearts1 = new Picture(10, 10, "heart.png");
         hearts2 = new Picture(35, 10, "heart.png");
@@ -104,6 +111,19 @@ public class Field {
         return currentScore;
     }
 
+    public void setCurrentWave(int wave) {
+        currentWave += wave;
+        this.waves.delete();
+        this.waves = new Text(380, 11, ("Wave " + currentWave));
+        this.waves.setColor(Color.YELLOW);
+        this.waves.grow(10, 10);
+        this.waves.draw();
+    }
+
+    public static int getCurrentWave() {
+        return currentWave;
+    }
+
     public void restartPlayerScore() {
 
         if (currentScore > 0) {
@@ -115,6 +135,19 @@ public class Field {
             this.score.draw();
 
         }
-        }
-
     }
+
+    public void restartWaves() {
+
+        if (currentWave > 0) {
+            waves.delete();
+            currentWave = 1;
+            this.waves = new Text(380, 11, ("Wave " + currentWave));
+            this.waves.setColor(Color.YELLOW);
+            this.waves.grow(10, 10);
+            this.waves.draw();
+
+        }
+    }
+
+}
