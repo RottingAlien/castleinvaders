@@ -142,7 +142,7 @@ public class Game {
                 int fixedEnemyArrayLength = enemies.length;
                 int enemiesLeft = numberPerWave;
 
-                if (numberPerWave != 0 && numberPerWave % 10 == 0 && !crate.isDeployed()) {
+                if (numberPerWave != 0 && numberPerWave % 5 == 0 && !crate.isDeployed()) {
                     crate.deploy();
                 }
 
