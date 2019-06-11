@@ -2,6 +2,7 @@ package org.academiadecodigo.murlogs.castleinvaders.Characters;
 
 import org.academiadecodigo.murlogs.castleinvaders.Door;
 import org.academiadecodigo.murlogs.castleinvaders.Globals;
+import org.academiadecodigo.murlogs.castleinvaders.Sound.Sound;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -12,6 +13,7 @@ public class BigSkeleton extends Enemy{
     private int enemyY = enemySize + 490;
     private final int scoreGiven = 20;
     private boolean atDoor;
+    private Sound bigSkeletonDeath;
 
     // -----------------------------------------------------------------------------------------------------------------
     public BigSkeleton(int hearts, int randomSpawn, int randomX) {
@@ -70,10 +72,18 @@ public class BigSkeleton extends Enemy{
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    public void setDestroyed() {
+    public void setDestroyed(){
 
         this.getPic().delete();
         this.getPic().translate(1000, 1000);
+
+        if(isDestroyed()){
+            String filePath = "/Big Skeleton Dies.wav";
+            bigSkeletonDeath = new Sound(filePath);
+            bigSkeletonDeath.play(true);
+        }
+
+
     }
 
     // -----------------------------------------------------------------------------------------------------------------

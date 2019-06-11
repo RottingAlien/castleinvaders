@@ -19,7 +19,7 @@ public class Field {
     private Picture hearts4;
     private Picture hearts5;
     private Text score;
-    private int currentScore = 0;
+    private static int currentScore = 0;
 
     public void createField() {
 
@@ -100,4 +100,21 @@ public class Field {
         this.score.draw();
     }
 
-}
+    public static int getCurrentScore() {
+        return currentScore;
+    }
+
+    public void restartPlayerScore() {
+
+        if (currentScore > 0) {
+            score.delete();
+            currentScore = 0;
+            this.score = new Text(730, 11, ("Score: " + currentScore));
+            this.score.setColor(Color.YELLOW);
+            this.score.grow(10, 10);
+            this.score.draw();
+
+        }
+        }
+
+    }

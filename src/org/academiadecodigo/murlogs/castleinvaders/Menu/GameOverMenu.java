@@ -1,14 +1,16 @@
 package org.academiadecodigo.murlogs.castleinvaders.Menu;
 
+import org.academiadecodigo.murlogs.castleinvaders.Field;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.murlogs.castleinvaders.Sound.*;
-import org.academiadecodigo.murlogs.castleinvaders.Game;
+
 
 public class GameOverMenu implements KeyboardHandler {
 
@@ -17,11 +19,11 @@ public class GameOverMenu implements KeyboardHandler {
     private Picture gameOver;
     private Picture retry;
     private Rectangle selecter;
+    private Text score;
     private Keyboard keyboard;
     private Sound gameOverSound;
     private boolean gameOverMenuExists;
-    private Menu menu;
-    private Game game2;
+
 
     private boolean playerContinue = true;
 
@@ -29,7 +31,6 @@ public class GameOverMenu implements KeyboardHandler {
 
         keyboard = new Keyboard(this);
         prepare();
-
     }
 
     public void createGameOverMenu() throws InterruptedException {
@@ -38,9 +39,9 @@ public class GameOverMenu implements KeyboardHandler {
         screen = new Rectangle(0, 0, 800, 600);
         gameOverBackground = new Picture(110, 100, "game over background.jpg");
         gameOver = new Picture(90, 115, "game over.png");
-        retry = new Picture(240, 280, "continue.png");
-        selecter = new Rectangle(355, 385, 90, 40);
-
+        retry = new Picture(325, 255, "retryy.png");
+        selecter = new Rectangle(355, 385, 120, 45);
+        score = new Text (40, 580, "Score: " + Field.getCurrentScore() );
 
         screen.draw();
 
@@ -48,13 +49,17 @@ public class GameOverMenu implements KeyboardHandler {
         gameOverBackground.grow(110, 175);
 
         gameOver.draw();
-        gameOver.grow(30, 30);
+        gameOver.grow(70, 70);
 
         retry.draw();
-        retry.grow(-50, -50);
+        retry.grow(0, -30);
 
         selecter.setColor(Color.YELLOW);
         selecter.draw();
+
+        score.setColor(Color.WHITE);
+        score.grow(25,20);
+        score.draw();
 
 
         Thread.sleep(300);
@@ -63,6 +68,13 @@ public class GameOverMenu implements KeyboardHandler {
         gameOverSound.play(true);
 
         gameOverMenuExists = true;
+
+
+
+// game over menu is drawn
+// moving on...
+
+
     }
 
 
@@ -144,15 +156,19 @@ public class GameOverMenu implements KeyboardHandler {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
+
         }
 
     }
+
 
     public boolean isPlayerContinue() {
         return playerContinue;
     }
 
+
     @Override
+
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }

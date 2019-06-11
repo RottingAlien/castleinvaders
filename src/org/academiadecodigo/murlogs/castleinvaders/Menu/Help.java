@@ -12,21 +12,25 @@ public class Help {
     private Picture instructionsBackground;
 
 
+
     private boolean helpIsCreated;
 
     public void createHelpSection() {
 
 
+
+
+
         screen = new Rectangle(0, 0, 800, 600);
-
-        keywords = new Picture(70, 180, "instructions.png");
-
 
         screen.draw();
         screen.setColor(Color.LIGHT_GRAY);
         screen.fill();
-        keywords = new Picture(30, 180, "instructions.png");
+
+        keywords = new Picture(25, 60, "game keys.png");
         instructionsBackground = new Picture(70, 100, "menu instructions.png");
+
+        keywords.grow(-80,-80);
 
 
         screen.draw();
@@ -38,6 +42,7 @@ public class Help {
         keywords.draw();
 
         helpIsCreated = true;
+
 
     }
 
@@ -51,4 +56,7 @@ public class Help {
     public boolean helpIsCreated() {
         return helpIsCreated;
     }
+
+
+
 }
