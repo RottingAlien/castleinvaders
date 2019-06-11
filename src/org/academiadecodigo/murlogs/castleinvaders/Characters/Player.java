@@ -205,6 +205,10 @@ public class Player extends Character implements KeyboardHandler {
         cratePicked = true;
     }
 
+    public boolean isCratePicked() {
+        return cratePicked;
+    }
+
     public Fire getFire() {
         return fire;
     }

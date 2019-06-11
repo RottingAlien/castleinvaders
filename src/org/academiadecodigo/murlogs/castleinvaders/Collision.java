@@ -81,7 +81,7 @@ public abstract class Collision {
                 player.getPlayerPositionX() >= crate.getCrateX() &&
                 player.getPlayerPositionX() < (crate.getCrateX() + crate.getCrateWidth())) {
 
-            crate.setCrateOpen();
+            crate.setReadyToDeploy();
             return true;
         }
 
