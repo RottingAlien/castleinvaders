@@ -181,7 +181,7 @@ public class Menu implements KeyboardHandler {
                         return;
                     }
                 }
-                if (selecter.getY()==520 && !helpSection.helpIsCreated()){
+                if (selecter.getY()==520 && !helpSection.helpIsCreated() && !game.isGameOn()){
                     System.exit(0);
                 }
 

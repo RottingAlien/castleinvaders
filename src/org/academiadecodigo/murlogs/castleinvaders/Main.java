@@ -8,13 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-GameOverMenu gameOverMenu = new GameOverMenu();
-gameOverMenu.createGameOverMenu();
-    }
 
-    }
-
-/*
         boolean playerContinue;
 
 
@@ -48,5 +42,4 @@ gameOverMenu.createGameOverMenu();
     }
 
 
-    }
-*/
+}
