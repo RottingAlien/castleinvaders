@@ -6,6 +6,8 @@ import org.academiadecodigo.murlogs.castleinvaders.Characters.Enemy;
 import org.academiadecodigo.murlogs.castleinvaders.Characters.Player;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Arrow;
 import org.academiadecodigo.murlogs.castleinvaders.Weapons.Crate;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Fire;
+import org.academiadecodigo.murlogs.castleinvaders.Weapons.Weapon;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Collision {
@@ -32,17 +34,42 @@ public abstract class Collision {
         return false;
     }
 
-    public static boolean enemyHit(Enemy enemy, Bullet bullet) {
+    public static boolean enemyHit(Enemy enemy, Weapon weapon) {
 
-        if (bullet.bulletGetX() > enemy.getPic().getX() &&
-                bullet.bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
-                bullet.bulletGetY() > enemy.getPic().getY() &&
-                bullet.getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+        if (weapon instanceof Bullet) {
 
-            System.out.println("outchs");
-            return true;
+            Bullet bullet = (Bullet) weapon;
+
+            if (bullet.bulletGetX() > enemy.getPic().getX() &&
+                    bullet.bulletGetX() < enemy.getPic().getX() + enemy.getPic().getWidth() &&
+                    bullet.bulletGetY() > enemy.getPic().getY() &&
+                    bullet.getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
+
+                System.out.println("outchs");
+                return true;
+            }
         }
 
+        if (weapon instanceof Fire) {
+
+            Fire fire = (Fire) weapon;
+
+            if (fire.getRightFire() != null) {
+
+                if (fire.getRightFireX() > enemy.getPic().getX() &&
+                        fire.getRightFireX() < enemy.getPic().getX() + enemy.getPic().getWidth()) {
+                    return true;
+                }
+            }
+            if (fire.getLeftFire() != null) {
+
+                if (fire.getLeftFireX() > enemy.getPic().getX() &&
+                        fire.getLeftFireX() < enemy.getPic().getX() + enemy.getPic().getWidth()) {
+                    return true;
+                }
+            }
+
+        }
 
         return false;
     }
@@ -54,7 +81,6 @@ public abstract class Collision {
                 player.getPlayerPositionX() >= crate.getCrateX() &&
                 player.getPlayerPositionX() < (crate.getCrateX() + crate.getCrateWidth())) {
 
-            System.out.println("im in");
             crate.setCrateOpen();
             return true;
         }

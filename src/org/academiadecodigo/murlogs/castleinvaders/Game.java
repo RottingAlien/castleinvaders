@@ -69,9 +69,22 @@ public class Game {
                     }
                 }
 
+                if (player.getFire() != null && !player.isDestroyed()) {
+                    player.getFire().move(0,5);
+                }
+
+
                 //enemy move & shoot
                 for (Enemy enemy : enemies) {
                     enemy.move();
+
+                    if (Collision.enemyHit(enemy, player.getFire())) {
+                        System.out.println("works");
+                        field.setCurrentScore(enemy.hit(5));
+                        if (enemy.isDestroyed()) {
+                            enemy.setDestroyed();
+                        }
+                    }
 
                     //field.drawVignette();
 
@@ -129,7 +142,7 @@ public class Game {
                 int fixedEnemyArrayLength = enemies.length;
                 int enemiesLeft = numberPerWave;
 
-                if (numberPerWave == 2 && !crate.isDeployed()) {
+                if (numberPerWave != 0 && numberPerWave % 10 == 0 && !crate.isDeployed()) {
                     crate.deploy();
                 }
 
