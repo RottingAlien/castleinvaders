@@ -7,7 +7,6 @@ public class Crate {
     private int crateX;
     private int crateY;
     private Picture crateImage;
-    private boolean crateOpen;
     private boolean isDeployed;
 
     public Crate() {
@@ -28,14 +27,7 @@ public class Crate {
         }
     }
 
-    public void setCrateOpen() {
-        this.crateOpen = true;
-        crateImage.delete();
-        crateImage.translate(1000,1000);
-    }
-
     public void deploy() {
-
         isDeployed = true;
     }
 
@@ -53,5 +45,13 @@ public class Crate {
 
     public int getCrateWidth() {
         return crateImage.getWidth();
+    }
+
+    public void setReadyToDeploy() {
+        isDeployed = false;
+        crateImage.delete();
+        crateImage.translate(0,-200);
+        crateY -= 200;
+        crateImage.draw();
     }
 }

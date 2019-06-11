@@ -20,6 +20,7 @@ public class GameOverMenu implements KeyboardHandler {
     private Picture retry;
     private Rectangle selecter;
     private Text score;
+    private Text waves;
     private Keyboard keyboard;
     private Sound gameOverSound;
     private boolean gameOverMenuExists;
@@ -42,6 +43,7 @@ public class GameOverMenu implements KeyboardHandler {
         retry = new Picture(325, 255, "retryy.png");
         selecter = new Rectangle(355, 385, 120, 45);
         score = new Text (40, 580, "Score: " + Field.getCurrentScore() );
+        waves = new Text (160, 580, "Waves: " + Field.getCurrentWave() );
 
         screen.draw();
 
@@ -58,9 +60,12 @@ public class GameOverMenu implements KeyboardHandler {
         selecter.draw();
 
         score.setColor(Color.WHITE);
-        score.grow(25,20);
+        score.grow(22,20);
         score.draw();
 
+        waves.setColor(Color.WHITE);
+        waves.grow(27,20);
+        waves.draw();
 
         Thread.sleep(300);
         String filePath = "/game over song.wav";

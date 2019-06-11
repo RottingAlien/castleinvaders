@@ -17,7 +17,7 @@ public class Game {
         Field field = new Field();
         field.createField();
 
-        Player player = new Player(5);
+        Player player = new Player(1);
 
         Door door = new Door();
         door.drawDoor();
@@ -49,6 +49,8 @@ public class Game {
         Arrow[] arrows = new Arrow[10];
 
         Crate crate = new Crate();
+        boolean crateGivenInRound = false;
+        boolean cratePickedInRound = false;
 
         while (gameOn) {
             try {
@@ -72,12 +74,14 @@ public class Game {
                 }
 
                 if (player.getFire() != null && !player.isDestroyed()) {
+
                     player.getFire().move(0,5);
                 }
 
 
                 //enemy move & shoot
                 for (Enemy enemy : enemies) {
+
                     enemy.move();
 
                     if (Collision.enemyHit(enemy, player.getFire())) {
@@ -141,15 +145,22 @@ public class Game {
                         }
                     }
                 }
+
                 int fixedEnemyArrayLength = enemies.length;
                 int enemiesLeft = numberPerWave;
 
-                if (field.getCurrentWave() != 0 && field.getCurrentWave() % 5 == 0 && !crate.isDeployed()) {
+                if ((field.getCurrentWave() % 5 == 0) &&
+                        !crateGivenInRound &&
+                        !crate.isDeployed() &&
+                        !cratePickedInRound) {
+
                     crate.deploy();
+                    crateGivenInRound = true;
                 }
 
                 if (Collision.cratePick(player, crate)) {
 
+                    cratePickedInRound = true;
                     player.setCratePicked();
                 }
 
@@ -161,13 +172,16 @@ public class Game {
 
                     if (enemies[i].isDestroyed()) {
                         enemiesLeft--;
+
                         if (enemiesLeft <= 0) {
+
                             wave++;
                             numberPerWave++;
                             field.setCurrentWave(1);
+                            crateGivenInRound = false;
+                            cratePickedInRound = false;
                             enemies = createNextWave(enemies, numberPerWave);
                         }
-
                     }
                 }
 
@@ -176,6 +190,7 @@ public class Game {
                     gameOn = false;
                     sound.close();
                 }
+
             } catch (ConcurrentModificationException e) {
                 e.printStackTrace();
             }
