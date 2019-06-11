@@ -77,7 +77,11 @@ public class Game {
                     enemy.move();
 
                     if (Collision.enemyHit(enemy, player.getFire())) {
-                        field.setCurrentScore(enemy.hit(1));
+                        System.out.println("works");
+                        field.setCurrentScore(enemy.hit(5));
+                        if (enemy.isDestroyed()) {
+                            enemy.setDestroyed();
+                        }
                     }
 
                     //field.drawVignette();

@@ -56,15 +56,15 @@ public abstract class Collision {
 
             if (fire.getRightFire() != null) {
 
-                if (fire.getLeftFireX() == enemy.getPic().getX() ||
-                        fire.getRightFireX() == enemy.getPic().getX()) {
+                if (fire.getRightFireX() > enemy.getPic().getX() &&
+                        fire.getRightFireX() < enemy.getPic().getX() + enemy.getPic().getWidth()) {
                     return true;
                 }
             }
             if (fire.getLeftFire() != null) {
 
-                if (fire.getLeftFireX() == enemy.getPic().getX() ||
-                        fire.getRightFireX() == enemy.getPic().getX()) {
+                if (fire.getLeftFireX() > enemy.getPic().getX() &&
+                        fire.getLeftFireX() < enemy.getPic().getX() + enemy.getPic().getWidth()) {
                     return true;
                 }
             }

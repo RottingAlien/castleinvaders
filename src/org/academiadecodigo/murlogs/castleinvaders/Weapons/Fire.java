@@ -46,10 +46,20 @@ public class Fire extends Weapon {
 
         if (rightFire != null && rightFire.getX() < 820) {
             rightFire.translate(5, 0);
+            if (rightFire.getX() > 810) {
+                rightFire.delete();
+                rightFire.translate(1000, 1000);
+                rightFire = null;
+            }
         }
         if (leftFire != null && leftFire.getX() > -20) {
             leftFire.translate(-5, 0);
-            return;
+            if (leftFire.getX() < -10) {
+                leftFire.delete();
+                leftFire.translate(1000, 1000);
+                leftFire = null;
+                return;
+            }
         }
 
         if (fireY > 540 && !fireDestroyed) {
