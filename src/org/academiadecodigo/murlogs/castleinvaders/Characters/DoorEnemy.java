@@ -107,7 +107,9 @@ public class DoorEnemy extends Enemy{
     public boolean isAtDoor() {
         return atDoor;
     }
-
+    public void setAtDoor(boolean condition){
+        atDoor = condition;
+    }
     public int getEnemySize() {
         return enemySize;
     }

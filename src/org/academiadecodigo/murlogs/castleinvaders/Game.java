@@ -139,9 +139,19 @@ public class Game {
                     if (enemy instanceof DoorEnemy) {
 
                         DoorEnemy doorEnemy = (DoorEnemy) enemy;
+                        //EnemyRunner enemyRunner = (EnemyRunner) enemy;
 
                         if (doorEnemy.isAtDoor() && !door.isDestroyed() && !enemy.isDestroyed()) {
                             doorEnemy.punchDoor(door);
+                        }
+                    }
+                    if (enemy instanceof EnemyRunner){
+
+                        EnemyRunner enemyRunner = (EnemyRunner) enemy;
+                        if (enemyRunner.isAtDoor() && !door.isDestroyed() && !enemyRunner.isDestroyed()) {
+                            System.out.println("runner hit the door for " + door.getLife());
+                            enemyRunner.punchDoor(door);
+
                         }
                     }
                 }

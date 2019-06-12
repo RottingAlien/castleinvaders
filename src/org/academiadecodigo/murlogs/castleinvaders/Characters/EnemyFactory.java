@@ -11,9 +11,9 @@ public abstract class EnemyFactory {
 
         int randomEnemy = -1;
         boolean doorEnemyProb = (Math.random() < 0.1f);
-        boolean enemyShooterProb = (Math.random() < 0.1f);
+        boolean enemyShooterProb = (Math.random() < 0.4f);
         boolean bigSkeletonProb = (Math.random() < 0.1f);
-        boolean runnerSkeleton = (Math.random() < 0.7f);
+        boolean runnerSkeleton = (Math.random() < 0.1f);
 
         if (doorEnemyProb == true) {
             randomEnemy = 0;
@@ -37,7 +37,7 @@ public abstract class EnemyFactory {
             case 2:
                 return new BigSkeleton(3, randomSpawn, randomX);
             case 3:
-                return new RunnerSkeleton(1,randomSpawn,randomX);
+                return new EnemyRunner(1,randomSpawn,randomX);
             default:
                 return new DoorEnemy(1, randomSpawn, randomX);
         }
