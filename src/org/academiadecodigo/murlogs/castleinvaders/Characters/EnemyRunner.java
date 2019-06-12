@@ -16,7 +16,7 @@ public class EnemyRunner extends DoorEnemy implements Destroyable {
     private boolean destroyed;
 
 
-    private final int scoreGiven = 10;
+    private final int scoreGiven = 15;
 
     // -----------------------------------------------------------------------------------------------------------------
     public EnemyRunner(int hearts, int randomSpawn, int randomX) {

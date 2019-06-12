@@ -52,7 +52,7 @@ public class BigSkeleton extends Enemy{
 
         //move right
         if (getPic().getX() < randomDoorRight) {
-            getPic().translate(1, 0);
+            getPic().translate(0.7, 0);
 
             if (getPic().getX() == randomDoorRight) {
                 atDoor = true;
@@ -62,7 +62,7 @@ public class BigSkeleton extends Enemy{
 
         //move left
         if (getPic().getX() > randomDoorLeft) {
-            getPic().translate(-1, 0);
+            getPic().translate(-0.7, 0);
 
             if (getPic().getX() == randomDoorLeft) {
                 atDoor = true;
