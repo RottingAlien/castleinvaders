@@ -12,7 +12,7 @@ public class Crate {
     public Crate() {
 
         crateImage = new Picture();
-        crateImage.load("crate.png");
+        crateImage.load("spellbook.png");
         crateImage.translate(600, -20);
         crateImage.draw();
     }

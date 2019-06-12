@@ -25,6 +25,7 @@ public class Fire extends Weapon {
         this.fireY = y;
 
         fireImage = getPic();
+        fireImage.grow(5,3);
         fireImage.draw();
         fireImage.translate(x, y);
     }
@@ -70,11 +71,13 @@ public class Fire extends Weapon {
 
             rightFire = new Picture();
             rightFire.load("fireBallRight.png");
+            rightFire.grow(5,3);
             rightFire.translate(fireX, fireY);
             rightFire.draw();
 
             leftFire = new Picture();
             leftFire.load("fireBallLeft.png");
+            leftFire.grow(5,3);
             leftFire.translate(fireX, fireY);
             leftFire.draw();
 
