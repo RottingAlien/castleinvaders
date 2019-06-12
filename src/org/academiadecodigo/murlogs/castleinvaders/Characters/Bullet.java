@@ -12,8 +12,7 @@ public class Bullet extends Weapon {
     private boolean bulletDestroyed;
 
     public Bullet(int x, int y) {
-        super("player_arrow.png", TypeWeapon.ARROW);
-        super.setPic("player_arrow.png");
+        super("darkball.png", TypeWeapon.ARROW);
         this.x = x;
         this.y = y;
         bulletImage = getPic();
@@ -24,10 +23,11 @@ public class Bullet extends Weapon {
 
     @Override
     public void move(int x, int y) {
-        if (this.y < 550) {
-            bulletImage.translate(x, y);
-            this.x += x;
-            this.y += y;
+        bulletImage.translate(x, y);
+        this.x += x;
+        this.y += y;
+        if (this.y >= 550) {
+            bulletImage.delete();
         }
     }
 
