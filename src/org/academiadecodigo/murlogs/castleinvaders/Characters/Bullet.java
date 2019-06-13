@@ -12,7 +12,7 @@ public class Bullet extends Weapon {
     private boolean bulletDestroyed;
 
     public Bullet(int x, int y) {
-        super("darkball.png", TypeWeapon.ARROW);
+        super("/assets/darkball.png", TypeWeapon.ARROW);
         this.x = x;
         this.y = y;
         bulletImage = getPic();

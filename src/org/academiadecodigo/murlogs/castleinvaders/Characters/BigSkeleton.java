@@ -26,13 +26,13 @@ public class BigSkeleton extends Enemy{
         //spawn enemy right of the field
         if (randomSpawn == 1) {
 
-            this.getPic().load("skeleton_reverse.png");
+            this.getPic().load("/assets/skeleton_reverse.png");
             this.getPic().translate(randomX + 850, enemyY);
             return;
         }
 
         //spawn enemy left of the field
-        this.getPic().load("skeleton.png");
+        this.getPic().load("/assets/skeleton.png");
         this.getPic().translate(-randomX -50, enemyY);
     }
 
@@ -52,7 +52,7 @@ public class BigSkeleton extends Enemy{
 
         //move right
         if (getPic().getX() < randomDoorRight) {
-            getPic().translate(1, 0);
+            getPic().translate(0.7, 0);
 
             if (getPic().getX() == randomDoorRight) {
                 atDoor = true;
@@ -62,7 +62,7 @@ public class BigSkeleton extends Enemy{
 
         //move left
         if (getPic().getX() > randomDoorLeft) {
-            getPic().translate(-1, 0);
+            getPic().translate(-0.7, 0);
 
             if (getPic().getX() == randomDoorLeft) {
                 atDoor = true;
@@ -78,7 +78,7 @@ public class BigSkeleton extends Enemy{
         this.getPic().translate(1000, 1000);
 
         if(isDestroyed()){
-            String filePath = "/Big Skeleton Dies.wav";
+            String filePath = "/assets/Big Skeleton Dies.wav";
             bigSkeletonDeath = new Sound(filePath);
             bigSkeletonDeath.play(true);
         }

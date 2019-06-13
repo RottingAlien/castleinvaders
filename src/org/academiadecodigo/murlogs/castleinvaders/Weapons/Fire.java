@@ -18,8 +18,8 @@ public class Fire extends Weapon {
 
     public Fire(int x, int y) {
 
-        super("fireBall.png", TypeWeapon.FIRE);
-        super.setPic("fireBall.png");
+        super("/assets/fireBall.png", TypeWeapon.FIRE);
+        super.setPic("/assets/fireBall.png");
 
         this.fireX = x;
         this.fireY = y;
@@ -70,13 +70,13 @@ public class Fire extends Weapon {
             fireImage.translate(1000, 1000);
 
             rightFire = new Picture();
-            rightFire.load("fireBallRight.png");
+            rightFire.load("/assets/fireBallRight.png");
             rightFire.grow(5,3);
             rightFire.translate(fireX, fireY);
             rightFire.draw();
 
             leftFire = new Picture();
-            leftFire.load("fireBallLeft.png");
+            leftFire.load("/assets/fireBallLeft.png");
             leftFire.grow(5,3);
             leftFire.translate(fireX, fireY);
             leftFire.draw();
