@@ -11,3 +11,12 @@
 
 #virtual machina crash logs
 hs_err_pid*
+
+#.class files
+*.class
+
+#.jar
+*.jar
+
+#.html
+*.html
