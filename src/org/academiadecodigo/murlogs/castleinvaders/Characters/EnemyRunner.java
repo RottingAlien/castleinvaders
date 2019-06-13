@@ -26,11 +26,11 @@ public class EnemyRunner extends DoorEnemy implements Destroyable {
         this.getPic().grow(7, 7);
 
         goingRightPicture = new Picture();
-        goingRightPicture.load("skeletonRunnerRight.png");
+        goingRightPicture.load("/assets/skeletonRunnerRight.png");
         goingRightPicture.grow(7, 7);
 
         goingLeftPicture = new Picture();
-        goingLeftPicture.load("skeletonRunnerLeft.png");
+        goingLeftPicture.load("/assets/skeletonRunnerLeft.png");
         goingLeftPicture.grow(7, 7);
 
 

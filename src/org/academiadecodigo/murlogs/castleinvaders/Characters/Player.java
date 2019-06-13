@@ -25,8 +25,8 @@ public class Player extends Character implements KeyboardHandler {
     public Player(int hearts) {
         super(hearts);
 
-        rightPicture = new Picture(playerPositionX, playerPositionY, "wizardRight.png");
-        leftPicture = new Picture(playerPositionX, playerPositionY, "wizardLeft.png");
+        rightPicture = new Picture(playerPositionX, playerPositionY, "/assets/wizardRight.png");
+        leftPicture = new Picture(playerPositionX, playerPositionY, "/assets/wizardLeft.png");
         rightPicture.draw();
         super.setPic(rightPicture);
 

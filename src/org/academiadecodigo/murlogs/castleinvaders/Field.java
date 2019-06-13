@@ -30,18 +30,18 @@ public class Field {
         screen.draw();
 
         //Creates Sky
-        sky = new Picture(0, 0, "sky.png");
+        sky = new Picture(0, 0, "/assets/sky.png");
         sky.draw();
 
         //Creates Castle
-        castle = new Picture(0, 0, "castle.png");
+        castle = new Picture(0, 0, "/assets/castle.png");
         castle.draw();
 
         //Creates Player Door
-        playerDoor = new Picture(68, 122, "playerdoor.png");
+        playerDoor = new Picture(68, 122, "/assets/playerdoor.png");
         playerDoor.draw();
 
-        vignette = new Picture(0, 0, "vignette.png");
+        vignette = new Picture(0, 0, "/assets/vignette.png");
         //vignette.draw();
 
         score = new Text(730, 11, ("Score: " + currentScore));
@@ -54,11 +54,11 @@ public class Field {
         waves.grow(10, 10);
         waves.draw();
 
-        hearts1 = new Picture(10, 10, "heart.png");
-        hearts2 = new Picture(35, 10, "heart.png");
-        hearts3 = new Picture(60, 10, "heart.png");
-        hearts4 = new Picture(85, 10, "heart.png");
-        hearts5 = new Picture(110, 10, "heart.png");
+        hearts1 = new Picture(10, 10, "/assets/heart.png");
+        hearts2 = new Picture(35, 10, "/assets/heart.png");
+        hearts3 = new Picture(60, 10, "/assets/heart.png");
+        hearts4 = new Picture(85, 10, "/assets/heart.png");
+        hearts5 = new Picture(110, 10, "/assets/heart.png");
         hearts1.draw();
         hearts2.draw();
         hearts3.draw();

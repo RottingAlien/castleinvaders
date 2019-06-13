@@ -45,7 +45,6 @@ public abstract class Collision {
                     bullet.bulletGetY() > enemy.getPic().getY() &&
                     bullet.getY() < enemy.getPic().getY() + enemy.getPic().getHeight()) {
 
-                System.out.println("outchs");
                 return true;
             }
         }

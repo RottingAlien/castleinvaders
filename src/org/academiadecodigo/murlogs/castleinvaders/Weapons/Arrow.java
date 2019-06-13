@@ -7,12 +7,11 @@ public class Arrow extends Weapon {
     public boolean hit;
 
     public Arrow(int x, int y) {
-        super("skeleton_mage_projectil.png", TypeWeapon.ARROW);
+        super("/assets/skeleton_mage_projectil.png", TypeWeapon.ARROW);
         this.arrowX = x;
         this.arrowY = y;
         getPic().translate(x, y);
         getPic().draw();
-        //ConcurrentModificationException
     }
 
     @Override

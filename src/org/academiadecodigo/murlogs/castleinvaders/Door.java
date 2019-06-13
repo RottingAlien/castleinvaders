@@ -21,11 +21,11 @@ public class Door extends GameObjects implements Destroyable {
     private int energy;
     private int life;
 
-    Picture door = new Picture(335, 486, "castledoor.png");
-    Picture door1 = new Picture(335, 486, "castledoorcrack1.png");
-    Picture door2 = new Picture(335, 486, "castledoorcrack2.png");
-    Picture door3 = new Picture(335, 486, "castledoorcrack3.png");
-    Picture door4 = new Picture(335, 486, "castledoordestroyed.png");
+    Picture door = new Picture(335, 486, "/assets/castledoor.png");
+    Picture door1 = new Picture(335, 486, "/assets/castledoorcrack1.png");
+    Picture door2 = new Picture(335, 486, "/assets/castledoorcrack2.png");
+    Picture door3 = new Picture(335, 486, "/assets/castledoorcrack3.png");
+    Picture door4 = new Picture(335, 486, "/assets/castledoordestroyed.png");
 
 
     public Door() {

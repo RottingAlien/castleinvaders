@@ -38,9 +38,9 @@ public class GameOverMenu implements KeyboardHandler {
 
 
         screen = new Rectangle(0, 0, 800, 600);
-        gameOverBackground = new Picture(110, 100, "game over background.jpg");
-        gameOver = new Picture(90, 115, "game over.png");
-        retry = new Picture(325, 255, "retryy.png");
+        gameOverBackground = new Picture(110, 100, "/assets/game over background.jpg");
+        gameOver = new Picture(90, 115, "/assets/game over.png");
+        retry = new Picture(325, 255, "/assets/retryy.png");
         selecter = new Rectangle(355, 385, 120, 45);
         score = new Text (40, 580, "Score: " + Field.getCurrentScore() );
         waves = new Text (160, 580, "Waves: " + Field.getCurrentWave() );
@@ -70,7 +70,7 @@ public class GameOverMenu implements KeyboardHandler {
 
 
         Thread.sleep(300);
-        String filePath = "/game over song.wav";
+        String filePath = "/assets//game over song.wav";
         gameOverSound = new Sound(filePath);
         gameOverSound.play(true);
 

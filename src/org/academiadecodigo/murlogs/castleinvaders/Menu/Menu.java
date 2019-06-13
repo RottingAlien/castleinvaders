@@ -63,9 +63,9 @@ public class Menu implements KeyboardHandler {
         rectangle2 = new Rectangle(360, 450, 130, 55);
         rectangle3 = new Rectangle(360, 530,130,55 );
         selecter = new Rectangle(350, 360, 150, 75);
-        background = new Picture(70, 100, "menu.png");
-        castle = new Picture(20, 40, "title1.png");
-        invaders = new Picture(170, 150, "title2.png");
+        background = new Picture(70, 100, "/assets/menu.png");
+        castle = new Picture(20, 40, "/assets/title1.png");
+        invaders = new Picture(170, 150, "/assets/title2.png");
 
 
         background.grow(85, 180);
@@ -230,8 +230,8 @@ public class Menu implements KeyboardHandler {
             screen.setColor(Color.LIGHT_GRAY);
             screen.fill();
 
-            keywords = new Picture(25, 60, "game keys.png");
-            instructionsBackground = new Picture(70, 100, "menu instructions.png");
+            keywords = new Picture(25, 60, "/assets/game keys.png");
+            instructionsBackground = new Picture(70, 100, "/assets/menu instructions.png");
 
             keywords.grow(0,-40);
 

@@ -149,7 +149,6 @@ public class Game {
 
                         EnemyRunner enemyRunner = (EnemyRunner) enemy;
                         if (enemyRunner.isAtDoor() && !door.isDestroyed() && !enemyRunner.isDestroyed()) {
-                            System.out.println("runner hit the door for " + door.getLife());
                             enemyRunner.punchDoor(door);
 
                         }

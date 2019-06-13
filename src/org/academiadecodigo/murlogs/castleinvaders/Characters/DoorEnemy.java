@@ -24,13 +24,13 @@ public class DoorEnemy extends Enemy{
         //spawn enemy right of the field
         if (randomSpawn == 1) {
 
-            this.getPic().load("skeleton_reverse.png");
+            this.getPic().load("/assets/skeleton_reverse.png");
             this.getPic().translate(randomX + 850, enemyY);
             return;
         }
 
         //spawn enemy left of the field
-        this.getPic().load("skeleton.png");
+        this.getPic().load("/assets/skeleton.png");
         this.getPic().translate(-randomX -50, enemyY);
     }
 
