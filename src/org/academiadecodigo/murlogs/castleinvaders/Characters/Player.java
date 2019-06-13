@@ -11,7 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Player extends Character implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private int playerPositionX = 60;
+    private int playerPositionX = 78;
     private final int playerPositionY = 154;
     private boolean turnRight;
     private boolean turnLeft;
