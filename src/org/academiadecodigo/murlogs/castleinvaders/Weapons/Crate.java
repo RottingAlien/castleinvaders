@@ -17,7 +17,7 @@ public class Crate {
 
         crateImage = new Picture();
         crateImage.load("/assets/spellbook.png");
-        crateImage.translate(randomDrop(50,750), -20);
+        crateImage.translate(randomDrop(100,700), -20);
         crateImage.draw();
     }
 
@@ -57,7 +57,7 @@ public class Crate {
         int cratX = crateImage.getX();
         crateImage.translate(-cratX,-200);
         crateY -= 200;
-        crateImage.translate(randomDrop(50,750),0);
+        crateImage.translate(randomDrop(100,700),0);
         crateImage.draw();
     }
 }
