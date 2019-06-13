@@ -9,11 +9,15 @@ public class Crate {
     private Picture crateImage;
     private boolean isDeployed;
 
+    public int randomDrop(int min,int max){
+        return (int) (Math.random() * ((max - min) +1 ) - min);
+    }
+
     public Crate() {
 
         crateImage = new Picture();
         crateImage.load("/assets/spellbook.png");
-        crateImage.translate(600, -20);
+        crateImage.translate(randomDrop(50,750), -20);
         crateImage.draw();
     }
 
@@ -50,8 +54,10 @@ public class Crate {
     public void setReadyToDeploy() {
         isDeployed = false;
         crateImage.delete();
-        crateImage.translate(0,-200);
+        int cratX = crateImage.getX();
+        crateImage.translate(-cratX,-200);
         crateY -= 200;
+        crateImage.translate(randomDrop(50,750),0);
         crateImage.draw();
     }
 }
