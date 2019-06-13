@@ -17,6 +17,9 @@ public class Player extends Character implements KeyboardHandler {
     private boolean turnLeft;
     private Picture rightPicture;
     private Picture leftPicture;
+    private Picture rightFirePicture;
+    private Picture leftFirePicture;
+    private Picture currentPicture;
     private Bullet bullet;
     private boolean bulletExists;
     private boolean cratePicked;
@@ -28,6 +31,9 @@ public class Player extends Character implements KeyboardHandler {
 
     public Player(int hearts) {
         super(hearts);
+
+        rightFirePicture = new Picture(playerPositionX, playerPositionY, "/assets/wizardRightRed.png");
+        leftFirePicture = new Picture(playerPositionX, playerPositionY, "/assets/wizardLeftRed.png");
 
         rightPicture = new Picture(playerPositionX, playerPositionY, "/assets/wizardRight.png");
         leftPicture = new Picture(playerPositionX, playerPositionY, "/assets/wizardLeft.png");
@@ -147,15 +153,16 @@ public class Player extends Character implements KeyboardHandler {
         }
 
         if (!isDestroyed()) {
+
+
             if (turnRight && rightPicture.getX() < 760) {
-                leftPicture.delete();
-                rightPicture.draw();
+                goingRight();
                 refreshPlayerPosition(2, 0);
                 return;
             }
             if (turnLeft && leftPicture.getX() > 0) {
-                rightPicture.delete();
-                leftPicture.draw();
+                goingLeft();
+
                 refreshPlayerPosition(-2, 0);
                 return;
             }
@@ -173,6 +180,8 @@ public class Player extends Character implements KeyboardHandler {
     public void refreshPlayerPosition(int x, int y) {
         leftPicture.translate(x, y);
         rightPicture.translate(x, y);
+        leftFirePicture.translate(x,y);
+        rightFirePicture.translate(x,y);
         playerPositionX += x;
     }
 
@@ -194,7 +203,17 @@ public class Player extends Character implements KeyboardHandler {
         if (cratePicked) {
             fire = new Fire(playerPositionX + (rightPicture.getWidth() / 2), playerPositionY + (rightPicture.getHeight() / 2));
             cratePicked = false;
+
+            if(currentPicture == leftFirePicture){
+                leftFirePicture.delete();
+                leftPicture.draw();
+                return;
+            }
+
+            rightFirePicture.delete();
+            rightPicture.draw();
         }
+
     }
 
     @Override
@@ -246,6 +265,36 @@ public class Player extends Character implements KeyboardHandler {
 
     public boolean isSpecial() {
         return special;
+    }
+    public void goingLeft(){
+        if(!cratePicked) {
+            rightPicture.delete();
+            leftPicture.draw();
+            currentPicture = leftPicture;
+            rightFirePicture.delete();
+            leftFirePicture.delete();
+            return;
+        }
+        leftFirePicture.draw();
+        currentPicture = leftFirePicture;
+        rightFirePicture.delete();
+        rightPicture.delete();
+        leftPicture.delete();
+    }
+    public void goingRight(){
+        if(!cratePicked) {
+            rightPicture.draw();
+            currentPicture = rightPicture;
+            leftPicture.delete();
+            rightFirePicture.delete();
+            leftFirePicture.delete();
+            return;
+        }
+        rightFirePicture.draw();
+        currentPicture = rightFirePicture;
+        leftFirePicture.delete();
+        rightPicture.delete();
+        leftPicture.delete();
     }
 }
 
