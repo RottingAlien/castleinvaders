@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.academiadecodigo.murlogs.castleinvaders"},{"l":"org.academiadecodigo.murlogs.castleinvaders.Characters"},{"l":"org.academiadecodigo.murlogs.castleinvaders.Menu"},{"l":"org.academiadecodigo.murlogs.castleinvaders.Sound"},{"l":"org.academiadecodigo.murlogs.castleinvaders.Weapons"}]
