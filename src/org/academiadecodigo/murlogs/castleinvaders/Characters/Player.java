@@ -72,9 +72,14 @@ public class Player extends Character implements KeyboardHandler {
         spaceReleased.setKey(KeyboardEvent.KEY_SPACE);
         spaceReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
+        KeyboardEvent bReleased = new KeyboardEvent();
+        bReleased.setKey(KeyboardEvent.KEY_B);
+        bReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
         keyboard.addEventListener(spaceReleased);
         keyboard.addEventListener(rightReleased);
         keyboard.addEventListener(leftReleased);
+        keyboard.addEventListener(bReleased);
         keyboard.addEventListener(space);
         keyboard.addEventListener(left);
         keyboard.addEventListener(right);
