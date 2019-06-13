@@ -22,6 +22,10 @@ public class Player extends Character implements KeyboardHandler {
     private boolean cratePicked;
     private Fire fire;
 
+
+    private boolean shoot = false;
+    private boolean special = false;
+
     public Player(int hearts) {
         super(hearts);
 
@@ -85,7 +89,8 @@ public class Player extends Character implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_SPACE:
-                playerShooting();
+                //playerShooting();
+                shoot = true;
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
@@ -97,7 +102,8 @@ public class Player extends Character implements KeyboardHandler {
                 turnRight = false;
                 break;
             case KeyboardEvent.KEY_B:
-                specialShoot();
+                //specialShoot();
+                special = true;
                 break;
         }
     }
@@ -113,11 +119,27 @@ public class Player extends Character implements KeyboardHandler {
             turnRight = false;
         }
 
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_B:
+                special = false;
+                break;
+            case KeyboardEvent.KEY_SPACE:
+                shoot = false;
+                break;
+        }
     }
 
 
     @Override
     public void move() {
+
+        if (shoot) {
+            playerShooting();
+        }
+
+        if (special) {
+            specialShoot();
+        }
 
         if (!isDestroyed()) {
             if (turnRight && rightPicture.getX() < 760) {
@@ -211,6 +233,14 @@ public class Player extends Character implements KeyboardHandler {
 
     public Fire getFire() {
         return fire;
+    }
+
+    public boolean isShoot() {
+        return shoot;
+    }
+
+    public boolean isSpecial() {
+        return special;
     }
 }
 

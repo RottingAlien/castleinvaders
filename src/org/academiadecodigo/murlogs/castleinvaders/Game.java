@@ -75,12 +75,13 @@ public class Game {
 
                 if (player.getFire() != null && !player.isDestroyed()) {
 
-                    player.getFire().move(0,5);
+                    player.getFire().move(0, 5);
                 }
 
 
                 //enemy move & shoot
-                for (Enemy enemy : enemies) {
+                for (int i = 0; i < enemies.length; i++) {
+                    Enemy enemy = enemies[i];
 
                     enemy.move();
 
@@ -117,21 +118,21 @@ public class Game {
                     }
 
                     //check for player hit
-                    for (int i = 0; i < arrows.length; i++) {
+                    for (int ii = 0; ii < arrows.length; ii++) {
 
-                        if (arrows[i] != null) {
-                            arrows[i].move(0, -1);
+                        if (arrows[ii] != null) {
+                            arrows[ii].move(0, -1);
 
-                            if (Collision.playerHit(player, arrows[i])) {
+                            if (Collision.playerHit(player, arrows[ii])) {
 
                                 field.deleteHearts(player.getHearts());
-                                arrows[i] = null;
+                                arrows[ii] = null;
                                 continue;
                             }
 
-                            if (arrows[i].getArrowY() < -10) {
-                                arrows[i].getPic().delete();
-                                arrows[i] = null;
+                            if (arrows[ii].getArrowY() < -10) {
+                                arrows[ii].getPic().delete();
+                                arrows[ii] = null;
                             }
                         }
                     }
