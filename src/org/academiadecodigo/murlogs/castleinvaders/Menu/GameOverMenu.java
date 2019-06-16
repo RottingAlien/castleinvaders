@@ -70,7 +70,7 @@ public class GameOverMenu implements KeyboardHandler {
 
 
         Thread.sleep(300);
-        String filePath = "/assets//game over song.wav";
+        String filePath = "/assets/game over song.wav";
         gameOverSound = new Sound(filePath);
         gameOverSound.play(true);
 
